@@ -21,14 +21,14 @@ public class PathFinding : MonoBehaviour
         pathManager = GetComponent<PathManager>();
 
     }
-    
+    // start nieuw pathfinding process
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
        
         print("PathFinding StartFindPath: Target Position: " + targetPos);
         StartCoroutine(FindPath(startPos, targetPos));
     }
-
+    
     IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Vector3[] wayPoints = new Vector3[0];
@@ -38,29 +38,35 @@ public class PathFinding : MonoBehaviour
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
       
+        //controleert of startnode en end node walkable zijn
         if(startNode.walkable && targetNode.walkable)
         {
             print("Start node walkable: " + startNode.walkable);
             print("Target node walkable: " + targetNode.walkable);
+
+            //openset zijn nodes die nog niet geprocessed zijn
             Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
+            //closedset is nodes die al geprocessed zijn en niks meer mee gebeurt hoeft te worden
             HashSet<Node> closedSet = new HashSet<Node>();
             openSet.Add(startNode);
 
-
-
-
-
+            // start  het a* pathfinding
             while (openSet.Count > 0)
             {
+                // herhaalt totdat de openset leeg is of de doel node is berijkt
                 Node currentNode = openSet.RemoveFirst();
+                //als de openset node is voltooid stopt hij de node in de closed set
                 closedSet.Add(currentNode);
                 print("Inside the while loop");
+
                 if (currentNode == targetNode)
                 {
                     print("Path found!");
+                    // hier heeft die het pad gevonden
                     wayPoints = RetracePath(startNode, targetNode);
                     pathSuccess = true;
                     print(pathSuccess);
+                    //de foreach gaat ook weg is voor waypoint markers
                     foreach (Vector3 waypoint in wayPoints)
                     {
                         Instantiate(waypointMarkerPrefab, waypoint, Quaternion.identity);
@@ -68,6 +74,7 @@ public class PathFinding : MonoBehaviour
                     break;
 
                 }
+                //loopt door de neighbournodes en voert a* uit
                 yield return null;
                 foreach (Node neighbour in grid.CalculateNeighbours(currentNode))
                 {
@@ -96,7 +103,7 @@ public class PathFinding : MonoBehaviour
         }
       
         
-
+        //voltooid pathfinding en geeft resultaat door aan de pathmanager
         yield return null;
         if (pathSuccess)
         {
@@ -113,7 +120,7 @@ public class PathFinding : MonoBehaviour
     }
 
 
-
+    // retraced path van eindpunt naar startpunt
     Vector3[] RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
@@ -132,30 +139,13 @@ public class PathFinding : MonoBehaviour
             waypoints[i] = path[i].worldPosition;
         }
 
-        
+        // draait pad om zodat je start bij startpunt en naar eindpunt gaat
         System.Array.Reverse(waypoints);
 
         return waypoints;
     }
-
-    Vector3[] SimplifyPath(List<Node> path)
-    {
-        List<Vector3> waypoints = new List<Vector3>();
-        Vector3 previousWaypoint = path[0].worldPosition;
-        float waypointDistanceThreshold = 0.5f; 
-
-        for (int i = 1; i < path.Count; i++)
-        {
-            Vector3 direction = path[i].worldPosition - previousWaypoint;
-            if (direction.magnitude > waypointDistanceThreshold)
-            {
-                waypoints.Add(path[i].worldPosition);
-                previousWaypoint = path[i].worldPosition;
-            }
-        }
-
-        return waypoints.ToArray();
-    }
+    
+    // berekent geschatte afstand tussen  de 2 nodes (voor volgorde nodes in openset)
     int GetDistance(Node nodeA, Node nodeB)
     {
         int distanceX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
