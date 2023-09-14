@@ -13,7 +13,8 @@ public class Grid : MonoBehaviour
   
     float nodeDiameter;
     int gridSizeX, gridSizeY;
-  
+    public LayerMask unWalkable;
+    Color color = Color.red;
 
     void Awake()
     {
@@ -93,34 +94,24 @@ public class Grid : MonoBehaviour
         
         return neighbours;
     }
-    // controleert of gegeven wereldpositie bereikbaar is
+  
+  
     bool IsWalkable(Vector3 worldPosition)
     {
+        unWalkable = LayerMask.NameToLayer("Unwalkable");
         RaycastHit hit;
-
-        // hoogte watteropppervlak
-        float waterSurfaceHeight = 0.9f;
-
-        //berekent terrain hoogte
-        if (Physics.Raycast(worldPosition + Vector3.up * 100, Vector3.down, out hit, Mathf.Infinity))
+        if(Physics.Raycast(worldPosition + Vector3.up *100,Vector3.down, out hit, Mathf.Infinity))
         {
-            float terrainHeight = hit.point.y;
-
             
-            //controleert of terrainhoogte boven treshhoold ligt
-            if (terrainHeight > waterSurfaceHeight)
+            if (hit.transform.gameObject.layer == unWalkable)
             {
-                float walkableThreshold = waterSurfaceHeight + 1.6f;
-                // als terrain hoogte boven de tresh hold is. dan is het niet walkable
-                if (terrainHeight <= walkableThreshold)
-                {
-                  
-                    return false;
-                }
+                Debug.Log(hit.transform.name);
+                return false;
             }
         }
-        // als terrain niet wordt geraakt is het walkable
+
         return true;
+        
     }
     // vind en stuurt de node in het grid dat overeenkomt met een gegeven wereldpositie
     public Node NodeFromWorldPoint(Vector3 worldPosition)
@@ -135,13 +126,15 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
     // dit gaat weg
-    private void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
+
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
         if (grid != null && displayGridGizmo)
         {
             foreach (Node node in grid)
             {
+
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * nodeDiameter);
                 
