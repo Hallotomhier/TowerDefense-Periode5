@@ -7,7 +7,8 @@ public class DetectShip : MonoBehaviour
     private bool isDetect;
     private Vector3 center;
     public int range;
-    public GameObject ball;
+    public Transform midden;
+    public List<Transform> detect;
    
     
 
@@ -20,13 +21,13 @@ public class DetectShip : MonoBehaviour
     void Update()
     {
        
-        Collider[] hitColliders = Physics.OverlapSphere(center , range);
+        Collider[] hitColliders = Physics.OverlapSphere(center  , range);
         foreach (var hitCollider in hitColliders) 
         {
             
             if (hitCollider != gameObject) 
             {
-                
+               
             }
         }
     }
