@@ -43,6 +43,8 @@ public class Test : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         target.Remove(other.transform);
+        ChooseTarget = null;
+        storedDistance = Mathf.Infinity;
     }
 
 

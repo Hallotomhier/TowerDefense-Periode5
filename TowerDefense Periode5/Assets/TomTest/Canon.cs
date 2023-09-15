@@ -7,11 +7,14 @@ public class Canon : MonoBehaviour
     private RaycastHit hit;
     public Test detect;
     public Transform target;
-    public int damage = 1;
-
-    public GameObject self;
-    
+    public float damage = 1;
     public Camera cam;
+    private Vector3 tPos;
+
+
+
+
+
     void Start()
     {
         
@@ -22,36 +25,30 @@ public class Canon : MonoBehaviour
 
     void Update()
     {
-
         target = detect.ChooseTarget;
-
-        if (target != null)
+        if(target != null)
         {
             shoot();
+            tPos = target.position - cam.transform.position;
         }
-        else 
-        {
-            Debug.Log("cant shoot");
-        }
-
-
-
-
-        
-
     }
 
     public void shoot() 
     {
-        if (Physics.Raycast(self.transform.forward, target.position, out hit, Mathf.Infinity))
+        Debug.Log("test");
+        Debug.DrawRay(cam.transform.position, tPos);
+        if (Physics.Raycast(cam.transform.position, tPos, out hit, Mathf.Infinity))
         {
-            
+            Debug.Log("HIT");
             EnemyHealth enemyHealth = hit.transform.gameObject.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            if (enemyHealth.health! >= 0 && enemyHealth != null)
             {
-                enemyHealth.health -= damage;
+                enemyHealth.health -= damage * Time.deltaTime;
             }
-            Debug.DrawRay(self.transform.forward, target.position);
+            else 
+            {
+                Debug.Log("no health"); 
+            }
 
         }
 
