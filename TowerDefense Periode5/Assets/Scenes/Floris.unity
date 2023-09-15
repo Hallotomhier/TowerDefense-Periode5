@@ -214,15 +214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62de67522ca3574b8e37dc9790f0c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnName: 
+  spawnName: Enemy
   wave:
   - {fileID: 11400000, guid: f0a916aa893918f4d8fd5edb8695102d, type: 2}
+  - {fileID: 11400000, guid: 4b8d8cfc6d6100440a8a11952f5438f9, type: 2}
   spawnPositions:
-  - {fileID: 1080713393}
-  - {fileID: 534067577}
-  - {fileID: 232419960}
-  - {fileID: 975595741}
-  - {fileID: 65765733}
+  - {x: 25.2, y: 14.7, z: 504.7}
+  - {x: 25.2, y: 19, z: 223.9065}
+  - {x: 25.2, y: 14.7, z: 625.9}
+  - {x: 25.2, y: 14.7, z: 890.7}
+  - {x: 140.6, y: 14.7, z: 961.9}
+  maxSpawns: 5
+  spawned: 0
 --- !u!4 &381469400
 Transform:
   m_ObjectHideFlags: 0

@@ -6,17 +6,7 @@ using UnityEngine;
 public class ScriptableObjecsenem : ScriptableObject
 {
     public List<GameObject> waveComposition;
+    public int maxIndex;
   
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
