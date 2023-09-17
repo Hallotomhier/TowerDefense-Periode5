@@ -16,8 +16,9 @@ public class Grid : MonoBehaviour
     int gridSizeX, gridSizeY;
     public LayerMask unWalkable;
 
-    public Material hoverMaterial;
-    public Material original;
+    public Color hoverColor;
+    private Node hoveredNode;
+    public Material transparant;
 
     void Awake()
     {
@@ -46,25 +47,46 @@ public class Grid : MonoBehaviour
     {
         grid = new Node[gridSizeX, gridSizeY];
         Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
-
+        
+        if (transparant == null)
+        {
+            Debug.LogError("TransparentMaterial not found in resources.");
+            return;
+        }
+        transparant.color = new Color(1f, 1f, 1f, 0.5f); // Adjust the alpha value (0.5f for semi-transparent)
         // loopt door het grid en maakt nodes aan
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
+                
+
                 // berekent wereldpositie van huidige node
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 // checkt of node walkable is
                 bool walkable = IsWalkable(worldPoint);
 
+
                 // maakt nieuw node -exemplaar aan en slaat dit op
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
 
-                Renderer nodeRenderer = grid[x, y].nodeRenderer;
-                if (nodeRenderer != null)
+                GameObject nodeObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                nodeObject.transform.position = grid[x, y].worldPosition;
+                nodeObject.transform.localScale = Vector3.one * nodeDiameter;
+
+               
+                if (nodeObject.TryGetComponent<Renderer>(out Renderer nodeRenderer))
                 {
-                    nodeRenderer.material = walkable ? hoverMaterial : original;
+                    nodeRenderer.material = transparant;
                 }
+
+                
+
+
+                NodeHoverHandler hoverHandler = nodeObject.AddComponent<NodeHoverHandler>();
+                hoverHandler.grid = this;
+                hoverHandler.node = grid[x, y];
+
             }
         }
         // berekent en stelt de neighbournodes in grid
@@ -76,15 +98,11 @@ public class Grid : MonoBehaviour
             }
         }
     }
-   
     public void ResetNodeColors()
     {
-        foreach (Node node in grid)
-        {
-            node.nodeRenderer.material = original;
-        }
+        hoveredNode = null;
     }
-    
+
     // berekent en stuurt de buren van huidige node terug
     public List<Node> CalculateNeighbours(Node node)
     {
@@ -150,18 +168,27 @@ public class Grid : MonoBehaviour
     {
 
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-        if (grid != null && displayGridGizmo)
+        if (grid != null  && displayGridGizmo)
         {
             foreach (Node node in grid)
             {
 
-                Gizmos.color = (node.walkable) ? Color.white : Color.red;
-                Gizmos.DrawCube(node.worldPosition, Vector3.one * nodeDiameter);
-                
+              if(node == hoveredNode)
+              {
+                    Gizmos.color = Color.green;
+              }
+              else
+              {
+               Gizmos.color =(node.walkable ? Color.white : Color.red);     
+              }
+              
             }
            
         }
 
     }
-    
+    public void SetHoveredNode(Node node)
+    {
+        hoveredNode = node;
+    }
 }

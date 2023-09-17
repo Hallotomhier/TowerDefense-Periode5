@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Diagnostics;
 using System.Linq;
 using System;
+using UnityEditor.Experimental.GraphView;
 
 public class PathFinding : MonoBehaviour
 {
@@ -24,9 +25,19 @@ public class PathFinding : MonoBehaviour
     // start nieuw pathfinding process
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
-       
-        print("PathFinding StartFindPath: Target Position: " + targetPos);
-        StartCoroutine(FindPath(startPos, targetPos));
+        Node startNode = grid.NodeFromWorldPoint(startPos);
+        Node targetNode = grid.NodeFromWorldPoint(targetPos);
+
+        if (startNode != null && targetNode != null && startNode.walkable && targetNode.walkable)
+        {
+            print("PathFinding StartFindPath: Target Position: " + targetPos);
+            StartCoroutine(FindPath(startPos, targetPos));
+        }
+        else
+        {
+            
+           print("Invalid start or target node.");
+        }
     }
     
     IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)

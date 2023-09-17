@@ -2,43 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class MousePosIndicator : MonoBehaviour
 {
-    public class MousePositionIndicator : MonoBehaviour
+    public Grid grid;
+    public Color hoverColor = Color.green;
+    private Node hoveredNode;
+
+    private void Update()
     {
-        public Grid grid;
-        public Material hoverMaterial;
-        
-        private void Start()
-        {
-            
-        }
-        private void Update()
-        {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Debug.Log("Hit Grid");
+            Vector3 worldPosition = hit.point;
+            Node closestNode = grid.NodeFromWorldPoint(worldPosition);
+
+            // Change the color of the hovered node here
+            if (hoveredNode != null && hoveredNode != closestNode)
             {
-               
-                if (hit.transform.CompareTag("Grid"))
-                {
-                    
-                    Vector3 worldPosition = hit.point;
-                    Node closestNode = grid.NodeFromWorldPoint(worldPosition);
-                    transform.position = closestNode.worldPosition;
-                    closestNode.nodeRenderer.material = hoverMaterial;
-                }
-
-                
+                hoveredNode = null; // Reset the previous hovered node
+                grid.ResetNodeColors(); // Reset all node colors
             }
-            else
+
+            if (closestNode != null && closestNode != hoveredNode)
             {
-                grid.ResetNodeColors();
+                hoveredNode = closestNode;
+                grid.ResetNodeColors(); // Reset all node colors
+                hoveredNode.SetNodeColor(hoverColor); // Change the color of the hovered node
+            }
+        }
+        else
+        {
+            if (hoveredNode != null)
+            {
+                hoveredNode = null;
+                grid.ResetNodeColors(); // Reset all node colors
             }
         }
     }
 }
+
+
+
+
+

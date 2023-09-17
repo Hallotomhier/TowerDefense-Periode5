@@ -14,6 +14,7 @@ public class Node : IHeapItem<Node>
     public Node parent;
     public List<Node> neighbours;
     private int heapIndex;
+
     public Renderer nodeRenderer;
     //Constructor voor creeren van nieuwe nodes
     public Node(bool _walkable, Vector3 _worldPos,int _gridX,int _gridY)
@@ -27,7 +28,14 @@ public class Node : IHeapItem<Node>
         //maakt lijst van neighbour nodes voor huidige node
         neighbours = new List<Node>();
     }
-    
+    public void SetNodeColor(Color color)
+    {
+        if(nodeRenderer != null)
+        {
+            nodeRenderer.material.color = color;
+        }
+        
+    }
     // berekent fcost en stuurt dit terug om node te bereiken
     public int fCost 
     {
