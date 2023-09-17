@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a33fce9a642024e8ecc0d0cef1ee0f, type: 3}
   m_Name: Wave6
   m_EditorClassIdentifier: 
-  waveComposition: []
+  waveComposition:
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+  - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
   maxIndex: 0

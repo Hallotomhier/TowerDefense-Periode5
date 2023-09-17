@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public Transform target;
+    public GameObject target;
     public float speed;
     Vector3[] path;
     private LineRenderer lineRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Unit Start: Target Position: " + target.position);
-        
+
+        target = GameObject.FindWithTag("Target");
+        Debug.Log("Unit Start: Target Position: " + target.transform.position);
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         lineRenderer.material.color = Color.blue;
-        PathManager.PathRequesting(transform.position, target.position, OnPathFound);
+        PathManager.PathRequesting(transform.position, target.transform.position, OnPathFound);
     }
     
     

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   waveComposition:
-  - {fileID: 511728434141555334, guid: e68874fa25f71264aafa3aa3ab31066d, type: 3}
-  - {fileID: 6791990148767600959, guid: 374c6fc2571042f4bbdf63aeb2af6a91, type: 3}
-  - {fileID: 3771990851457638012, guid: 0ed732c1d8ca8c8448e88a3d34d7854e, type: 3}
-  - {fileID: 5883943630516597673, guid: d832b358124dae9468c682b14e4bc020, type: 3}
-  - {fileID: 419590719543171426, guid: f855230987e37b1428f74f663149f996, type: 3}
+  - {fileID: 1913017597142475578, guid: 59c4c52594731844cb36d8710d29555d, type: 3}
+  - {fileID: 1913017597142475578, guid: 59c4c52594731844cb36d8710d29555d, type: 3}
+  - {fileID: 2472098824927308862, guid: e56a0a9aede0932439dc28f6f0481ddf, type: 3}
   maxIndex: 0

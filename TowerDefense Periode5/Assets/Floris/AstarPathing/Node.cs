@@ -14,7 +14,7 @@ public class Node : IHeapItem<Node>
     public Node parent;
     public List<Node> neighbours;
     private int heapIndex;
-    
+    public Renderer nodeRenderer;
     //Constructor voor creeren van nieuwe nodes
     public Node(bool _walkable, Vector3 _worldPos,int _gridX,int _gridY)
     {
@@ -23,6 +23,7 @@ public class Node : IHeapItem<Node>
         worldPosition = _worldPos;
         gridX = _gridX;
         gridY = _gridY;
+        nodeRenderer = null;
         //maakt lijst van neighbour nodes voor huidige node
         neighbours = new List<Node>();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Grid : MonoBehaviour
 {
@@ -10,14 +11,18 @@ public class Grid : MonoBehaviour
     Node[,] grid;
     public Vector2 gridWorldSize;
     public float nodeRadius;
-  
+    
     float nodeDiameter;
     int gridSizeX, gridSizeY;
     public LayerMask unWalkable;
-    Color color = Color.red;
+
+    public Material hoverMaterial;
+    public Material original;
 
     void Awake()
     {
+    
+        
         // berekent diameter knoop punt
         nodeDiameter = nodeRadius * 2;
         // berekent aantal nodes in de x- en y- richting op  basis van node diameter en gridworldsize
@@ -54,6 +59,12 @@ public class Grid : MonoBehaviour
 
                 // maakt nieuw node -exemplaar aan en slaat dit op
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
+
+                Renderer nodeRenderer = grid[x, y].nodeRenderer;
+                if (nodeRenderer != null)
+                {
+                    nodeRenderer.material = walkable ? hoverMaterial : original;
+                }
             }
         }
         // berekent en stelt de neighbournodes in grid
@@ -65,7 +76,15 @@ public class Grid : MonoBehaviour
             }
         }
     }
-
+   
+    public void ResetNodeColors()
+    {
+        foreach (Node node in grid)
+        {
+            node.nodeRenderer.material = original;
+        }
+    }
+    
     // berekent en stuurt de buren van huidige node terug
     public List<Node> CalculateNeighbours(Node node)
     {
@@ -109,7 +128,8 @@ public class Grid : MonoBehaviour
                 return false;
             }
         }
-
+       
+        
         return true;
         
     }

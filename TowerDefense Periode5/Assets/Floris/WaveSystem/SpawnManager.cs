@@ -1,79 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    //Unit unit;
+    public GameObject targetGoTo;
+    
     [SerializeField]
     private string spawnName;
+    
     [SerializeField]
     private List<ScriptableObjecsenem> wave;
-    [SerializeField]
-    private Vector3[] spawnPositions;
+    
+    public Vector3[] spawnPositions;
     private int currentWave = 0;
-    private int instanceIndex = 1;
-    [SerializeField]
-    private int maxSpawns = 5;
-    [SerializeField]
-    private int spawned;
+    public int instanceIndex = 1;
+   
+    public int maxSpawns;
+    
+    public int spawned;
+    public bool finishedWave;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         StartCoroutine(StartWaveRoutine());
     }
     IEnumerator StartWaveRoutine()
     {
-        while(currentWave < wave[currentWave].waveComposition.Count)
+        while(currentWave < wave.Count)
         {
-            StartCoroutine(SpawnEnemiesRoutine());
-            yield return new WaitForSeconds(5f);
-            GameObject[] activeEnemys = GameObject.FindGameObjectsWithTag("Enemies");
+            if (currentWave >= wave.Count)
+            {
+                break;
+            }
+            if (currentWave < wave[currentWave].waveComposition.Count)
+            {
 
-            currentWave++;
+                StartCoroutine(SpawnEnemiesRoutine());
+                yield return new WaitUntil(AllEnemysDefeates);
+                Debug.Log("Next Wave");
+                currentWave++;
+
+            }
+            else
+            {
+                Debug.LogError("Invalid wave composition for currentWave: " + currentWave);
+                
+            }
         }
+        
+        
     }
    
     IEnumerator SpawnEnemiesRoutine()
     {
-        
-        if ( spawned <= maxSpawns)
+        int currentSpawnPointIndex = 0;
+        while ( spawned <= maxSpawns)
         {
-            int currentSpawnPointIndex = 0;
-            for (int i = 0; i < wave[currentWave].waveComposition.Count; i++)
+            if (currentSpawnPointIndex >= spawnPositions.Length)
             {
-                var obj = wave[currentWave].waveComposition[i];
+                break;
+            }
+            if (currentSpawnPointIndex < wave[currentWave].waveComposition.Count)
+            {
+                var obj = wave[currentWave].waveComposition[currentSpawnPointIndex];
+
                 GameObject currentEnemy = Instantiate(obj, spawnPositions[currentSpawnPointIndex], Quaternion.identity);
-                new WaitForSeconds(2f);
+
                 currentEnemy.name = spawnName + instanceIndex;
                 currentSpawnPointIndex++;
                 instanceIndex++;
                 spawned++;
-               
-                
             }
-            
+            else
+            {
+                break;
+            }
+            yield return new WaitForSeconds(4f);
         }
-        yield return new WaitForSeconds(2f);
 
+
+      
 
 
 
     }
-
-    public void StartWave()
+    bool AllEnemysDefeates()
     {
+        Debug.Log("Bool");
+        GameObject[] activeEnemys = GameObject.FindGameObjectsWithTag("Enemies");
+        return activeEnemys.Length <= 1;
 
-    }
-    public void FinishedWave()
-    {
-
-    }
-     
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
