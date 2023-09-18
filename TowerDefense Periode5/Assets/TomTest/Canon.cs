@@ -39,16 +39,21 @@ public class Canon : MonoBehaviour
         Debug.DrawRay(cam.transform.position, tPos);
         if (Physics.Raycast(cam.transform.position, tPos, out hit, Mathf.Infinity))
         {
-            Debug.Log("HIT");
+            if (hit.transform.CompareTag("Enemy")) 
+            {
+                Debug.Log(hit.transform.name);
+            }
+
+            /*Debug.Log("HIT");
             EnemyHealth enemyHealth = hit.transform.gameObject.GetComponent<EnemyHealth>();
-            if (enemyHealth.health! >= 0 && enemyHealth != null)
+            if (enemyHealth.health >= 0 && enemyHealth != null)
             {
                 enemyHealth.health -= damage * Time.deltaTime;
             }
             else 
             {
                 Debug.Log("no health"); 
-            }
+            }*/
 
         }
 
