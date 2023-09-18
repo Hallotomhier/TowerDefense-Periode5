@@ -8,15 +8,16 @@ public class Test : MonoBehaviour
     public Transform tower;
     public float storedDistance;
     public Transform ChooseTarget;
+    public EnemyHealth enemyPlayer;
 
-
+    
     private void Start()
     {
         storedDistance = Mathf.Infinity;
     }
 
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy")) 
         {
@@ -27,19 +28,43 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        foreach (var target in target) 
+        onDeath();
+        if (target == null)        {
+            Debug.Log("target not found");
+        }
+        else 
         {
-
-           float distance = Vector3.Distance(tower.position, target.position);
-            if (distance < storedDistance) 
+            foreach (var target in target)
             {
-                storedDistance = distance;
-                ChooseTarget = target;
-                
+
+
+                float distance = Vector3.Distance(tower.position, target.position);
+                if (distance < storedDistance)
+                {
+                    storedDistance = distance;
+                    ChooseTarget = target;
+
+                }
             }
         }
+
+        
     }
 
+
+    private void onDeath() 
+    {
+        if (ChooseTarget != null) 
+        {
+            if (ChooseTarget.GetComponent<EnemyHealth>().health <= 0)
+            {
+                target.Clear();
+                ChooseTarget = null;
+                storedDistance = Mathf.Infinity;
+            }
+        }
+        
+    }
     private void OnTriggerExit(Collider other)
     {
         target.Remove(other.transform);
