@@ -7,19 +7,19 @@ public class NodeHoverHandler : MonoBehaviour
     public Grid grid;
     public Node node;
     private Renderer nodeRenderer;
-    private Color originalColor;
+    private Material originalColor;
 
     private void Start()
     {
         nodeRenderer = GetComponent<Renderer>();
-        originalColor = nodeRenderer.material.color;
+        originalColor = nodeRenderer.material;
     }
 
     private void OnMouseEnter()
     {
         if (node != null)
         {
-            nodeRenderer.material.color = grid.hoverColor;
+            nodeRenderer.material = grid.hoverColor;
         }
     }
 
@@ -27,7 +27,7 @@ public class NodeHoverHandler : MonoBehaviour
     {
         if (node != null)
         {
-            nodeRenderer.material.color = originalColor;
+            nodeRenderer.material = originalColor;
         }
     }
 }

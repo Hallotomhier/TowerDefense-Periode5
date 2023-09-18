@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class MousePosIndicator : MonoBehaviour
 {
     public Grid grid;
-    public Color hoverColor = Color.green;
+    public Material hoverColor;
     private Node hoveredNode;
 
     private void Update()
