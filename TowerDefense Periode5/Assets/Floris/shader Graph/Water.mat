@@ -40,10 +40,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaterDepth: 10
+    - _WaterDepth: 5.9
     m_Colors:
-    - _Deep_Water: {r: 0.00338192, g: 0.11039258, b: 0.53773576, a: 1}
-    - _ShallowWater: {r: 0.0599263, g: 0.802267, b: 0.95283014, a: 1}
+    - _Deep_Water: {r: 0.00338192, g: 0.19215687, b: 0.53773564, a: 1}
+    - _ShallowWater: {r: 0.05992628, g: 0.46666667, b: 0.95283014, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &316890847997122444
 MonoBehaviour:
