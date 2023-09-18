@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour
     int gridSizeX, gridSizeY;
     public LayerMask unWalkable;
 
-    public Color hoverColor;
+    public Material hoverColor;
     private Node hoveredNode;
     public Material transparant;
 
@@ -53,7 +53,7 @@ public class Grid : MonoBehaviour
             Debug.LogError("TransparentMaterial not found in resources.");
             return;
         }
-        transparant.color = new Color(1f, 1f, 1f, 0.5f); // Adjust the alpha value (0.5f for semi-transparent)
+       
         // loopt door het grid en maakt nodes aan
         for (int x = 0; x < gridSizeX; x++)
         {
@@ -98,10 +98,7 @@ public class Grid : MonoBehaviour
             }
         }
     }
-    public void ResetNodeColors()
-    {
-        hoveredNode = null;
-    }
+  
 
     // berekent en stuurt de buren van huidige node terug
     public List<Node> CalculateNeighbours(Node node)
@@ -167,26 +164,34 @@ public class Grid : MonoBehaviour
     public void OnDrawGizmos()
     {
 
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-        if (grid != null  && displayGridGizmo)
+
+        if (grid != null && displayGridGizmo)
         {
             foreach (Node node in grid)
             {
+                Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-              if(node == hoveredNode)
-              {
+                if (node == hoveredNode)
+                {
                     Gizmos.color = Color.green;
-              }
-              else
-              {
-               Gizmos.color =(node.walkable ? Color.white : Color.red);     
-              }
-              
+                }
+                else
+                {
+                    Gizmos.color = (node.walkable ? Color.white : Color.red);
+                }
+
             }
-           
+
         }
 
     }
+
+
+    public void ResetNodeColors()
+    {
+        hoveredNode = null;
+    }
+
     public void SetHoveredNode(Node node)
     {
         hoveredNode = node;

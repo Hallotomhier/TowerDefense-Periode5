@@ -28,11 +28,11 @@ public class Node : IHeapItem<Node>
         //maakt lijst van neighbour nodes voor huidige node
         neighbours = new List<Node>();
     }
-    public void SetNodeColor(Color color)
+    public void SetNodeColor(Material color)
     {
         if(nodeRenderer != null)
         {
-            nodeRenderer.material.color = color;
+            nodeRenderer.material = color;
         }
         
     }
