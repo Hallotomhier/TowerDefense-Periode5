@@ -68,8 +68,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoomstamBoot
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f312c8d4b8d63b44a26f81b3eaa7281,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f312c8d4b8d63b44a26f81b3eaa7281,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1730430584292688470}
   m_SourcePrefab: {fileID: 100100000, guid: 4f312c8d4b8d63b44a26f81b3eaa7281, type: 3}
+--- !u!1 &6899640855874250686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f312c8d4b8d63b44a26f81b3eaa7281,
+    type: 3}
+  m_PrefabInstance: {fileID: 5981091589616114415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1730430584292688470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899640855874250686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97d64b253e373b49b7da91d83f47c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5

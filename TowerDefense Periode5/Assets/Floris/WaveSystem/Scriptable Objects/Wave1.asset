@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   waveComposition:
-  - {fileID: 1913017597142475578, guid: 59c4c52594731844cb36d8710d29555d, type: 3}
-  - {fileID: 1913017597142475578, guid: 59c4c52594731844cb36d8710d29555d, type: 3}
+  - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
+  - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
   maxIndex: 0

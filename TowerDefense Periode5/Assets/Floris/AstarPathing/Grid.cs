@@ -15,6 +15,7 @@ public class Grid : MonoBehaviour
     float nodeDiameter;
     int gridSizeX, gridSizeY;
     public LayerMask unWalkable;
+    public LayerMask unBuildable;
 
     public Material hoverColor;
     private Node hoveredNode;
@@ -65,7 +66,7 @@ public class Grid : MonoBehaviour
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 // checkt of node walkable is
                 bool walkable = IsWalkable(worldPoint);
-
+               
 
                 // maakt nieuw node -exemplaar aan en slaat dit op
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
@@ -148,6 +149,8 @@ public class Grid : MonoBehaviour
         return true;
         
     }
+    
+    
     // vind en stuurt de node in het grid dat overeenkomt met een gegeven wereldpositie
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {

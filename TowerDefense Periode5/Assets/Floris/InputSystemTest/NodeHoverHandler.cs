@@ -15,7 +15,7 @@ public class NodeHoverHandler : MonoBehaviour
         originalColor = nodeRenderer.material;
     }
 
-    private void OnMouseEnter()
+    public void OnMouseEnter()
     {
         if (node != null)
         {
