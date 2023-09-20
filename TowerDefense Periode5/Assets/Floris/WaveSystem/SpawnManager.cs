@@ -12,15 +12,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private string spawnName;
     
-    [SerializeField]
-    private List<ScriptableObjecsenem> wave;
+    
+    public List<ScriptableObjecsenem> wave;
+    public List<GameObject> activeEnemys = new List<GameObject>();
     
     public Vector3[] spawnPositions;
     private int currentWave = 0;
     public int instanceIndex = 1;
    
     public int maxSpawns;
-    
+    public bool buildPhase = false;
+    private float buildPhaseDuration = 10f;
     public int spawned;
     public bool finishedWave;
 
@@ -42,7 +44,11 @@ public class SpawnManager : MonoBehaviour
             {
 
                 StartCoroutine(SpawnEnemiesRoutine());
-                yield return new WaitUntil(AllEnemysDefeates);
+                yield return new WaitWhile(AllEnemysDefeates);
+                Debug.Log("Start build phase");
+                buildPhase = true;
+                yield return new WaitForSeconds(buildPhaseDuration);
+                buildPhase = false;
                 Debug.Log("Next Wave");
                 currentWave++;
 
@@ -76,6 +82,7 @@ public class SpawnManager : MonoBehaviour
                 currentSpawnPointIndex++;
                 instanceIndex++;
                 spawned++;
+                activeEnemys.Add(currentEnemy);
             }
             else
             {
@@ -93,8 +100,9 @@ public class SpawnManager : MonoBehaviour
     bool AllEnemysDefeates()
     {
         Debug.Log("Bool");
-        GameObject[] activeEnemys = GameObject.FindGameObjectsWithTag("Enemies");
-        return activeEnemys.Length <= 1;
+        
+        
+        return activeEnemys.Count == 0;
 
     }
 }

@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 public class BuildingSystem : MonoBehaviour
 {
     public Grid grid;
+    public SpawnManager spawnManager;
     public GameObject buildingPrefab;
 
-    private bool isBuildingMode = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,36 +19,30 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.bKey.wasPressedThisFrame)
+        if (Keyboard.current.bKey.wasPressedThisFrame && spawnManager.buildPhase)
         {
-            isBuildingMode = !isBuildingMode;
-            if (isBuildingMode)
+            spawnManager.buildPhase = !spawnManager.buildPhase;
+
+            Cursor.visible = true;
+            Cursor.visible = false;
+
+            if (spawnManager.buildPhase)
             {
-           
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
-        if (isBuildingMode)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
-            if(Physics.Raycast(ray,out hit))
-            {
-                Node node = grid.NodeFromWorldPoint(hit.point);
-                if(node != null && node.walkable)
+                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                    Vector3 buildingPosition = node.worldPosition;
-                    Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
-                    node.walkable = false;
+                    Node node = grid.NodeFromWorldPoint(hit.point);
+                    if (node != null && node.walkable)
+                    {
+                        Vector3 buildingPosition = node.worldPosition;
+                        Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
+                        node.walkable = false;
+                    }
                 }
             }
         }
+        
     }
     
 }
