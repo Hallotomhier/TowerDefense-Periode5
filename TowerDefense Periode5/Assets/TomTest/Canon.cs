@@ -6,10 +6,11 @@ public class Canon : MonoBehaviour
 {
     public Test detect;
     public Transform target;
-    public float damage = 1;
+    public float[] damage;
     public float delay = 3f;
     public float timer;
-    
+    public int level;
+
 
     public string[] debug;
 
@@ -47,7 +48,7 @@ public class Canon : MonoBehaviour
 
     private void Shoot() 
     {
-        target.GetComponent<EnemyHealth>().health -= damage;
+        target.GetComponent<EnemyHealth>().health -= damage[level];
     }
 
 

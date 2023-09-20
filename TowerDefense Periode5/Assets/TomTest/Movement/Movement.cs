@@ -5,16 +5,29 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Private")]
     private PlayerInput playerInput;
-    private Rigidbody rb;
+    private float groundDistance = 0.4f;
+    private float x;
+    private float y;
     private float xrotation;
+    private bool isGrounded;
+    private CharacterController charCon;
+    private Vector3 velocity;
 
     [Header("Camera")]
     public Camera playerCamera;
 
+    [Header("MovementSettings")]
+    public LayerMask canWalk;  
+    public Transform checkGroundMask;
+    
     [Header("playerSettings")]
     public float speed;
     public float camSpeed;
+    public float gravity;
+    public float jumpHeight;
+    
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -22,22 +35,35 @@ public class Movement : MonoBehaviour
         playerInput.Player.Jump.performed += Jump_performed;
         playerInput.Player.Mouse.performed += Mouse_performed;
         playerInput.Player.Interact.performed += Interact_performed;
+        
     }
 
+    
+    
     public void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        
     }
 
     void Update()
     {
-        Vector2 mVector2 = playerInput.Player.Movement.ReadValue<Vector2>();
-        transform.Translate(mVector2.x * speed * Time.deltaTime, 0, mVector2.y * speed * Time.deltaTime);
+        MovePlayer();
     }
 
-    public void Interact_performed(InputAction.CallbackContext context)
+    private void MovePlayer() 
     {
-        Debug.Log("Interact");
+        if (isGrounded == true && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        charCon = GetComponent<CharacterController>();
+        velocity.y += gravity * Time.deltaTime;
+        charCon.Move(velocity * Time.deltaTime);
+        isGrounded = Physics.CheckSphere(checkGroundMask.position, groundDistance, canWalk);
+        Vector2 v2 = playerInput.Player.Movement.ReadValue<Vector2>();
+        Vector3 move = transform.right * v2.x + transform.forward * v2.y;
+        charCon.Move(move * speed * Time.deltaTime);
+
     }
 
     private void Mouse_performed(InputAction.CallbackContext context)
@@ -57,9 +83,17 @@ public class Movement : MonoBehaviour
 
     private void Jump_performed(InputAction.CallbackContext context)
     {
-        rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+        if (isGrounded == true)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+    }
+
+    public void Interact_performed(InputAction.CallbackContext context)
+    {
+        Debug.Log(context);
     }
 
 
-    
+
 }
