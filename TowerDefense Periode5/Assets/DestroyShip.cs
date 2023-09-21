@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class DestroyShip : MonoBehaviour
 {
+    public Enemy enemy;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-         
-            SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
+            Enemy enemyComponent = other.GetComponent<Enemy>();
 
-            spawnManager.activeEnemys.Remove(other.gameObject);
-            
+            if (enemyComponent != null)
+            {
+               
+                enemyComponent.OnDestroy();
+            }
+
             Destroy(other.gameObject);
         }
     }

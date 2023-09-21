@@ -607,26 +607,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62de67522ca3574b8e37dc9790f0c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetGoTo: {fileID: 1500881963}
-  spawnName: Enemy
-  wave:
-  - {fileID: 11400000, guid: f0a916aa893918f4d8fd5edb8695102d, type: 2}
-  - {fileID: 11400000, guid: 4b8d8cfc6d6100440a8a11952f5438f9, type: 2}
-  - {fileID: 11400000, guid: 5dbd002515b398f479f2ecfec4ff1952, type: 2}
-  - {fileID: 11400000, guid: c28adb81be908754d8c6bb7aee35c05b, type: 2}
-  - {fileID: 11400000, guid: acda6aaf9222e674b80df48c6efdbc8d, type: 2}
-  - {fileID: 11400000, guid: 1be67ebd3374d4d4cba9323bd4108807, type: 2}
-  - {fileID: 11400000, guid: 0c7a44fbd1f216e4b961ac8f5d454fe8, type: 2}
-  activeEnemys: []
-  spawnPositions:
-  - {x: 2.64, y: 7.558, z: 0.36}
-  - {x: 1.11, y: 8.01, z: 56.7}
-  - {x: 1.376, y: 7.57, z: 97.9}
-  instanceIndex: 1
-  maxSpawns: 5
-  buildPhase: 0
-  spawned: 0
-  finishedWave: 0
+  spawnPoints:
+  - {fileID: 534067577}
+  startTime: 5
+  timeBetweenWaves: 1
+  buildPhaseDuration: 300
+  waves:
+  - enemyTypes:
+    - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
+    enemyCounts: 02000000
+  - enemyTypes:
+    - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
+    - {fileID: 2472098824927308862, guid: e56a0a9aede0932439dc28f6f0481ddf, type: 3}
+    enemyCounts: 01000000
+  - enemyTypes:
+    - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
+    - {fileID: 2472098824927308862, guid: e56a0a9aede0932439dc28f6f0481ddf, type: 3}
+    - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
+    enemyCounts: 010000000600000002000000
 --- !u!4 &381469400
 Transform:
   m_ObjectHideFlags: 0
@@ -2130,6 +2128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993ac5a001019064f879bc28ab2e2920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!65 &1370862081
 BoxCollider:
   m_ObjectHideFlags: 0

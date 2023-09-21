@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     {
 
         target = GameObject.FindWithTag("Target");
-        Debug.Log("Unit Start: Target Position: " + target.transform.position);
+        //Debug.Log("Unit Start: Target Position: " + target.transform.position);
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;

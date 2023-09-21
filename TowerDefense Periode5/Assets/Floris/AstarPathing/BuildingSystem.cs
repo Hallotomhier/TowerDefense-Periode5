@@ -27,14 +27,14 @@ public class BuildingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.bKey.wasPressedThisFrame && spawnManager.buildPhase)
+        if (Keyboard.current.bKey.wasPressedThisFrame)
         {
             
 
             Cursor.visible = true;
             Cursor.visible = false;
 
-            if (spawnManager.buildPhase)
+            if (spawnManager)
             {
                     Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                     RaycastHit hit;

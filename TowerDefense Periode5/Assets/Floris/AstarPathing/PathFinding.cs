@@ -47,13 +47,13 @@ public class PathFinding : MonoBehaviour
 
         if (startNode != null && targetNode != null && startNode.walkable && targetNode.walkable)
         {
-            print("PathFinding StartFindPath: Target Position: " + targetPos);
+            //print("PathFinding StartFindPath: Target Position: " + targetPos);
             StartCoroutine(FindPath(startPos, targetPos));
         }
         else
         {
             
-           print("Invalid start or target node.");
+           //print("Invalid start or target node.");
         }
     }
    
@@ -70,8 +70,8 @@ public class PathFinding : MonoBehaviour
         //controleert of startnode en end node walkable zijn
         if(startNode.walkable && targetNode.walkable)
         {
-            print("Start node walkable: " + startNode.walkable);
-            print("Target node walkable: " + targetNode.walkable);
+            //print("Start node walkable: " + startNode.walkable);
+           // print("Target node walkable: " + targetNode.walkable);
 
             //openset zijn nodes die nog niet geprocessed zijn
             Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
@@ -86,11 +86,11 @@ public class PathFinding : MonoBehaviour
                 Node currentNode = openSet.RemoveFirst();
                 //als de openset node is voltooid stopt hij de node in de closed set
                 closedSet.Add(currentNode);
-                print("Inside the while loop");
+                //print("Inside the while loop");
 
                 if (currentNode == targetNode)
                 {
-                    print("Path found!");
+                    //print("Path found!");
                     // hier heeft die het pad gevonden
                     wayPoints = RetracePath(startNode, targetNode);
                     pathSuccess = true;
@@ -107,7 +107,7 @@ public class PathFinding : MonoBehaviour
                 yield return null;
                 foreach (Node neighbour in grid.CalculateNeighbours(currentNode))
                 {
-                    print("Processing neighbour: " + neighbour);
+                    //print("Processing neighbour: " + neighbour);
                     if (!neighbour.walkable || closedSet.Contains(neighbour))
                     {
                         continue;
@@ -139,7 +139,7 @@ public class PathFinding : MonoBehaviour
             wayPoints = RetracePath(startNode, targetNode);
             foreach (Vector3 waypoint in wayPoints)
             {
-                print("Waypoint: " + waypoint);
+               // print("Waypoint: " + waypoint);
                 
                 
             }

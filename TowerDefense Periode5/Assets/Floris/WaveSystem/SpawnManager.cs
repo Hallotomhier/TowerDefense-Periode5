@@ -1,108 +1,117 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+
+[System.Serializable]
+public class Wave
+{
+    public GameObject[] enemyTypes;
+    public int[] enemyCounts;
+}
 
 public class SpawnManager : MonoBehaviour
 {
-    //Unit unit;
-    public GameObject targetGoTo;
-    
-    [SerializeField]
-    private string spawnName;
-    
-    
-    public List<ScriptableObjecsenem> wave;
-    public List<GameObject> activeEnemys = new List<GameObject>();
-    
-    public Vector3[] spawnPositions;
+    public Transform[] spawnPoints;
+    public float startTime = 50f;
+    public float timeBetweenWaves = 10f;
+    public float buildPhaseDuration = 180f;
+
+    public List<Wave> waves = new List<Wave>();
     private int currentWave = 0;
-    public int instanceIndex = 1;
-   
-    public int maxSpawns;
-    public bool buildPhase = false;
-    private float buildPhaseDuration = 10f;
-    public int spawned;
-    public bool finishedWave;
+    private bool isWaveActive = false;
+    private bool isBuildPhase = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private int totalEnemiesSpawned = 0;
+    private int totalEnemiesDefeated = 0;
+
+    private enum GameState { WaitingForStart, WaveInProgress, BuildPhase }
+    private GameState gameState = GameState.WaitingForStart;
+
+    private void Start()
     {
         
-        StartCoroutine(StartWaveRoutine());
+        gameState = GameState.WaitingForStart;
     }
-    IEnumerator StartWaveRoutine()
+
+    private void Update()
     {
-        while(currentWave < wave.Count)
+        switch (gameState)
         {
-            if (currentWave >= wave.Count)
-            {
+            case GameState.WaitingForStart:
+                if (Time.time >= startTime)
+                {
+                    StartNextWave();
+                }
                 break;
-            }
-            if (currentWave < wave[currentWave].waveComposition.Count)
-            {
 
-                StartCoroutine(SpawnEnemiesRoutine());
-                yield return new WaitWhile(AllEnemysDefeates);
-                Debug.Log("Start build phase");
-                buildPhase = true;
-                yield return new WaitForSeconds(buildPhaseDuration);
-                buildPhase = false;
-                Debug.Log("Next Wave");
-                currentWave++;
+            case GameState.WaveInProgress:
+              
+                if (totalEnemiesDefeated >= totalEnemiesSpawned)
+                {
+                   
+                    StartBuildPhase();
+                }
+                break;
 
-            }
-            else
+            case GameState.BuildPhase:
+               
+                if (isBuildPhase && Time.time >= buildPhaseDuration)
+                {
+                   
+                    StartNextWave();
+                }
+                break;
+        }
+        Debug.Log("Total Enemies Spawned: " + totalEnemiesSpawned);
+        Debug.Log("Total Enemies Defeated: " + totalEnemiesDefeated);
+        Debug.Log("Game State: " + gameState);
+        Debug.Log("isWaveActive: " + isWaveActive);
+        Debug.Log("isBuildPhase: " + isBuildPhase);
+    }
+
+    private void StartNextWave()
+    {
+        if (totalEnemiesDefeated >= totalEnemiesSpawned)
+        {
+            currentWave++;
+            isWaveActive = true;
+            isBuildPhase = false;
+
+            Debug.Log("Starting Wave " + currentWave);
+
+            StartCoroutine(SpawnWaveEnemies(currentWave));
+
+            gameState = GameState.WaveInProgress;
+        }
+    }
+
+    private IEnumerator SpawnWaveEnemies(int waveIndex)
+    {
+        Wave wave = waves[waveIndex - 1];
+
+        for (int i = 0; i < wave.enemyTypes.Length; i++)
+        {
+            for (int j = 0; j < wave.enemyCounts[i]; j++)
             {
-                Debug.LogError("Invalid wave composition for currentWave: " + currentWave);
-                
+                int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+                Instantiate(wave.enemyTypes[i], spawnPoints[spawnPointIndex].position, Quaternion.identity);
+                totalEnemiesSpawned++;
+                yield return new WaitForSeconds(1f);
             }
         }
-        
-        
     }
-   
-    IEnumerator SpawnEnemiesRoutine()
+
+    private void StartBuildPhase()
     {
-        int currentSpawnPointIndex = 0;
-        while ( spawned <= maxSpawns)
-        {
-            if (currentSpawnPointIndex >= spawnPositions.Length)
-            {
-                break;
-            }
-            if (currentSpawnPointIndex < wave[currentWave].waveComposition.Count)
-            {
-                var obj = wave[currentWave].waveComposition[currentSpawnPointIndex];
+        isBuildPhase = true;
+        Debug.Log("Entering Build Phase...");
 
-                GameObject currentEnemy = Instantiate(obj, spawnPositions[currentSpawnPointIndex], Quaternion.identity);
-
-                currentEnemy.name = spawnName + instanceIndex;
-                currentSpawnPointIndex++;
-                instanceIndex++;
-                spawned++;
-                activeEnemys.Add(currentEnemy);
-            }
-            else
-            {
-                break;
-            }
-            yield return new WaitForSeconds(4f);
-        }
-
-
-      
-
-
-
+        
+        gameState = GameState.BuildPhase;
     }
-    bool AllEnemysDefeates()
+   public void EnemyDefeated()
     {
-        Debug.Log("Bool");
-        
-        
-        return activeEnemys.Count == 0;
-
+        totalEnemiesDefeated++;
     }
 }
+
