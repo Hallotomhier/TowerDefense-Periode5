@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System;
 using UnityEditor.Experimental.GraphView;
+using System.IO;
 
 public class PathFinding : MonoBehaviour
 {
@@ -23,6 +24,22 @@ public class PathFinding : MonoBehaviour
 
     }
     // start nieuw pathfinding process
+
+    public bool PathAvailable(Vector3 startPos, Vector3 targetPos)
+    {
+        List<Vector3> path = (List<Vector3>)FindPath(startPos, targetPos);
+
+        if (path != null && path.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
         Node startNode = grid.NodeFromWorldPoint(startPos);
@@ -39,8 +56,9 @@ public class PathFinding : MonoBehaviour
            print("Invalid start or target node.");
         }
     }
+   
     
-    IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
+    public IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Vector3[] wayPoints = new Vector3[0];
 
@@ -122,14 +140,15 @@ public class PathFinding : MonoBehaviour
             foreach (Vector3 waypoint in wayPoints)
             {
                 print("Waypoint: " + waypoint);
-
+                
                 
             }
         }
 
         pathManager.FinishedProcessingPath(wayPoints, pathSuccess);
     }
-
+    
+  
 
     // retraced path van eindpunt naar startpunt
     Vector3[] RetracePath(Node startNode, Node endNode)
