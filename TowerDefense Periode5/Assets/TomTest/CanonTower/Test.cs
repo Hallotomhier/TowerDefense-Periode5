@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    public List<Transform> target;
+    private float storedDistance;
+
+    [Header("Transform")]
     public Transform tower;
-    public float storedDistance;
     public Transform ChooseTarget;
+
+    [Header("Enemys")]
+    public List<Transform> target;
+
+    [Header("Scripts")]
     public EnemyHealth enemyPlayer;
 
-    
     private void Start()
     {
         storedDistance = Mathf.Infinity;
@@ -58,7 +63,6 @@ public class Test : MonoBehaviour
         {
             if (ChooseTarget.GetComponent<EnemyHealth>().health <= 0)
             {
-                target.Clear();
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
             }
@@ -67,6 +71,7 @@ public class Test : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        target.Clear();
         target.Remove(other.transform);
         ChooseTarget = null;
         storedDistance = Mathf.Infinity;

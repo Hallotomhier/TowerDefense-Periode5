@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Canon : MonoBehaviour
 {
+    [Header("TargetSettings")]
     public Test detect;
     public Transform target;
+
+    [Header("DamageSettings")]
     public float[] damage;
-    public float delay = 3f;
-    public float timer;
+    public float[] delay;
+    
+    [Header("Level")]
+    private float timer;
     public int level;
 
 
-    public string[] debug;
+    
 
 
 
@@ -34,10 +39,10 @@ public class Canon : MonoBehaviour
         if (target != null)
         {
             timer += Time.deltaTime;
-            if (timer > delay)
+            if (timer > delay[level])
             {
                 Shoot();
-                timer -= delay;
+                timer -= delay[level];
             }
         }
         else 
