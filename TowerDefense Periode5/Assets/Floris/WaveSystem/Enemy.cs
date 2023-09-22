@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    public void OnDestroy()
+    public void Check()
     {
         
         if (spawnManager != null)

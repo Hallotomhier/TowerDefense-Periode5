@@ -9,8 +9,12 @@ public class BuildingSystem : MonoBehaviour
     public Grid grid;
     public PathFinding pathFinding;
     public SpawnManager spawnManager;
+    public BuildingSystem building;
     [Header("Prefab")]
     public GameObject buildingPrefab;
+
+    public GameObject startPosition;
+    public GameObject targetPosition;
    
     
     // Start is called before the first frame update
@@ -22,36 +26,40 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     public bool IsReachable(Vector3 startPos, Vector3 targetPos)
     {
-        return pathFinding.PathAvailable(startPos, targetPos);
+        return  pathFinding.PathAvailable(startPos,targetPos);
     }
 
     void Update()
     {
-        if (Keyboard.current.bKey.wasPressedThisFrame)
-        {
-            
-
-            Cursor.visible = true;
-            Cursor.visible = false;
-
-            if (spawnManager)
-            {
-                    Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        Node node = grid.NodeFromWorldPoint(hit.point);
-                        if (node != null && node.walkable)
-                        {
-                            Vector3 buildingPosition = node.worldPosition;
-                            Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
-                            node.walkable = false;
-                        }
-                    }
-            }
-        }
+        Vector3 startPos = startPosition.transform.position;
+        Vector3 targetPos = targetPosition.transform.position;
+        BuilderRocks(startPos,targetPos);
+       
         
     }
-   
+    public void BuilderRocks( Vector3 startPos, Vector3 targetPos)
+    {
+        if (spawnManager.isBuildPhase && IsReachable(startPos, targetPos)) 
+        {
+            if (Keyboard.current.bKey.wasPressedThisFrame)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Node node = grid.NodeFromWorldPoint(hit.point);
+                    if (node != null && node.walkable)
+                    {
+                        Vector3 buildingPosition = node.worldPosition;
+                        Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
+                        node.walkable = false;
+                    }
+                }
+
+
+            }
+        }
+    }
+    
     
 }
