@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyShip : MonoBehaviour
 {
     public Enemy enemy;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
@@ -13,7 +13,7 @@ public class DestroyShip : MonoBehaviour
 
             if (enemyComponent != null)
             {
-               
+                Debug.Log("Tets");
                 enemyComponent.OnDestroy();
             }
 

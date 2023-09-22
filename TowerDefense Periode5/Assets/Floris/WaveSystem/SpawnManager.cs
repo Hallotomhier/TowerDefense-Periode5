@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     public Transform[] spawnPoints;
     public float startTime = 50f;
     public float timeBetweenWaves = 10f;
-    public float buildPhaseDuration = 180f;
+    public float buildPhaseDuration;
 
     public List<Wave> waves = new List<Wave>();
     private int currentWave = 0;
@@ -57,13 +57,14 @@ public class SpawnManager : MonoBehaviour
                
                 if (isBuildPhase && Time.time >= buildPhaseDuration)
                 {
-                   
+                    isBuildPhase = false;
+                    Debug.Log("NextWave");
                     StartNextWave();
                 }
                 break;
         }
         Debug.Log("Total Enemies Spawned: " + totalEnemiesSpawned);
-        Debug.Log("Total Enemies Defeated: " + totalEnemiesDefeated);
+
         Debug.Log("Game State: " + gameState);
         Debug.Log("isWaveActive: " + isWaveActive);
         Debug.Log("isBuildPhase: " + isBuildPhase);
@@ -71,11 +72,11 @@ public class SpawnManager : MonoBehaviour
 
     private void StartNextWave()
     {
-        if (totalEnemiesDefeated >= totalEnemiesSpawned)
+        if (totalEnemiesDefeated == totalEnemiesSpawned)
         {
             currentWave++;
             isWaveActive = true;
-            isBuildPhase = false;
+            
 
             Debug.Log("Starting Wave " + currentWave);
 
@@ -85,9 +86,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnWaveEnemies(int waveIndex)
+    private IEnumerator SpawnWaveEnemies(int currentWave)
     {
-        Wave wave = waves[waveIndex - 1];
+        Wave wave = waves[currentWave -1];
 
         for (int i = 0; i < wave.enemyTypes.Length; i++)
         {
@@ -96,7 +97,9 @@ public class SpawnManager : MonoBehaviour
                 int spawnPointIndex = Random.Range(0, spawnPoints.Length);
                 Instantiate(wave.enemyTypes[i], spawnPoints[spawnPointIndex].position, Quaternion.identity);
                 totalEnemiesSpawned++;
+                gameState = GameState.WaveInProgress;
                 yield return new WaitForSeconds(1f);
+                
             }
         }
     }
@@ -105,13 +108,17 @@ public class SpawnManager : MonoBehaviour
     {
         isBuildPhase = true;
         Debug.Log("Entering Build Phase...");
-
+        totalEnemiesDefeated = 0;
+        totalEnemiesSpawned = 0;
         
         gameState = GameState.BuildPhase;
     }
+
    public void EnemyDefeated()
-    {
+   {
+        Debug.Log("Total Enemies Defeated: " + totalEnemiesDefeated);
         totalEnemiesDefeated++;
-    }
+   }
+    
 }
 
