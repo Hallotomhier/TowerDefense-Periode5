@@ -13,6 +13,7 @@ public class InstanceVogel : MonoBehaviour
     public int level;
 
     [Header("Vogel")]
+    private Transform controllBird;
     public GameObject littleBoy;
     private Vector3 spawnBird;
 
@@ -48,5 +49,8 @@ public class InstanceVogel : MonoBehaviour
     {
         Vector3 aboveTower = above.position;
         Instantiate(littleBoy , aboveTower , Quaternion.identity);
+        
     }
+
+    
 }
