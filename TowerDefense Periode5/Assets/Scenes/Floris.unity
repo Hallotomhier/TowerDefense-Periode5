@@ -610,15 +610,15 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 534067577}
   startTime: 5
-  timeBetweenWaves: 1
-  buildPhaseDuration: 20
+  timeBetweenWaves: 20
+  buildPhaseDuration: 150
   waves:
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
-    enemyCounts: 01000000
+    enemyCounts: 05000000
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
-    enemyCounts: 01000000
+    enemyCounts: 03000000
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
     - {fileID: 2472098824927308862, guid: e56a0a9aede0932439dc28f6f0481ddf, type: 3}

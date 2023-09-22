@@ -13,8 +13,8 @@ public class DestroyShip : MonoBehaviour
 
             if (enemyComponent != null)
             {
-                Debug.Log("Tets");
-                enemyComponent.OnDestroy();
+                
+                enemyComponent.Check();
             }
 
             Destroy(other.gameObject);
