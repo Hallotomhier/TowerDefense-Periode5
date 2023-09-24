@@ -612,10 +612,11 @@ MonoBehaviour:
   startTime: 5
   timeBetweenWaves: 20
   buildPhaseDuration: 150
+  timer: 0
   waves:
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
-    enemyCounts: 05000000
+    enemyCounts: 01000000
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
     enemyCounts: 03000000
@@ -624,6 +625,8 @@ MonoBehaviour:
     - {fileID: 2472098824927308862, guid: e56a0a9aede0932439dc28f6f0481ddf, type: 3}
     - {fileID: 2798381769735493742, guid: e0ad321f481c1b44a8eb698b9966fa8f, type: 3}
     enemyCounts: 010000000200000003000000
+  isBuildPhase: 0
+  isWaveActive: 0
 --- !u!4 &381469400
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,8 +1624,12 @@ MonoBehaviour:
   grid: {fileID: 1725532434}
   pathFinding: {fileID: 1725532433}
   spawnManager: {fileID: 381469399}
+  building: {fileID: 0}
   buildingPrefab: {fileID: 4887651412813224407, guid: dcc720ee96eee1145adf71279e9bb8c4,
     type: 3}
+  isCheckingPath: 0
+  startPosition: {fileID: 534067576}
+  targetPosition: {fileID: 1500881963}
 --- !u!4 &761415175
 Transform:
   m_ObjectHideFlags: 0
@@ -1952,7 +1959,7 @@ Transform:
   m_GameObject: {fileID: 1221328833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 5.52, z: 49.7}
+  m_LocalPosition: {x: 50, y: 5.5, z: 49.7}
   m_LocalScale: {x: 500, y: 1, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2718,7 +2725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83bc94cbd7711b84b98d1c2c27035998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isProcessing: 0
 --- !u!114 &1725532433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,7 +2753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayGridGizmo: 1
   gridWorldSize: {x: 100, y: 100}
-  nodeRadius: 1
+  nodeRadius: 3
   unWalkable:
     serializedVersion: 2
     m_Bits: 64
@@ -2765,7 +2771,7 @@ Transform:
   m_GameObject: {fileID: 1725532431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.7, y: 7, z: 49}
+  m_LocalPosition: {x: 50.7, y: 3.94, z: 49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

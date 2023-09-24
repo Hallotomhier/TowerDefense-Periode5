@@ -25,8 +25,6 @@ public class PathManager : MonoBehaviour
         instance.TryProcessNext();
     }
 
-
-
     void TryProcessNext()
     {
         if (!isProcessing && pathRequestQueue.Count > 0)
@@ -39,7 +37,7 @@ public class PathManager : MonoBehaviour
 
     public void FinishProcessingPath(List<Node> path)
     {
-        currentPathRequest.callback(path);
+        currentPathRequest.callback(path, currentPathRequest.isUnit);
         isProcessing = false;
         TryProcessNext();
     }
@@ -48,7 +46,7 @@ public class PathManager : MonoBehaviour
     {
         public Vector3 pathStartPoint;
         public Vector3 pathEndPoint;
-        public Action<List<Node>> callback;
+        public Action<List<Node>, bool> callback;
         public bool isUnit;
 
         public PathRequest(Vector3 start, Vector3 end, Action<List<Node>, bool> cb, bool unit)

@@ -49,32 +49,28 @@ public class BuildingSystem : MonoBehaviour
                     {
                         Vector3 buildingPosition = node.worldPosition;
 
-                        // Set a flag to prevent multiple path checks at once
                         isCheckingPath = true;
 
-                        // Check path availability asynchronously
-                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, (path) => OnPathAvailableCheck(path));
+                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, (path) => OnPathAvailableCheck(path,node));
                     }
                 }
             }
         }
     }
-    private void OnPathAvailableCheck(List<Node> path)
+    private void OnPathAvailableCheck(List<Node> path, Node node)
     {
-        // Reset the flag after path check is done
+       
         isCheckingPath = false;
 
         if (path != null && path.Count > 0)
         {
-            // Path is available, you can build here
+           
             Debug.Log("Path is available. You can build.");
-
-            // Instantiate a building at the target position
-            Instantiate(buildingPrefab, targetPosition.transform.position, Quaternion.identity);
+        
+            Instantiate(buildingPrefab,node.worldPosition , Quaternion.identity);
         }
         else
         {
-            // Path is not available, cannot build here
             Debug.Log("Path is not available. Cannot build.");
         }
     }
