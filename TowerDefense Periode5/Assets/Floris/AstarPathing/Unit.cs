@@ -8,38 +8,39 @@ public class Unit : MonoBehaviour
     public float speed;
     Vector3[] path;
     private LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
-
         target = GameObject.FindWithTag("Target");
-        //Debug.Log("Unit Start: Target Position: " + target.transform.position);
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         lineRenderer.material.color = Color.blue;
-        PathManager.PathRequesting(transform.position, target.transform.position, OnPathFound);
+
+        // Request a path from PathManager
+        PathManager.RequestPath(transform.position, target.transform.position, OnPathFound, true); // Pass 'true' for the isUnit parameter
     }
-    
-    
-    public void OnPathFound(Vector3[] newPath, bool pathSuccess)
+
+    public void OnPathFound(List<Node> newPath, bool pathSuccess)
     {
         if (pathSuccess)
         {
-            path = newPath;
-            StartCoroutine("FollowPath");
+            Vector3[] newPathVector3 = newPath.ConvertAll(node => node.worldPosition).ToArray();
+            path = newPathVector3;
+            StartCoroutine(FollowPath());
         }
     }
 
     IEnumerator FollowPath()
     {
-        float distanceThreshold = 0.2f; 
+        float distanceThreshold = 0.2f;
         float waitTimeBetweenWaypoints = 0f;
         if (path.Length == 0)
         {
             yield break;
         }
-        
+
         for (int i = 0; i < path.Length; i++)
         {
             Vector3 currentWaypoint = path[i];
@@ -50,9 +51,7 @@ public class Unit : MonoBehaviour
                 yield return null;
             }
 
-           
             yield return new WaitForSeconds(waitTimeBetweenWaypoints);
         }
     }
-    
 }

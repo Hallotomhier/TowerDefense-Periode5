@@ -5,66 +5,58 @@ using System;
 
 public class PathManager : MonoBehaviour
 {
-    //queue om de pathfinding aanvragen in de wachtrij te zetten
     Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
     PathRequest currentPathRequest;
 
-    //verwijzing naar de enige instantie van de pathmanager zorgt ervoor dat er maar 1 instantie wordt gemaakt van bepaalde class
     static PathManager instance;
+    PathFinding pathFinding;
+    bool isProcessing;
 
-    PathFinding PathFinding;
-    public bool isProcessing;
     private void Awake()
     {
-
         instance = this;
-        PathFinding = GetComponent<PathFinding>();
+        pathFinding = GetComponent<PathFinding>();
     }
-    // start pathfinding aanvraag
-    public static void PathRequesting(Vector3 pathStartPoint, Vector3 pathEndPoint, Action<Vector3[],bool> callBack)
+
+    public static void RequestPath(Vector3 pathStartPoint, Vector3 pathEndPoint, Action<List<Node>, bool> callback, bool isUnit)
     {
-        //maakt nieuw pathrequest met start punt en eindpunt
-        PathRequest newRequest = new PathRequest(pathStartPoint,pathEndPoint,callBack);
-        //plaatst aanvraag in wachtrij
+        PathRequest newRequest = new PathRequest(pathStartPoint, pathEndPoint, callback, isUnit);
         instance.pathRequestQueue.Enqueue(newRequest);
-        //probeert de volgende aanvraag teverwerken als er geen actief meer is
         instance.TryProcessNext();
     }
-    //probeert volgende aanvraagt te verwerken
+
+
+
     void TryProcessNext()
     {
         if (!isProcessing && pathRequestQueue.Count > 0)
         {
-            //haalt volgende aanvraag uit wachtrij
             currentPathRequest = pathRequestQueue.Dequeue();
             isProcessing = true;
-            //start pathfinding voor huidige aanvraag
-            PathFinding.StartFindPath(currentPathRequest.pathStartPoint, currentPathRequest.pathEndPoint);
+            pathFinding.FindPath(currentPathRequest.pathStartPoint, currentPathRequest.pathEndPoint, FinishProcessingPath);
         }
     }
-    // wordt aangeroepen als pathfinding process voltooid is
-    public void FinishedProcessingPath(Vector3[] path,bool finished)
+
+    public void FinishProcessingPath(List<Node> path)
     {
-        //roept callbackfunctie van huidige aanvraag met gevonde pad
-        currentPathRequest.callBack(path,finished);
+        currentPathRequest.callback(path);
         isProcessing = false;
-        // probeert volgende aanvraag teverwerken
         TryProcessNext();
     }
-    
 
-    // struct die  pathfinding-aanvraag representeert. (container voor alle informatie)
     struct PathRequest
     {
         public Vector3 pathStartPoint;
         public Vector3 pathEndPoint;
-        public Action<Vector3[],bool> callBack;
+        public Action<List<Node>> callback;
+        public bool isUnit;
 
-        public PathRequest(Vector3 _start,Vector3 _end, Action<Vector3[], bool> _callBack)
+        public PathRequest(Vector3 start, Vector3 end, Action<List<Node>, bool> cb, bool unit)
         {
-            pathStartPoint = _start;
-            pathEndPoint = _end;
-            callBack = _callBack;
+            pathStartPoint = start;
+            pathEndPoint = end;
+            callback = cb;
+            isUnit = unit;
         }
     }
 }

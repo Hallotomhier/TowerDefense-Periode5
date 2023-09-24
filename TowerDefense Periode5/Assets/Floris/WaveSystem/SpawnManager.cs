@@ -19,9 +19,9 @@ public class SpawnManager : MonoBehaviour
 
     public List<Wave> waves = new List<Wave>();
     private int currentWave = 0;
-    private bool isWaveActive = false;
+  
     public bool isBuildPhase = false;
-
+    public bool isWaveActive = false;
     private int totalEnemiesSpawned = 0;
     private int totalEnemiesDefeated = 0;
 

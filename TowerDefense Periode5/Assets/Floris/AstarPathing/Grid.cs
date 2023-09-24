@@ -34,8 +34,8 @@ public class Grid : MonoBehaviour
         // create grid wanner object geinitialiseerd wordt
         CreateGrid();
     }
-
-     // berekent max aantal nodes en stuurt info terug
+ 
+    // berekent max aantal nodes en stuurt info terug
     public int MaxSize
     {
         get

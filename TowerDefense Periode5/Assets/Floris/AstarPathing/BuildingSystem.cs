@@ -13,6 +13,7 @@ public class BuildingSystem : MonoBehaviour
     [Header("Prefab")]
     public GameObject buildingPrefab;
 
+    public bool isCheckingPath = false;
     public GameObject startPosition;
     public GameObject targetPosition;
    
@@ -24,24 +25,20 @@ public class BuildingSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    public bool IsReachable(Vector3 startPos, Vector3 targetPos)
-    {
-        return  pathFinding.PathAvailable(startPos,targetPos);
-    }
+    
 
     void Update()
     {
-        Vector3 startPos = startPosition.transform.position;
-        Vector3 targetPos = targetPosition.transform.position;
-        BuilderRocks(startPos,targetPos);
+        
+        BuilderRocks();
        
         
     }
-    public void BuilderRocks( Vector3 startPos, Vector3 targetPos)
+    public void BuilderRocks()
     {
-        if (spawnManager.isBuildPhase && IsReachable(startPos, targetPos)) 
+        if (spawnManager.isBuildPhase)
         {
-            if (Keyboard.current.bKey.wasPressedThisFrame)
+            if (Keyboard.current.bKey.wasPressedThisFrame && !isCheckingPath)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -51,15 +48,35 @@ public class BuildingSystem : MonoBehaviour
                     if (node != null && node.walkable)
                     {
                         Vector3 buildingPosition = node.worldPosition;
-                        Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
-                        node.walkable = false;
+
+                        // Set a flag to prevent multiple path checks at once
+                        isCheckingPath = true;
+
+                        // Check path availability asynchronously
+                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, (path) => OnPathAvailableCheck(path));
                     }
                 }
-
-
             }
         }
     }
-    
-    
+    private void OnPathAvailableCheck(List<Node> path)
+    {
+        // Reset the flag after path check is done
+        isCheckingPath = false;
+
+        if (path != null && path.Count > 0)
+        {
+            // Path is available, you can build here
+            Debug.Log("Path is available. You can build.");
+
+            // Instantiate a building at the target position
+            Instantiate(buildingPrefab, targetPosition.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            // Path is not available, cannot build here
+            Debug.Log("Path is not available. Cannot build.");
+        }
+    }
+
 }
