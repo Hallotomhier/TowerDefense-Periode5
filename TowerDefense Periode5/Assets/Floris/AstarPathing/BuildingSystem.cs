@@ -36,22 +36,32 @@ public class BuildingSystem : MonoBehaviour
     }
     public void BuilderRocks()
     {
+        // check buildphase
         if (spawnManager.isBuildPhase)
         {
+            //input
             if (Keyboard.current.bKey.wasPressedThisFrame && !isCheckingPath)
             {
+                //raycast
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
+                //raycast hit
                 if (Physics.Raycast(ray, out hit))
                 {
+                    //hitpoint takes nodefrom worldpos
                     Node node = grid.NodeFromWorldPoint(hit.point);
                     if (node != null && node.walkable)
                     {
+                        //buildpos = node in world[pos
                         Vector3 buildingPosition = node.worldPosition;
 
+                        //checkt of path true is en deze bestaad
                         isCheckingPath = true;
+                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, (path) => OnPathAvailableCheck(path, node));
 
-                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, (path) => OnPathAvailableCheck(path,node));
+
+
+
                     }
                 }
             }
@@ -68,6 +78,7 @@ public class BuildingSystem : MonoBehaviour
             Debug.Log("Path is available. You can build.");
         
             Instantiate(buildingPrefab,node.worldPosition , Quaternion.identity);
+         
         }
         else
         {

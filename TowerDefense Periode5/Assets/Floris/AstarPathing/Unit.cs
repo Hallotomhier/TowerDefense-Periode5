@@ -18,8 +18,8 @@ public class Unit : MonoBehaviour
         lineRenderer.endWidth = 0.1f;
         lineRenderer.material.color = Color.blue;
 
-        // Request a path from PathManager
-        PathManager.RequestPath(transform.position, target.transform.position, OnPathFound, true); // Pass 'true' for the isUnit parameter
+        
+        PathManager.RequestPath(transform.position, target.transform.position, OnPathFound, true);
     }
 
     public void OnPathFound(List<Node> newPath, bool pathSuccess)
