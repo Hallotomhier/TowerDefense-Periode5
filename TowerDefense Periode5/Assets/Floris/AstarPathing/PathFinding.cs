@@ -20,23 +20,40 @@ public class PathFinding : MonoBehaviour
     public void FindPathAsync(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
     {
         StartCoroutine(FindPathCoroutine(startPos, targetPos, callback));
-    }
-    
-    public void FindPath(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
-    {
-        StartCoroutine(FindPathCoroutine(startPos, targetPos, callback));
+   
     }
 
-    IEnumerator FindPathCoroutine(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
+    private IEnumerator FindPathCoroutine(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
     {
-        List<Node> path = new List<Node>();
+
+        Debug.Log("Starting FindPathCoroutine");
+
+        List<Node> path = FindPath(startPos, targetPos);
+
+        if (path != null)
+        {
+            Debug.Log("Path Found");
+            callback(path);
+        }
+        else
+        {
+            Debug.Log("No Path Found");
+        }
+
+        yield return null;
+        Debug.Log("Coroutine Complete");
+    }
+
+    public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
+    {
        
-
+        List<Node> path = new List<Node>();
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
         if (startNode != null && targetNode != null && startNode.walkable && targetNode.walkable)
         {
+            Debug.Log("walkable true");
             Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
             HashSet<Node> closedSet = new HashSet<Node>();
             openSet.Add(startNode);
@@ -52,8 +69,6 @@ public class PathFinding : MonoBehaviour
                     path = RetracePath(startNode, targetNode);
                     break;
                 }
-
-                yield return null;
 
                 foreach (Node neighbour in grid.CalculateNeighbours(currentNode))
                 {
@@ -80,11 +95,14 @@ public class PathFinding : MonoBehaviour
 
         if (pathSuccess)
         {
+            
             path = RetracePath(startNode, targetNode);
+            Debug.Log(RetracePath(startNode, targetNode));
         }
-
-        callback(path);
+       
+        return path;
     }
+
 
     List<Node> RetracePath(Node startNode, Node endNode)
     {
@@ -98,6 +116,9 @@ public class PathFinding : MonoBehaviour
         }
 
         path.Reverse();
+
+       
+
         return path;
     }
 
@@ -112,4 +133,6 @@ public class PathFinding : MonoBehaviour
         }
         return 14 * distanceX + 10 * (distanceY - distanceX);
     }
+
+    
 }

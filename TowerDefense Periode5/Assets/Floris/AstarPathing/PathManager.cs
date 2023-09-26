@@ -23,6 +23,9 @@ public class PathManager : MonoBehaviour
         PathRequest newRequest = new PathRequest(pathStartPoint, pathEndPoint, callback, isUnit);
         instance.pathRequestQueue.Enqueue(newRequest);
         instance.TryProcessNext();
+
+        
+       // laatste debug
     }
 
     void TryProcessNext()
@@ -31,7 +34,7 @@ public class PathManager : MonoBehaviour
         {
             currentPathRequest = pathRequestQueue.Dequeue();
             isProcessing = true;
-            pathFinding.FindPath(currentPathRequest.pathStartPoint, currentPathRequest.pathEndPoint, FinishProcessingPath);
+            pathFinding.FindPath(currentPathRequest.pathStartPoint, currentPathRequest.pathEndPoint);
         }
     }
 
