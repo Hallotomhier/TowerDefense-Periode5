@@ -64,6 +64,9 @@ public class VogelBoem : MonoBehaviour
             Destroy(gameObject);
         }
 
+        
+
+
         if ((gameObject.transform.position - target.transform.position).magnitude < 2.0f) 
         {
 
@@ -75,30 +78,10 @@ public class VogelBoem : MonoBehaviour
                 {
                     timer -= delay;
                     isPlayed = true;
+                    target.GetComponent<EnemyHealth>().health =- 50;
                     Destroy(gameObject);
                 }
-            }
-            
-            
-            
-            
-            
-            
-            /*if (!isPlayed)
-            {
-                Debug.Log("boem");
-                boem.Play();
-                if (!boem.isPlaying) 
-                {
-                    isPlayed = true;
-                }
-                
-            }
-            else 
-            {
-                Debug.Log("destroy");
-                Destroy(gameObject);
-            }*/
+            }     
             
         }
     }

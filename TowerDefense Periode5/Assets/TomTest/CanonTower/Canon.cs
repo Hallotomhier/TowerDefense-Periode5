@@ -15,21 +15,7 @@ public class Canon : MonoBehaviour
     [Header("Level")]
     private float timer;
     public int level;
-
-
-    
-
-
-
-
-
-    void Start()
-    {
-        
-    }
-
-    
-     
+ 
 
     void Update()
     {

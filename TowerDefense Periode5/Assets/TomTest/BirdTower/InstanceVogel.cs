@@ -13,9 +13,8 @@ public class InstanceVogel : MonoBehaviour
     public int level;
 
     [Header("Vogel")]
-    private Transform controllBird;
     public GameObject littleBoy;
-    private Vector3 spawnBird;
+    
 
     [Header("Target")]
     public Transform target;

@@ -16,10 +16,7 @@ public class Test : MonoBehaviour
     [Header("Scripts")]
     public EnemyHealth enemyPlayer;
 
-    public Test(Transform _target) 
-    {
-        _target = ChooseTarget;
-    }
+    
 
 
     private void Start()
