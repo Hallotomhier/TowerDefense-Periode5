@@ -28,10 +28,10 @@ public class Unit : MonoBehaviour
 
     public void OnPathFound(List<Node> newPath, bool pathSuccess)
     {
-        Debug.Log("onpathfound Function.");
+        
         if (pathSuccess)
         {
-           
+            Debug.Log("onpathfound Function.");
             Debug.Log("Path found. Length: " + newPath.Count);
             Vector3[] newPathVector3 = newPath.ConvertAll(node => node.worldPosition).ToArray();
             path = newPathVector3;

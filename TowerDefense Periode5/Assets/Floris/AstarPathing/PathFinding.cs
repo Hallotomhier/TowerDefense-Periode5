@@ -53,7 +53,7 @@ public class PathFinding : MonoBehaviour
 
         if (startNode != null && targetNode != null && startNode.walkable && targetNode.walkable)
         {
-            Debug.Log("walkable true");
+            
             Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
             HashSet<Node> closedSet = new HashSet<Node>();
             openSet.Add(startNode);
@@ -117,9 +117,10 @@ public class PathFinding : MonoBehaviour
 
         path.Reverse();
 
-       
 
+        pathManager.FinishProcessingPath(path);
         return path;
+
     }
 
     int GetDistance(Node nodeA, Node nodeB)

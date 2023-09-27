@@ -1624,7 +1624,7 @@ MonoBehaviour:
   grid: {fileID: 1725532434}
   pathFinding: {fileID: 1725532433}
   spawnManager: {fileID: 381469399}
-  building: {fileID: 0}
+  building: {fileID: 761415174}
   buildingPrefab: {fileID: 4887651412813224407, guid: dcc720ee96eee1145adf71279e9bb8c4,
     type: 3}
   isCheckingPath: 0
