@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DestroyShip : MonoBehaviour
 {
+    Unit unit;
     public Enemy enemy;
+    
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -13,11 +15,17 @@ public class DestroyShip : MonoBehaviour
 
             if (enemyComponent != null)
             {
-                
                 enemyComponent.Check();
+            }
+
+           
+            if (unit != null)
+            {
+                unit.MarkAsDestroyed();
             }
 
             Destroy(other.gameObject);
         }
     }
 }
+

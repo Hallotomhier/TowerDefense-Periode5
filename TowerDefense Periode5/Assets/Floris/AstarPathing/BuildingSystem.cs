@@ -10,14 +10,15 @@ public class BuildingSystem : MonoBehaviour
     public PathFinding pathFinding;
     public SpawnManager spawnManager;
     public BuildingSystem building;
+    public Unit unit;
+
     [Header("Prefab")]
     public GameObject buildingPrefab;
 
     public bool isCheckingPath = false;
     public GameObject startPosition;
     public GameObject targetPosition;
-   
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +26,13 @@ public class BuildingSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    
-
     void Update()
     {
-        
         BuilderRocks();
-       
-        
     }
+
     public void BuilderRocks()
     {
-     
         if (spawnManager.isBuildPhase)
         {
             if (Keyboard.current.bKey.wasPressedThisFrame && !isCheckingPath)
@@ -50,27 +46,20 @@ public class BuildingSystem : MonoBehaviour
 
                     if (node != null && node.walkable)
                     {
-                        bool isValidPath = CheckValidPath(startPosition.transform.position, targetPosition.transform.position);
+                        Vector3 buildingPosition = node.worldPosition;
 
-                        if (isValidPath)
-                        {
-                         
-                            Vector3 buildingPosition = node.worldPosition;
-
-                          
-                            isCheckingPath = true;
-                            pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, path => OnPathAvailableCheck(path, node));
-                        }
-                        else
-                        {
-                           
-                            Debug.Log("is blocked.");
-                        }
+                        isCheckingPath = true;
+                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, path => OnPathAvailableCheck(path, node));
+                    }
+                    else
+                    {
+                        Debug.Log("Target position is blocked.");
                     }
                 }
             }
         }
     }
+
     private void OnPathAvailableCheck(List<Node> path, Node node)
     {
         isCheckingPath = false;
@@ -79,19 +68,12 @@ public class BuildingSystem : MonoBehaviour
         {
             Debug.Log("You can build.");
             Instantiate(buildingPrefab, node.worldPosition, Quaternion.identity);
+
+            
         }
         else
         {
             Debug.Log("Cannot build.");
         }
     }
-
-    private bool CheckValidPath(Vector3 startPos, Vector3 targetPos)
-    {
-        
-        List<Node> path = pathFinding.FindPath(startPos, targetPos);
-
-        return path != null && path.Count > 0;
-    }
-
 }

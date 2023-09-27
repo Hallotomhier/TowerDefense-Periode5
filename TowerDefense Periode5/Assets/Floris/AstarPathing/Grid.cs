@@ -166,14 +166,12 @@ public class Grid : MonoBehaviour
     // dit gaat weg
     public void OnDrawGizmos()
     {
-
-
         if (grid != null && displayGridGizmo)
         {
+            Gizmos.DrawWireCube(transform.position + new Vector3(gridWorldSize.x / 2, 0, gridWorldSize.y / 2), new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+
             foreach (Node node in grid)
             {
-                Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-
                 if (node == hoveredNode)
                 {
                     Gizmos.color = Color.green;
@@ -183,12 +181,18 @@ public class Grid : MonoBehaviour
                     Gizmos.color = (node.walkable ? Color.white : Color.red);
                 }
 
+                Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
             }
-
         }
-
     }
-
+    public void UpdateNodeWalkability(Vector3 worldPosition, bool isWalkable)
+    {
+        Node node = NodeFromWorldPoint(worldPosition);
+        if (node != null)
+        {
+            node.walkable = isWalkable;
+        }
+    }
 
     public void ResetNodeColors()
     {

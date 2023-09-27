@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -8,31 +7,33 @@ public class Unit : MonoBehaviour
     public GameObject target;
     public float speed;
     Vector3[] path;
-    
+    private bool isDestroyed = false;
+    private Coroutine followPathCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-
         target = GameObject.FindWithTag("Target");
         if (target == null)
         {
-            Debug.LogError("Target object not found.");
+            Debug.LogError("Target not found.");
             return;
         }
-        
-        Debug.Log("Requesting path from " + transform.position + " to " + target.transform.position);
+
+       
         PathManager.RequestPath(transform.position, target.transform.position, OnPathFound, true);
     }
 
     public void OnPathFound(List<Node> newPath, bool pathSuccess)
     {
-        
+        if (this == null || isDestroyed)
+        {
+            return; 
+        }
+
         if (pathSuccess)
         {
-            Debug.Log("onpathfound Function.");
-            Debug.Log("Path found. Length: " + newPath.Count);
+            
             Vector3[] newPathVector3 = newPath.ConvertAll(node => node.worldPosition).ToArray();
             path = newPathVector3;
             StartCoroutine(FollowPath());
@@ -40,13 +41,12 @@ public class Unit : MonoBehaviour
         else
         {
             Debug.LogError("No path found");
-          
         }
     }
 
     IEnumerator FollowPath()
     {
-        Debug.Log("FollowPath started.");
+        
 
         float distanceThreshold = 0.2f;
 
@@ -60,23 +60,39 @@ public class Unit : MonoBehaviour
 
         for (int i = 0; i < path.Length; i++)
         {
+            if (isDestroyed)
+            {
+                yield break;
+            }
+
             Vector3 currentWaypoint = path[i];
             Debug.Log("Moving to waypoint " + i + ": " + currentWaypoint);
 
             while (Vector3.Distance(transform.position, currentWaypoint) >= distanceThreshold)
             {
+                if (isDestroyed)
+                {
+                    yield break;
+                }
+
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
                 Debug.Log("Unit position: " + transform.position);
                 yield return null;
             }
 
             Debug.Log("Reached waypoint " + i + ".");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         Debug.Log("FollowPath finished.");
     }
 
-
-
+    public void MarkAsDestroyed()
+    {
+        isDestroyed = true;
+        if (followPathCoroutine != null)
+        {
+            StopCoroutine(followPathCoroutine);
+        }
+    }
 }
