@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VogelBoem : MonoBehaviour
 {
+    private GameObject self;
     public GameObject target;
     public float flySpeed;
     public GameObject closestTarget;
@@ -53,16 +54,15 @@ public class VogelBoem : MonoBehaviour
 
     void Update()
     {
+        
+
         if (target != null)
         {
             Vector3 follow = target.transform.position;
             var speed = flySpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, follow, speed);
         }
-        else 
-        {
-            Destroy(gameObject);
-        }
+        
 
         
 
@@ -78,7 +78,7 @@ public class VogelBoem : MonoBehaviour
                 {
                     timer -= delay;
                     isPlayed = true;
-                    target.GetComponent<EnemyHealth>().health =- 50;
+                    target.GetComponent<EnemyHealth>().health -= 50;
                     Destroy(gameObject);
                 }
             }     

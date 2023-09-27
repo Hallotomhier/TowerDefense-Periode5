@@ -37,39 +37,35 @@ public class Test : MonoBehaviour
     private void Update()
     {
         onDeath();
-        if (target == null)        {
-            Debug.Log("target not found");
-        }
-        else 
+        if (target != null)        
         {
             foreach (var target in target)
             {
-
-
                 float distance = Vector3.Distance(tower.position, target.position);
                 if (distance < storedDistance)
                 {
                     storedDistance = distance;
                     ChooseTarget = target;
-
                 }
             }
         }
-
-        
     }
 
 
     private void onDeath() 
     {
-        if (ChooseTarget != null) 
+        if (ChooseTarget != null)
         {
-            if (ChooseTarget.GetComponent<EnemyHealth>().health <= 0)
+            if (ChooseTarget.GetComponent<EnemyHealth>().health == 0)
             {
+                target.Clear();
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
+                
+
             }
         }
+        
         
     }
     private void OnTriggerExit(Collider other)
