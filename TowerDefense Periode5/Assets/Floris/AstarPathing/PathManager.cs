@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Net;
 
 public class PathManager : MonoBehaviour
 {
@@ -22,10 +23,10 @@ public class PathManager : MonoBehaviour
     {
         PathRequest newRequest = new PathRequest(pathStartPoint, pathEndPoint, callback, isUnit);
         instance.pathRequestQueue.Enqueue(newRequest);
+       
+        
         instance.TryProcessNext();
 
-        
-       // laatste debug
     }
 
     void TryProcessNext()
@@ -33,6 +34,7 @@ public class PathManager : MonoBehaviour
         if (!isProcessing && pathRequestQueue.Count > 0)
         {
             currentPathRequest = pathRequestQueue.Dequeue();
+            
             isProcessing = true;
             pathFinding.FindPath(currentPathRequest.pathStartPoint, currentPathRequest.pathEndPoint);
         }
@@ -40,6 +42,7 @@ public class PathManager : MonoBehaviour
 
     public void FinishProcessingPath(List<Node> path)
     {
+
         currentPathRequest.callback(path, currentPathRequest.isUnit);
         isProcessing = false;
         TryProcessNext();
