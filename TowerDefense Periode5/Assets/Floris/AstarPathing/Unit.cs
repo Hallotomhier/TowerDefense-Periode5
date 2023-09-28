@@ -84,7 +84,7 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
 
-        Debug.Log("FollowPath finished.");
+        
     }
 
     public void MarkAsDestroyed()

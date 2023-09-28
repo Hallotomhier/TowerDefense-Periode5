@@ -7,6 +7,7 @@ public class PathFinding : MonoBehaviour
 {
     Grid grid;
     PathManager pathManager;
+    public BuildingSystem buildingSystem;
     public bool pathSuccess = false;
 
     public GameObject waypointMarkerPrefab;
@@ -20,6 +21,8 @@ public class PathFinding : MonoBehaviour
     public void FindPathAsync(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
     {
         StartCoroutine(FindPathCoroutine(startPos, targetPos, callback));
+
+        
    
     }
 
@@ -41,6 +44,8 @@ public class PathFinding : MonoBehaviour
         }
 
         yield return null;
+        buildingSystem.isCheckingPath = false;
+      
         Debug.Log("Coroutine Complete");
     }
 
@@ -66,6 +71,7 @@ public class PathFinding : MonoBehaviour
                 if (currentNode == targetNode)
                 {
                     pathSuccess = true;
+                    buildingSystem.isPathAvailable = true;
                     path = RetracePath(startNode, targetNode);
                     break;
                 }

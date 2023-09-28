@@ -15,6 +15,7 @@ public class BuildingSystem : MonoBehaviour
     [Header("Prefab")]
     public GameObject buildingPrefab;
 
+    public bool isPathAvailable = false;
     public bool isCheckingPath = false;
     public GameObject startPosition;
     public GameObject targetPosition;
@@ -50,11 +51,14 @@ public class BuildingSystem : MonoBehaviour
 
                         isCheckingPath = true;
                         pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, path => OnPathAvailableCheck(path, node));
+                        
                     }
                     else
                     {
                         Debug.Log("Target position is blocked.");
-                    }
+                    }   
+                    return;
+                       
                 }
             }
         }
@@ -62,18 +66,27 @@ public class BuildingSystem : MonoBehaviour
 
     private void OnPathAvailableCheck(List<Node> path, Node node)
     {
-        isCheckingPath = false;
 
-        if (path != null && path.Count > 0)
+
+        if (isPathAvailable)
         {
             Debug.Log("You can build.");
-            Instantiate(buildingPrefab, node.worldPosition, Quaternion.identity);
+            
+            if (node.walkable)
+            {
+                Instantiate(buildingPrefab, node.worldPosition, Quaternion.identity);
+                node.walkable = false;
+                isPathAvailable = false;
+            }
 
             
         }
         else
         {
-            Debug.Log("Cannot build.");
+            
+            Debug.Log("NotAvailable");
+            
         }
+       
     }
 }

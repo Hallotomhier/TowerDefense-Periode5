@@ -185,6 +185,7 @@ public class Grid : MonoBehaviour
             }
         }
     }
+    
     public void UpdateNodeWalkability(Vector3 worldPosition, bool isWalkable)
     {
         Node node = NodeFromWorldPoint(worldPosition);
@@ -193,6 +194,7 @@ public class Grid : MonoBehaviour
             node.walkable = isWalkable;
         }
     }
+    
 
     public void ResetNodeColors()
     {
