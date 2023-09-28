@@ -25,7 +25,7 @@ public class Test : MonoBehaviour
     }
 
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy")) 
         {
@@ -36,7 +36,7 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        onDeath();
+        
         if (target != null)        
         {
             foreach (var target in target)
@@ -48,6 +48,12 @@ public class Test : MonoBehaviour
                     ChooseTarget = target;
                 }
             }
+        }
+        onDeath();
+
+        if (target == null) 
+        { 
+            
         }
     }
 
@@ -61,8 +67,6 @@ public class Test : MonoBehaviour
                 target.Clear();
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
-                
-
             }
         }
         
