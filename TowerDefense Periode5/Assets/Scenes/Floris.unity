@@ -611,7 +611,7 @@ MonoBehaviour:
   - {fileID: 534067577}
   startTime: 5
   timeBetweenWaves: 20
-  buildPhaseDuration: 150
+  buildPhaseDuration: 20
   timer: 0
   waves:
   - enemyTypes:
@@ -1628,6 +1628,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   buildingPrefab: {fileID: 4887651412813224407, guid: dcc720ee96eee1145adf71279e9bb8c4,
     type: 3}
+  isPathAvailable: 0
   isCheckingPath: 0
   startPosition: {fileID: 534067576}
   targetPosition: {fileID: 1500881963}
@@ -2026,7 +2027,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 64.3
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2053,7 +2054,7 @@ Transform:
   m_GameObject: {fileID: 1321253687}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 48.8, y: 73.67, z: 46.29}
+  m_LocalPosition: {x: 52.9, y: 89.67, z: 43.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2738,6 +2739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effc4204c65dc3a4ab87fb5daad3c8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingSystem: {fileID: 761415174}
   pathSuccess: 0
   waypointMarkerPrefab: {fileID: 2294204109679958547, guid: bba2d63ec038e194f97bb840d72aab32,
     type: 3}

@@ -36,7 +36,8 @@ public class PathFinding : MonoBehaviour
         if (path != null)
         {
             Debug.Log("Path Found");
-            callback(path);
+            //callback(path);
+           
         }
         else
         {
@@ -71,7 +72,6 @@ public class PathFinding : MonoBehaviour
                 if (currentNode == targetNode)
                 {
                     pathSuccess = true;
-                    buildingSystem.isPathAvailable = true;
                     path = RetracePath(startNode, targetNode);
                     break;
                 }
@@ -101,7 +101,7 @@ public class PathFinding : MonoBehaviour
 
         if (pathSuccess)
         {
-            
+            buildingSystem.isPathAvailable = true;
             path = RetracePath(startNode, targetNode);
             Debug.Log(RetracePath(startNode, targetNode));
         }

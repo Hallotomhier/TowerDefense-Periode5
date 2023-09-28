@@ -24,7 +24,6 @@ public class PathManager : MonoBehaviour
         PathRequest newRequest = new PathRequest(pathStartPoint, pathEndPoint, callback, isUnit);
         instance.pathRequestQueue.Enqueue(newRequest);
        
-        
         instance.TryProcessNext();
 
     }

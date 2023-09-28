@@ -16,8 +16,9 @@ public class Rocks : MonoBehaviour
         grid = a.transform.GetComponent<Grid>();
     }
     // Update is called once per frame
-    void Update()
+   /* void Update()
     {
         grid.UpdateNodeWalkability(transform.position, false);
     }
+   */
 }

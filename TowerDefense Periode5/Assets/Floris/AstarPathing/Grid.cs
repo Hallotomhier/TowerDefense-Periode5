@@ -34,7 +34,8 @@ public class Grid : MonoBehaviour
         // create grid wanner object geinitialiseerd wordt
         CreateGrid();
     }
- 
+    
+    
     // berekent max aantal nodes en stuurt info terug
     public int MaxSize
     {
@@ -149,6 +150,7 @@ public class Grid : MonoBehaviour
         return true;
         
     }
+  
     
     
     // vind en stuurt de node in het grid dat overeenkomt met een gegeven wereldpositie
@@ -186,7 +188,7 @@ public class Grid : MonoBehaviour
         }
     }
     
-    public void UpdateNodeWalkability(Vector3 worldPosition, bool isWalkable)
+   /* public void UpdateNodeWalkability(Vector3 worldPosition, bool isWalkable)
     {
         Node node = NodeFromWorldPoint(worldPosition);
         if (node != null)
@@ -194,7 +196,7 @@ public class Grid : MonoBehaviour
             node.walkable = isWalkable;
         }
     }
-    
+    */
 
     public void ResetNodeColors()
     {

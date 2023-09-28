@@ -16,7 +16,7 @@ public class BuildingSystem : MonoBehaviour
     public GameObject buildingPrefab;
 
     public bool isPathAvailable = false;
-    public bool isCheckingPath = false;
+    public bool isCheckingPath;
     public GameObject startPosition;
     public GameObject targetPosition;
 
@@ -49,16 +49,24 @@ public class BuildingSystem : MonoBehaviour
                     {
                         Vector3 buildingPosition = node.worldPosition;
 
-                        isCheckingPath = true;
-                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, path => OnPathAvailableCheck(path, node));
                         
+                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, path => OnPathAvailableCheck(path, node));
+                        if (isCheckingPath == false)
+                        {
+                            
+                           
+                            Instantiate(buildingPrefab, node.worldPosition, Quaternion.identity);
+                            node.walkable = false;
+                            
+                        }
+                        else
+                        {
+
+                            Debug.Log("Target position is blocked.");
+
+                        }
                     }
-                    else
-                    {
-                        Debug.Log("Target position is blocked.");
-                    }   
-                    return;
-                       
+                   
                 }
             }
         }
@@ -66,27 +74,15 @@ public class BuildingSystem : MonoBehaviour
 
     private void OnPathAvailableCheck(List<Node> path, Node node)
     {
-
-
         if (isPathAvailable)
         {
-            Debug.Log("You can build.");
-            
-            if (node.walkable)
-            {
-                Instantiate(buildingPrefab, node.worldPosition, Quaternion.identity);
-                node.walkable = false;
-                isPathAvailable = false;
-            }
-
-            
+            isCheckingPath = false;
         }
         else
         {
-            
-            Debug.Log("NotAvailable");
-            
+            isCheckingPath = true;
         }
        
+        
     }
 }

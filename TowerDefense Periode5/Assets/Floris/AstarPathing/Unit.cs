@@ -17,7 +17,7 @@ public class Unit : MonoBehaviour
         if (target == null)
         {
             Debug.LogError("Target not found.");
-            return;
+            
         }
 
        
