@@ -18,37 +18,7 @@ public class PathFinding : MonoBehaviour
         pathManager = GetComponent<PathManager>();
     }
 
-    public void FindPathAsync(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
-    {
-        StartCoroutine(FindPathCoroutine(startPos, targetPos, callback));
-
-        
-   
-    }
-
-    private IEnumerator FindPathCoroutine(Vector3 startPos, Vector3 targetPos, Action<List<Node>> callback)
-    {
-
-        Debug.Log("Starting FindPathCoroutine");
-
-        List<Node> path = FindPath(startPos, targetPos);
-
-        if (path != null)
-        {
-            Debug.Log("Path Found");
-            callback(path);
-            buildingSystem.isCheckingPath = false;
-        }
-        else
-        {
-            Debug.Log("No Path Found");
-        }
-
-        yield return null;
-      
-      
-        Debug.Log("Coroutine Complete");
-    }
+  
 
     public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
     {

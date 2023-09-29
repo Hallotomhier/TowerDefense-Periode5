@@ -13,18 +13,15 @@ public class BuildingSystem : MonoBehaviour
     public Unit unit;
 
     [Header("Prefab")]
-    public GameObject buildingPrefab;
+    public GameObject rocks;
+    public GameObject[] towers; 
 
     public bool isPathAvailable = false;
     public bool isCheckingPath;
     public GameObject startPosition;
     public GameObject targetPosition;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public int indexTowers;
+   
 
     // Update is called once per frame
     void Update()
@@ -36,7 +33,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (spawnManager.isBuildPhase)
         {
-            if (Keyboard.current.bKey.wasPressedThisFrame && !isCheckingPath)
+            if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -63,13 +60,39 @@ public class BuildingSystem : MonoBehaviour
                         if (validPathExists)
                         {
     
-                            Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
+                            Instantiate(rocks, buildingPosition, Quaternion.identity);
                             node.walkable = false;
                         }
                         else
                         {
                             Debug.Log("noPath.");
                         }
+                    }
+                }
+            }
+        }
+    }
+    public void BuildingTowersLand()
+    {
+        if (spawnManager.isBuildPhase)
+        {
+            if (Keyboard.current.bKey.wasPressedThisFrame)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray,out hit))
+                {
+                   Node node = grid.NodeFromWorldPoint(hit.point);
+                    if(node != null && !node.walkable)
+                    {
+                        if (Keyboard.current.aKey.wasPressedThisFrame)
+                        {
+                            indexTowers = 0;
+                            
+                        }
+                       
+
                     }
                 }
             }
