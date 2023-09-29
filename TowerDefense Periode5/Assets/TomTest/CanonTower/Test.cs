@@ -54,12 +54,16 @@ public class Test : MonoBehaviour
         {
             foreach (var target in targets)
             {
-                float distance = Vector3.Distance(tower.position, target.position);
-                if (distance < storedDistance)
+                if (target != null) 
                 {
-                    storedDistance = distance;
-                    ChooseTarget = target;
+                    float distance = Vector3.Distance(tower.position, target.position);
+                    if (distance < storedDistance)
+                    {
+                        storedDistance = distance;
+                        ChooseTarget = target;
+                    }
                 }
+                break;
             }
         }
 
