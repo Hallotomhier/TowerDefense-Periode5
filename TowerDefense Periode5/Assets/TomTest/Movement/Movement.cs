@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
 {
     [Header("Private")]
     private PlayerInput playerInput;
-    private float groundDistance = 0.4f;
     private float x;
     private float y;
     private float xrotation;
@@ -18,9 +17,8 @@ public class Movement : MonoBehaviour
     [Header("Camera")]
     public Camera playerCamera;
 
-    [Header("MovementSettings")]
-    public LayerMask canWalk;  
-    public Transform checkGroundMask;
+    
+    
     
     [Header("playerSettings")]
     public float speed;
@@ -32,7 +30,7 @@ public class Movement : MonoBehaviour
     {
         playerInput = new PlayerInput();
         playerInput.Player.Enable();
-        playerInput.Player.Jump.performed += Jump_performed;
+        
         playerInput.Player.Mouse.performed += Mouse_performed;
         playerInput.Player.Interact.performed += Interact_performed;
         
@@ -42,7 +40,7 @@ public class Movement : MonoBehaviour
     
     public void Start()
     {
-        
+       Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -59,7 +57,7 @@ public class Movement : MonoBehaviour
         charCon = GetComponent<CharacterController>();
         velocity.y += gravity * Time.deltaTime;
         charCon.Move(velocity * Time.deltaTime);
-        isGrounded = Physics.CheckSphere(checkGroundMask.position, groundDistance, canWalk);
+        
         Vector2 v2 = playerInput.Player.Movement.ReadValue<Vector2>();
         Vector3 move = transform.right * v2.x + transform.forward * v2.y;
         charCon.Move(move * speed * Time.deltaTime);
@@ -81,13 +79,13 @@ public class Movement : MonoBehaviour
 
     
 
-    private void Jump_performed(InputAction.CallbackContext context)
+    /*private void Jump_performed(InputAction.CallbackContext context)
     {
         if (isGrounded == true)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-    }
+    }*/
 
     public void Interact_performed(InputAction.CallbackContext context)
     {
