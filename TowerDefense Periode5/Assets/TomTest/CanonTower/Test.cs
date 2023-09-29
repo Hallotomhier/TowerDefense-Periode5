@@ -11,7 +11,7 @@ public class Test : MonoBehaviour
     public Transform ChooseTarget;
 
     [Header("Enemys")]
-    public List<Transform> target;
+    public List<Transform> targets;
 
     [Header("Scripts")]
     public EnemyHealth enemyPlayer;
@@ -29,17 +29,30 @@ public class Test : MonoBehaviour
     {
         if (other.CompareTag("Enemy")) 
         {
-            target.Add(other.transform);
+            targets.Add(other.transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy")) 
+        {
+            targets.Remove(other.transform);
+            if (ChooseTarget == other.transform) 
+            {
+                ChooseTarget = null;
+                storedDistance = Mathf.Infinity;
+            }
         }
     }
 
 
     private void Update()
     {
-        
-        if (target != null)        
+
+        if (ChooseTarget == null && targets.Count > 0)
         {
-            foreach (var target in target)
+            foreach (var target in targets)
             {
                 float distance = Vector3.Distance(tower.position, target.position);
                 if (distance < storedDistance)
@@ -49,36 +62,23 @@ public class Test : MonoBehaviour
                 }
             }
         }
-        onDeath();
 
-        if (target == null) 
-        { 
-            
-        }
-    }
-
-
-    private void onDeath() 
-    {
-        if (ChooseTarget != null)
+        if (ChooseTarget != null) 
         {
-            if (ChooseTarget.GetComponent<EnemyHealth>().health == 0)
+            EnemyHealth enemyHealth = ChooseTarget.GetComponent<EnemyHealth>();
+            if (enemyHealth != null && enemyHealth.health == 0) 
             {
-                target.Clear();
+                targets.Remove(ChooseTarget);
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
             }
         }
         
-        
     }
-    private void OnTriggerExit(Collider other)
-    {
-        target.Clear();
-        target.Remove(other.transform);
-        ChooseTarget = null;
-        storedDistance = Mathf.Infinity;
-    }
+
+
+    
+    
 
 
 }
