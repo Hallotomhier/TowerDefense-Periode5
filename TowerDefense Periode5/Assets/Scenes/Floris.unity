@@ -1602,6 +1602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761415175}
   - component: {fileID: 761415174}
+  - component: {fileID: 761415176}
   m_Layer: 0
   m_Name: BuildManager
   m_TagString: Untagged
@@ -1622,7 +1623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1725532434}
-  pathFinding: {fileID: 1725532433}
+  pathValidation: {fileID: 761415176}
   spawnManager: {fileID: 381469399}
   building: {fileID: 761415174}
   unit: {fileID: 0}
@@ -1647,6 +1648,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &761415176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761415173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77554c9b1ec7f246b94cbda3c14f91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinding: {fileID: 1725532433}
 --- !u!1 &987341158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,7 +2771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayGridGizmo: 1
   gridWorldSize: {x: 100, y: 100}
-  nodeRadius: 1
+  nodeRadius: 2
   unWalkable:
     serializedVersion: 2
     m_Bits: 64

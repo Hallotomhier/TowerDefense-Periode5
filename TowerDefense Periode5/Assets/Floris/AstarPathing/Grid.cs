@@ -52,7 +52,7 @@ public class Grid : MonoBehaviour
         
         if (transparant == null)
         {
-            Debug.LogError("TransparentMaterial not found in resources.");
+          
             return;
         }
        
@@ -188,15 +188,7 @@ public class Grid : MonoBehaviour
         }
     }
     
-   /* public void UpdateNodeWalkability(Vector3 worldPosition, bool isWalkable)
-    {
-        Node node = NodeFromWorldPoint(worldPosition);
-        if (node != null)
-        {
-            node.walkable = isWalkable;
-        }
-    }
-    */
+  
 
     public void ResetNodeColors()
     {

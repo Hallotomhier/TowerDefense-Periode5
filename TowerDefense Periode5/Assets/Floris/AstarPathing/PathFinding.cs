@@ -36,8 +36,8 @@ public class PathFinding : MonoBehaviour
         if (path != null)
         {
             Debug.Log("Path Found");
-            //callback(path);
-           
+            callback(path);
+            buildingSystem.isCheckingPath = false;
         }
         else
         {
@@ -45,14 +45,14 @@ public class PathFinding : MonoBehaviour
         }
 
         yield return null;
-        buildingSystem.isCheckingPath = false;
+      
       
         Debug.Log("Coroutine Complete");
     }
 
     public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
     {
-       
+        Debug.Log("Testfindpath");
         List<Node> path = new List<Node>();
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
@@ -99,11 +99,10 @@ public class PathFinding : MonoBehaviour
             }
         }
 
-        if (pathSuccess)
+        if (!pathSuccess)
         {
-            buildingSystem.isPathAvailable = true;
-            path = RetracePath(startNode, targetNode);
-            Debug.Log(RetracePath(startNode, targetNode));
+            buildingSystem.isPathAvailable = false;
+            path.Clear();
         }
        
         return path;

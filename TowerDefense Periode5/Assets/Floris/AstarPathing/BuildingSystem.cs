@@ -7,7 +7,7 @@ public class BuildingSystem : MonoBehaviour
 {
     [Header("Script")]
     public Grid grid;
-    public PathFinding pathFinding;
+    public PathValidation pathValidation; // Reference to the PathValidation script
     public SpawnManager spawnManager;
     public BuildingSystem building;
     public Unit unit;
@@ -23,7 +23,7 @@ public class BuildingSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -49,40 +49,33 @@ public class BuildingSystem : MonoBehaviour
                     {
                         Vector3 buildingPosition = node.worldPosition;
 
-                        
-                        pathFinding.FindPathAsync(startPosition.transform.position, targetPosition.transform.position, path => OnPathAvailableCheck(path, node));
-                        if (isCheckingPath == false)
+                      
+                        bool originalWalkable = node.walkable;
+
+                  
+                        node.walkable = false;
+
+                       
+                        bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
+
+                        node.walkable = originalWalkable;
+
+                        if (validPathExists)
                         {
-                            
-                           
-                            Instantiate(buildingPrefab, node.worldPosition, Quaternion.identity);
+    
+                            Instantiate(buildingPrefab, buildingPosition, Quaternion.identity);
                             node.walkable = false;
-                            
                         }
                         else
                         {
-
-                            Debug.Log("Target position is blocked.");
-
+                            Debug.Log("noPath.");
                         }
                     }
-                   
                 }
             }
         }
     }
 
-    private void OnPathAvailableCheck(List<Node> path, Node node)
-    {
-        if (isPathAvailable)
-        {
-            isCheckingPath = false;
-        }
-        else
-        {
-            isCheckingPath = true;
-        }
-       
-        
-    }
+
+
 }
