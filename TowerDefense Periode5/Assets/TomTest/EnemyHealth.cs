@@ -5,12 +5,19 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float health;
-    private void Update()
+    public Unit unit;
+    SpawnManager spawnManager;
+    private void Awake()
     {
-     if (health <= 1) 
-     {
-            Destroy(gameObject);       
-     }
+        unit = GetComponent<Unit>();
+    }
+    public void Update()
+    {
+       
+        if(health <= 1)
+        {
+            unit.MarkAsDestroyed();
+        }
     }
 
 }

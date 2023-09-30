@@ -9,7 +9,9 @@ public class Unit : MonoBehaviour
     Vector3[] path;
     private bool isDestroyed = false;
     private Coroutine followPathCoroutine;
+    public float heightOffset = 1.0f;
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +76,9 @@ public class Unit : MonoBehaviour
                 {
                     yield break;
                 }
-
+              
+               
+                transform.LookAt(currentWaypoint);
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
                 Debug.Log("Unit position: " + transform.position);
                 yield return null;
@@ -90,9 +94,12 @@ public class Unit : MonoBehaviour
     public void MarkAsDestroyed()
     {
         isDestroyed = true;
+
         if (followPathCoroutine != null)
         {
             StopCoroutine(followPathCoroutine);
         }
+        
+        Destroy(gameObject);
     }
 }

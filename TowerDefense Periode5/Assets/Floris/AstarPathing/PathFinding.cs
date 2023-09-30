@@ -71,7 +71,7 @@ public class PathFinding : MonoBehaviour
 
         if (!pathSuccess)
         {
-            buildingSystem.isPathAvailable = false;
+           
             path.Clear();
         }
        

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,21 +12,60 @@ public class BuildingSystem : MonoBehaviour
 
     [Header("Prefab")]
     public GameObject rocks;
-    public GameObject[] towers; 
+    public GameObject[] towers;
 
-    public bool isPathAvailable = false;
-    public bool isCheckingPath;
     public GameObject startPosition;
     public GameObject targetPosition;
-    public int indexTowers;
-   
+    
+    public bool isTowerPlacingMode;
+    public int selectedTowerIndex = 0;
 
     // Update is called once per frame
     void Update()
     {
-        BuilderRocks();
-    }
 
+        if (isTowerPlacingMode)
+        {
+            HandleTowerPlacement();
+        }
+    }
+    public void HandleTowerPlacement()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Node node = grid.NodeFromWorldPoint(hit.point);
+            Vector3 buildingPosition = node.worldPosition;
+
+            if (node != null && !node.walkable)
+            {
+
+                if (Keyboard.current.tKey.wasPressedThisFrame)
+                {
+
+                    selectedTowerIndex = (selectedTowerIndex + 1) % towers.Length;
+                }
+
+
+                if (Mouse.current.leftButton.wasPressedThisFrame)
+                {
+
+                    GameObject selectedTowerPrefab = towers[selectedTowerIndex];
+                    Instantiate(selectedTowerPrefab, buildingPosition, Quaternion.identity);
+                    isTowerPlacingMode = false;
+
+
+                    if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                    {
+                        isTowerPlacingMode = false;
+                    }
+                }
+            }
+        }
+
+    }
     public void BuilderRocks()
     {
         if (spawnManager.isBuildPhase)
@@ -41,25 +78,18 @@ public class BuildingSystem : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     Node node = grid.NodeFromWorldPoint(hit.point);
+                    Vector3 buildingPosition = node.worldPosition;
 
                     if (node != null && node.walkable)
                     {
-                        Vector3 buildingPosition = node.worldPosition;
-
-                      
                         bool originalWalkable = node.walkable;
-
-                  
                         node.walkable = false;
-
-                       
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
                         node.walkable = originalWalkable;
 
                         if (validPathExists)
                         {
-    
                             Instantiate(rocks, buildingPosition, Quaternion.identity);
                             node.walkable = false;
                         }
@@ -68,37 +98,20 @@ public class BuildingSystem : MonoBehaviour
                             Debug.Log("noPath.");
                         }
                     }
+
                 }
             }
         }
     }
-    public void BuildingTowersLand()
+    public void Towers()
     {
         if (spawnManager.isBuildPhase)
         {
-            if (Keyboard.current.bKey.wasPressedThisFrame)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray,out hit))
-                {
-                   Node node = grid.NodeFromWorldPoint(hit.point);
-                    if(node != null && !node.walkable)
-                    {
-                        if (Keyboard.current.aKey.wasPressedThisFrame)
-                        {
-                            indexTowers = 0;
-                            
-                        }
-                       
-
-                    }
-                }
-            }
+            isTowerPlacingMode = true;
         }
+
     }
-
-
-
 }
+
+
+

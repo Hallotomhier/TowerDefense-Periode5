@@ -170,7 +170,6 @@ public class Grid : MonoBehaviour
     {
         if (grid != null && displayGridGizmo)
         {
-            Gizmos.DrawWireCube(transform.position + new Vector3(gridWorldSize.x / 2, 0, gridWorldSize.y / 2), new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
             foreach (Node node in grid)
             {

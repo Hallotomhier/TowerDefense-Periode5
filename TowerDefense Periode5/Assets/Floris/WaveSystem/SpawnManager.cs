@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         timer += Time.deltaTime;
-        gameState = GameState.WaitingForStart;
+        gameState = GameState.WaveInProgress;
     }
 
     private void Update()

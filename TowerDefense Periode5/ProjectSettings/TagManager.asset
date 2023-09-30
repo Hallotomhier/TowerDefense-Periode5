@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Target
   - Grid
+  - BuildTable
   layers:
   - Default
   - TransparentFX

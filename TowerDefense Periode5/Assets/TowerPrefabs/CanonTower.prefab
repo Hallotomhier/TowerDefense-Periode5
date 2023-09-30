@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6854526189733893761}
   - component: {fileID: 1012953296816253064}
   - component: {fileID: 5219525985946319848}
-  - component: {fileID: 1974845699495881534}
   - component: {fileID: 7470904683030316124}
+  - component: {fileID: 7306305234887753502}
   m_Layer: 0
   m_Name: Detecte
   m_TagString: Untagged
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3895985337186660158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3799999, y: -0.04943149, z: -0.26}
-  m_LocalScale: {x: 5.007092, y: 0.8666055, z: 3.6871}
+  m_LocalPosition: {x: -0.14, y: 0.42, z: -0.26}
+  m_LocalScale: {x: 22.709665, y: 3.9304893, z: 16.722841}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3774273193384852681}
@@ -85,8 +85,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1974845699495881534
-BoxCollider:
+--- !u!114 &7470904683030316124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895985337186660158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e068501f5bea8c0488c920ad4eacf072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 3774273193384852681}
+  ChooseTarget: {fileID: 0}
+  targets: []
+  enemyPlayer: {fileID: 0}
+--- !u!135 &7306305234887753502
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,29 +116,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7470904683030316124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3895985337186660158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e068501f5bea8c0488c920ad4eacf072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: []
-  tower: {fileID: 3774273193384852681}
-  storedDistance: 0
-  ChooseTarget: {fileID: 0}
-  enemyPlayer: {fileID: 0}
+  m_Radius: 0.50000006
+  m_Center: {x: -0.0000009536743, y: 0.00000023841858, z: 0.0000009536743}
 --- !u!1 &4089984170919577707
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 4354977442895223998}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 4.29, z: 2.39}
+  m_LocalPosition: {x: 48.0546, y: 7.97, z: 35.725285}
   m_LocalScale: {x: 1, y: 3.2368, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

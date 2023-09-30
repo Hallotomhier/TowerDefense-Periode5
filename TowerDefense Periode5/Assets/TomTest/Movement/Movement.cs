@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Movement : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Movement : MonoBehaviour
 
     [Header("Camera")]
     public Camera playerCamera;
-
+    public Camera buildingCamera;
     
     
     
@@ -25,7 +26,10 @@ public class Movement : MonoBehaviour
     public float camSpeed;
     public float gravity;
     public float jumpHeight;
-    
+
+    [Header("UserInterface")]
+    public GameObject canvas;
+    RaycastHit hit;
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -89,7 +93,21 @@ public class Movement : MonoBehaviour
 
     public void Interact_performed(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward , out hit, 10f))
+        {
+            Debug.Log(hit.collider.name);
+            if (hit.collider.CompareTag("BuildTable"))
+            {
+                playerInput.Disable();
+                playerCamera.enabled = false;
+                buildingCamera.enabled = true;
+                canvas.SetActive(true);
+                if (buildingCamera)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+            }
+        }
     }
 
 
