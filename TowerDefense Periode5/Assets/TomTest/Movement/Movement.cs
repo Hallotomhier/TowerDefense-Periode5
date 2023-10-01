@@ -99,8 +99,9 @@ public class Movement : MonoBehaviour
             if (hit.collider.CompareTag("BuildTable"))
             {
                 playerInput.Disable();
-                playerCamera.enabled = false;
                 buildingCamera.enabled = true;
+                playerCamera.enabled = false;
+
                 canvas.SetActive(true);
                 if (buildingCamera)
                 {

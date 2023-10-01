@@ -20,6 +20,7 @@ public class BuildingSystem : MonoBehaviour
     public bool isTowerPlacingMode;
     public int selectedTowerIndex = 0;
 
+    public Camera buildCam;
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +32,7 @@ public class BuildingSystem : MonoBehaviour
     }
     public void HandleTowerPlacement()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
@@ -72,7 +73,7 @@ public class BuildingSystem : MonoBehaviour
         {
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+                Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit))

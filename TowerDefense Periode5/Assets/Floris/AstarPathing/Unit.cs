@@ -10,11 +10,12 @@ public class Unit : MonoBehaviour
     private bool isDestroyed = false;
     private Coroutine followPathCoroutine;
     public float heightOffset = 1.0f;
-
+    public SpawnManager spawnManager;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         target = GameObject.FindWithTag("Target");
         if (target == null)
         {
@@ -22,7 +23,7 @@ public class Unit : MonoBehaviour
             
         }
 
-       
+        spawnManager = GameObject.FindWithTag("SpawnManager").GetComponent<SpawnManager>();
         PathManager.RequestPath(transform.position, target.transform.position, OnPathFound, true);
     }
 
@@ -99,7 +100,7 @@ public class Unit : MonoBehaviour
         {
             StopCoroutine(followPathCoroutine);
         }
-        
+        spawnManager.EnemyDefeated();
         Destroy(gameObject);
     }
 }

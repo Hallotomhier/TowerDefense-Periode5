@@ -70,6 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 13bb243b117e4634ba5b45aa6c3369fd,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13bb243b117e4634ba5b45aa6c3369fd,
+        type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -115,6 +120,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   heightOffset: 1
+  spawnManager: {fileID: 0}
 --- !u!114 &3841112554254001057
 MonoBehaviour:
   m_ObjectHideFlags: 0
