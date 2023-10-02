@@ -6,7 +6,7 @@ using System.Net;
 
 public class PathManager : MonoBehaviour
 {
-    Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
+    Queue<PathRequest> pathRequestQueue = new();
     PathRequest currentPathRequest;
 
     static PathManager instance;
@@ -21,7 +21,7 @@ public class PathManager : MonoBehaviour
 
     public static void RequestPath(Vector3 pathStartPoint, Vector3 pathEndPoint, Action<List<Node>, bool> callback, bool isUnit)
     {
-        PathRequest newRequest = new PathRequest(pathStartPoint, pathEndPoint, callback, isUnit);
+        PathRequest newRequest = new(pathStartPoint, pathEndPoint, callback, isUnit);
         instance.pathRequestQueue.Enqueue(newRequest);
        
         instance.TryProcessNext();
@@ -45,6 +45,7 @@ public class PathManager : MonoBehaviour
         currentPathRequest.callback(path, currentPathRequest.isUnit);
         isProcessing = false;
         TryProcessNext();
+
     }
 
     struct PathRequest

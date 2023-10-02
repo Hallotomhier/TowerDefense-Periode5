@@ -5,7 +5,7 @@ public class BuildingSystem : MonoBehaviour
 {
     [Header("Script")]
     public Grid grid;
-    public PathValidation pathValidation; // Reference to the PathValidation script
+    public PathValidation pathValidation; 
     public SpawnManager spawnManager;
     public BuildingSystem building;
     public Unit unit;
@@ -18,6 +18,7 @@ public class BuildingSystem : MonoBehaviour
     public GameObject targetPosition;
     
     public bool isTowerPlacingMode;
+    public bool isRockPlacingMode;
     public int selectedTowerIndex = 0;
 
     public Camera buildCam;
@@ -28,6 +29,11 @@ public class BuildingSystem : MonoBehaviour
         if (isTowerPlacingMode)
         {
             HandleTowerPlacement();
+            
+        }
+        if (isRockPlacingMode)
+        {
+            BuilderRocks();
         }
     }
     public void HandleTowerPlacement()
@@ -45,19 +51,19 @@ public class BuildingSystem : MonoBehaviour
 
                 if (Keyboard.current.tKey.wasPressedThisFrame)
                 {
-
+                    //switch index
                     selectedTowerIndex = (selectedTowerIndex + 1) % towers.Length;
                 }
 
-
+                
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-
+                    //place tower
                     GameObject selectedTowerPrefab = towers[selectedTowerIndex];
                     Instantiate(selectedTowerPrefab, buildingPosition, Quaternion.identity);
                     isTowerPlacingMode = false;
 
-
+                    //Cancel
                     if (Keyboard.current.escapeKey.wasPressedThisFrame)
                     {
                         isTowerPlacingMode = false;
@@ -71,7 +77,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (spawnManager.isBuildPhase)
         {
-            if (Keyboard.current.bKey.wasPressedThisFrame)
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -80,7 +86,7 @@ public class BuildingSystem : MonoBehaviour
                 {
                     Node node = grid.NodeFromWorldPoint(hit.point);
                     Vector3 buildingPosition = node.worldPosition;
-
+                    Debug.Log("" + hit.collider.name);
                     if (node != null && node.walkable)
                     {
                         bool originalWalkable = node.walkable;
@@ -111,6 +117,13 @@ public class BuildingSystem : MonoBehaviour
             isTowerPlacingMode = true;
         }
 
+    }
+    public void Rocks()
+    {
+        if (spawnManager.isBuildPhase)
+        {
+            isRockPlacingMode = true;
+        }
     }
 }
 

@@ -7,7 +7,7 @@ using TMPro;
 public class Movement : MonoBehaviour
 {
     [Header("Private")]
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
     private float x;
     private float y;
     private float xrotation;

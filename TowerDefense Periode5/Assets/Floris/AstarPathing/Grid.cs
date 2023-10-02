@@ -23,8 +23,6 @@ public class Grid : MonoBehaviour
 
     void Awake()
     {
-    
-        
         // berekent diameter knoop punt
         nodeDiameter = nodeRadius * 2;
         // berekent aantal nodes in de x- en y- richting op  basis van node diameter en gridworldsize
