@@ -22,8 +22,8 @@ public class FollowPath : MonoBehaviour
         if (transform.position != pathPos[nowPos].position)
         {
             player.transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position,speed * Time.deltaTime);
-            var q = Quaternion.LookRotation(pathPos[nowPos].position - transform.position);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, speed * Time.deltaTime);
+            var targetRotation = Quaternion.LookRotation(pathPos[nowPos].position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
         }
         else 
         {
