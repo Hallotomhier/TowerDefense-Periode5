@@ -9,11 +9,29 @@ public class FollowPath : MonoBehaviour
     public float speed;
     public float hp;
     public TownHallHealth thh;
-    
-        
+    private int numberOfWaypoints = 22;
+
     void Start()
     {
-        
+        thh = GameObject.FindWithTag("TownHall").GetComponent<TownHallHealth>();
+
+       
+        GameObject waypointsParent = GameObject.Find("EnemyWalkAblePath");
+
+        if (waypointsParent != null)
+        {
+            numberOfWaypoints = waypointsParent.transform.childCount;
+
+            pathPos = new Transform[numberOfWaypoints];
+            for (int i = 0; i < numberOfWaypoints; i++)
+            {
+                pathPos[i] = waypointsParent.transform.GetChild(i);
+            }
+        }
+        else
+        {
+            Debug.LogError("WaypointsParent not found.");
+        }
     }
 
     

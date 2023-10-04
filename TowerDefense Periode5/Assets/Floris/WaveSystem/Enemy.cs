@@ -11,10 +11,7 @@ public class Enemy : MonoBehaviour
     {
         spawnManager = FindObjectOfType<SpawnManager>();
     }
-    public void Update()
-    {
-        
-    }
+  
     public void Check()
     {
         

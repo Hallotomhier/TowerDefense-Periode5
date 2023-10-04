@@ -11,6 +11,7 @@ public class BuildingSystem : MonoBehaviour
     public SpawnManager spawnManager;
     public BuildingSystem building;
     public Unit unit;
+    public Recources recources;
 
     [Header("Prefab")]
     public GameObject rocks;
@@ -44,43 +45,49 @@ public class BuildingSystem : MonoBehaviour
     {
         Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
+        
+        if(recources.wood >= 5 && recources.stone >= 2)
         {
-            Node node = grid.NodeFromWorldPoint(hit.point);
-            Vector3 buildingPosition = node.worldPosition;
-
-            if (node != null && !node.walkable)
+            if (Physics.Raycast(ray, out hit))
             {
+                Node node = grid.NodeFromWorldPoint(hit.point);
+                Vector3 buildingPosition = node.worldPosition;
 
-                if (Keyboard.current.tKey.wasPressedThisFrame)
+                if (node != null && !node.walkable)
                 {
-                    //switch index
-                    selectedTowerIndex = (selectedTowerIndex + 1) % towers.Length;
-                    currentTowerText.text = towerNames[selectedTowerIndex];
-                }
 
-                
-                if (Mouse.current.leftButton.wasPressedThisFrame)
-                {
-                    //place tower
-                    GameObject selectedTowerPrefab = towers[selectedTowerIndex];
-                    Instantiate(selectedTowerPrefab, buildingPosition, Quaternion.identity);
-                    isTowerPlacingMode = false;
-
-                    //Cancel
-                    if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                    if (Keyboard.current.tKey.wasPressedThisFrame)
                     {
+                        //switch index
+                        selectedTowerIndex = (selectedTowerIndex + 1) % towers.Length;
+
+                    }
+                    currentTowerText.text = towerNames[selectedTowerIndex];
+
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        //place tower
+                        GameObject selectedTowerPrefab = towers[selectedTowerIndex];
+                        Instantiate(selectedTowerPrefab, buildingPosition, Quaternion.identity);
                         isTowerPlacingMode = false;
+                        recources.wood -= 5;
+                        recources.stone -= 2;
+
+                        //Cancel
+                        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                        {
+                            isTowerPlacingMode = false;
+                        }
                     }
                 }
             }
         }
+       
 
     }
     public void BuilderRocks()
     {
-        if (spawnManager.isBuildPhase)
+        if (recources.stone >= 1)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -104,6 +111,7 @@ public class BuildingSystem : MonoBehaviour
                         {
                             Instantiate(rocks, buildingPosition, Quaternion.identity);
                             node.walkable = false;
+                            recources.stone -= 1;
                         }
                         else
                         {
@@ -113,7 +121,10 @@ public class BuildingSystem : MonoBehaviour
 
                 }
             }
+
         }
+
+
     }
     public void Towers()
     {

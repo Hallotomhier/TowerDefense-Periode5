@@ -10,6 +10,8 @@ TagManager:
   - Grid
   - BuildTable
   - SpawnManager
+  - BuildManager
+  - TownHall
   layers:
   - Default
   - TransparentFX

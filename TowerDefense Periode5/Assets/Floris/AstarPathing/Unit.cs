@@ -11,11 +11,14 @@ public class Unit : MonoBehaviour
     private Coroutine followPathCoroutine;
     public float heightOffset = 1.0f;
     public SpawnManager spawnManager;
+    public Recources recources;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        recources = GameObject.FindWithTag("BuildManager").GetComponent<Recources>();
+
+
         target = GameObject.FindWithTag("Target");
         if (target == null)
         {
@@ -96,12 +99,16 @@ public class Unit : MonoBehaviour
     public void MarkAsDestroyed()
     {
         isDestroyed = true;
-
+        
         if (followPathCoroutine != null)
         {
             StopCoroutine(followPathCoroutine);
         }
         spawnManager.EnemyDefeated();
+
+        recources.wood += 10;
+        recources.stone += 5;
+        
         Destroy(gameObject);
     }
 }
