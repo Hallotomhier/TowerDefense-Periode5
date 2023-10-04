@@ -90,7 +90,7 @@ public class BuildingSystem : MonoBehaviour
                     if (node != null && node.walkable)
                     {
                         bool originalWalkable = node.walkable;
-                        node.walkable = false;
+                        //node.walkable = false;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
                         node.walkable = originalWalkable;

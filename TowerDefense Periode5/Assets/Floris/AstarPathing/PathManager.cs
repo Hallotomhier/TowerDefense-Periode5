@@ -21,11 +21,9 @@ public class PathManager : MonoBehaviour
 
     public static void RequestPath(Vector3 pathStartPoint, Vector3 pathEndPoint, Action<List<Node>, bool> callback, bool isUnit)
     {
-        PathRequest newRequest = new(pathStartPoint, pathEndPoint, callback, isUnit);
+        PathRequest newRequest = new PathRequest(pathStartPoint, pathEndPoint, callback, isUnit);
         instance.pathRequestQueue.Enqueue(newRequest);
-       
         instance.TryProcessNext();
-
     }
 
     void TryProcessNext()
@@ -41,11 +39,17 @@ public class PathManager : MonoBehaviour
 
     public void FinishProcessingPath(List<Node> path)
     {
+        if (currentPathRequest.callback != null)
+        {
+            currentPathRequest.callback(path, currentPathRequest.isUnit);
+        }
+        else
+        {
+            Debug.Log("Callback is null");
+        }
 
-        currentPathRequest.callback(path, currentPathRequest.isUnit);
         isProcessing = false;
         TryProcessNext();
-
     }
 
     struct PathRequest
@@ -63,4 +67,5 @@ public class PathManager : MonoBehaviour
             isUnit = unit;
         }
     }
+    
 }
