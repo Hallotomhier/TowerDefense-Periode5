@@ -5,13 +5,24 @@ using UnityEngine.VFX;
 
 public class Windmolen : MonoBehaviour
 {
+    public Test detectEnemy;
+
+    public float windSpeed = 70f;
+
+    public float slowDownSpeed;
+
+    [Header("GameObjects")]
+    public GameObject[] towers;
+    public GameObject[] wind;
+    
+
     [Header("Upgrade")]
     public int upgrade;
-    public GameObject[] towers;
-   
-    public VisualEffect vfxGraph;
-    public KeyCode theKey;
-    private bool max;
+
+    public Transform target;
+    
+    
+    
 
 
     private void Start()
@@ -21,53 +32,45 @@ public class Windmolen : MonoBehaviour
     }
     private void Update()
     {
+        target = detectEnemy.ChooseTarget;
+        
+
         UpgradeBuilding();
-        if (Input.GetKeyUp(theKey)) 
-        {
-            
-            if(!max) 
-            {
-                vfxGraph.Play();
-            }
-            upgrade++;
-        }
+        DraaiWind();
+        SlowDown();
         
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public void PressUpgrade() 
+    private void SlowDown() 
     {
+        if (target != null)
+        {
+            windSpeed = 200f;
+            if (target.GetComponent<FollowPath>() != null)
+            {
+                target.GetComponent<FollowPath>().speed = 2;
+            }
+
+
+            
+        }
+        else 
+        {
+            windSpeed = 20;
+        }
+    
+    }
+
+
+
+
+    private void DraaiWind() 
+    {
+        wind[0].transform.Rotate(new Vector3(0, 0, windSpeed) * Time.deltaTime);
+        wind[1].transform.Rotate(new Vector3(0, 0, windSpeed) * Time.deltaTime);
+        wind[2].transform.Rotate(new Vector3(0, 0, windSpeed) * Time.deltaTime);
+    }
         
-    }     
     private void UpgradeBuilding() 
     {
         if (upgrade == 1)
@@ -99,7 +102,7 @@ public class Windmolen : MonoBehaviour
 
         if (upgrade == 3) 
         {
-            max = true;    
+                
         }   
 
         if (upgrade <= 0) 

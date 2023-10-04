@@ -7,6 +7,7 @@ public class FollowPath : MonoBehaviour
     public Transform[] pathPos;
     private int nowPos = 0; 
     public float speed;
+    public float hp;
     public TownHallHealth thh;
     
         
@@ -37,6 +38,10 @@ public class FollowPath : MonoBehaviour
             thh.townHealth -= 1;
             Destroy(gameObject);
         }
-        
+
+        if (hp <= 0) 
+        {
+            Destroy(gameObject);
+        }
     }
 }
