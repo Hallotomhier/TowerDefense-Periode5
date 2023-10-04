@@ -47,7 +47,7 @@ Material:
     - _WaterDepth: 1.2
     m_Colors:
     - _Deep_Water: {r: 0.00338192, g: 0.19215687, b: 0.53773564, a: 1}
-    - _FoamColoue: {r: 0.99056596, g: 0.99056596, b: 0.99056596, a: 1}
+    - _FoamColoue: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
     - _ShallowWater: {r: 0.05992628, g: 0.46666667, b: 0.95283014, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &316890847997122444
