@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    public GameObject player;
     public Transform[] pathPos;
-    public int nowPos = 0;
-    
+    private int nowPos = 0; 
     public float speed;
+    public TownHallHealth thh;
+    
         
     void Start()
     {
@@ -19,15 +19,23 @@ public class FollowPath : MonoBehaviour
     void Update()
     {
         
+
+
         if (transform.position != pathPos[nowPos].position)
         {
-            player.transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position,speed * Time.deltaTime);
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position,speed * Time.deltaTime);
             var targetRotation = Quaternion.LookRotation(pathPos[nowPos].position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
         }
         else 
         {
             nowPos = (nowPos + 1) % pathPos.Length;
+        }
+
+        if(nowPos == 22)
+        {
+            thh.townHealth -= 1;
+            Destroy(gameObject);
         }
         
     }
