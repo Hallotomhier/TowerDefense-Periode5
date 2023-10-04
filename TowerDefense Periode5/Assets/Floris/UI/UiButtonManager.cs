@@ -19,7 +19,7 @@ public class UiButtonManager : MonoBehaviour
     }
 
     public void Back()
-   {
+    {
         canvas.SetActive(false);
         playerCam.enabled = true;
         buildingCam.enabled = false;
@@ -28,5 +28,7 @@ public class UiButtonManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-   }
+    }
+
+
 }

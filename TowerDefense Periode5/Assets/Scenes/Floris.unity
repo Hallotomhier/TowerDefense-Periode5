@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26792946, g: 0.463935, b: 0.61439043, a: 1}
+  m_IndirectSpecularColor: {r: 0.2679295, g: 0.46393502, b: 0.6143905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 5852456}
   - component: {fileID: 5852455}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Current Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 323, y: 83}
+  m_AnchoredPosition: {x: 299, y: 83}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5852455
@@ -207,10 +207,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 2.3697128, y: 0, z: 41.83252, w: 0}
+  m_margin: {x: 2.3697128, y: 0, z: 0.03447342, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3300,7 +3300,9 @@ MonoBehaviour:
   isTowerPlacingMode: 0
   isRockPlacingMode: 0
   selectedTowerIndex: 0
+  towerNames: []
   buildCam: {fileID: 1321253689}
+  currentTowerText: {fileID: 5852455}
 --- !u!4 &761415175
 Transform:
   m_ObjectHideFlags: 0
@@ -6901,6 +6903,7 @@ GameObject:
   - component: {fileID: 1728828380}
   - component: {fileID: 1728828379}
   - component: {fileID: 1728828378}
+  - component: {fileID: 1728828382}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6993,6 +6996,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1728828382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728828377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c792ce5f6e7d274c92b230a64a8ca89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTowerText: {fileID: 5852453}
+  buildingSystem: {fileID: 761415174}
 --- !u!1 &1737225210
 GameObject:
   m_ObjectHideFlags: 0
@@ -7858,7 +7875,7 @@ GameObject:
   - component: {fileID: 1982985959}
   - component: {fileID: 1982985958}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Instruction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

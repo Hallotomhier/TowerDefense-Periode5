@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.UI;
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -20,8 +22,10 @@ public class BuildingSystem : MonoBehaviour
     public bool isTowerPlacingMode;
     public bool isRockPlacingMode;
     public int selectedTowerIndex = 0;
-
+    public string[] towerNames;
     public Camera buildCam;
+
+    public TMP_Text currentTowerText;
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +57,7 @@ public class BuildingSystem : MonoBehaviour
                 {
                     //switch index
                     selectedTowerIndex = (selectedTowerIndex + 1) % towers.Length;
+                    currentTowerText.text = towerNames[selectedTowerIndex];
                 }
 
                 
