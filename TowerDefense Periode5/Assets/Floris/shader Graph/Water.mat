@@ -43,7 +43,7 @@ Material:
     - _Foam_Speed: 1.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 2
+    - _Scale: 1.2
     - _WaterDepth: 1.2
     m_Colors:
     - _Deep_Water: {r: 0.00338192, g: 0.19215687, b: 0.53773564, a: 1}
