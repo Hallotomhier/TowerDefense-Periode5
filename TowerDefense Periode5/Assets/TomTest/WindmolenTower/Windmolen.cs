@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class Windmolen : MonoBehaviour
 {
-    public Test detectEnemy;
+    
 
     public float windSpeed = 70f;
 
@@ -20,9 +20,42 @@ public class Windmolen : MonoBehaviour
     public int upgrade;
 
     public Transform target;
-    
-    
-    
+
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy")) 
+        {
+            windSpeed = 200f;
+            if (other.GetComponent<FollowPath>()) 
+            {
+                other.GetComponent<FollowPath>().speed = slowDownSpeed;
+            }
+
+            if (other.GetComponent<Unit>())
+            {
+                other.GetComponent<Unit>().speed = slowDownSpeed;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (other.GetComponent<FollowPath>())
+            {
+                other.GetComponent<FollowPath>().speed = 6f;
+            }
+
+            if (other.GetComponent<Unit>())
+            {
+                other.GetComponent<Unit>().speed = 6f;
+            }
+        }
+    }
+
 
 
     private void Start()
@@ -32,34 +65,11 @@ public class Windmolen : MonoBehaviour
     }
     private void Update()
     {
-        target = detectEnemy.ChooseTarget;
-        
-
         UpgradeBuilding();
         DraaiWind();
-        SlowDown();
-        
     }
 
-    private void SlowDown() 
-    {
-        if (target != null)
-        {
-            windSpeed = 200f;
-            if (target.GetComponent<FollowPath>() != null)
-            {
-                target.GetComponent<FollowPath>().speed = 2;
-            }
-
-
-            
-        }
-        else 
-        {
-            windSpeed = 20;
-        }
     
-    }
 
 
 
@@ -76,6 +86,7 @@ public class Windmolen : MonoBehaviour
         if (upgrade == 1)
         {
             towers[0].SetActive(true);
+            slowDownSpeed = 4;
         }
         else 
         {
@@ -85,6 +96,7 @@ public class Windmolen : MonoBehaviour
         if (upgrade == 2)
         {
             towers[1].SetActive(true);
+            slowDownSpeed = 3;
         }
         else
         {
@@ -94,6 +106,7 @@ public class Windmolen : MonoBehaviour
         if (upgrade == 3)
         {
             towers[2].SetActive(true);
+            slowDownSpeed = 2;
         }
         else
         {

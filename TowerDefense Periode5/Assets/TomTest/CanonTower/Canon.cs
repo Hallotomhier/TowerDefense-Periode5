@@ -67,33 +67,29 @@ public class Canon : MonoBehaviour
 
             if (distanceToTarget <= triggerDistance)
             {
-                // Calculate the direction vector to the target
+                
                 Vector3 directionToTarget = target.position - transform.position;
-                directionToTarget.y = 0; // Ensure that only the Y-axis is considered
-
-                // Calculate the target rotation based on the direction vector
+                directionToTarget.y = 0; 
                 Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-
-                // Ensure the Y-axis rotation does not exceed the maximum angle
+                
                 float yRotation = targetRotation.eulerAngles.y;
                 yRotation = Mathf.Clamp(yRotation, -maxRotationAngle, maxRotationAngle);
                 targetRotation = Quaternion.Euler(0, yRotation, 0);
 
-                // Rotate the cannon towards the target
+                
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
 
                 isTargetInRange = true;
             }
             else if (isTargetInRange)
             {
-                // Smoothly return the local Y-axis rotation to its initial state
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
                 isTargetInRange = false;
             }
         }
         else
         {
-            // If the target is null, smoothly return the local Y-axis rotation to its initial state
+            
             transform.localRotation = Quaternion.Slerp(transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
         }
     }

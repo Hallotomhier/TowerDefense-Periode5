@@ -11,6 +11,9 @@ public class FollowPath : MonoBehaviour
     public TownHallHealth thh;
     private int numberOfWaypoints = 22;
 
+    private float timer;
+    private float delay = 4f;
+
     void Start()
     {
         thh = GameObject.FindWithTag("TownHall").GetComponent<TownHallHealth>();
@@ -60,6 +63,16 @@ public class FollowPath : MonoBehaviour
         if (hp <= 0) 
         {
             Destroy(gameObject);
+        }
+
+        if (speed < 5) 
+        {
+            timer = Time.deltaTime;
+            if (timer >= delay) 
+            {
+                speed = 6f;
+                timer -= delay;
+            }  
         }
     }
 }
