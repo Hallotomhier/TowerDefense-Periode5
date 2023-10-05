@@ -12,6 +12,7 @@ TagManager:
   - SpawnManager
   - BuildManager
   - TownHall
+  - Trigger
   layers:
   - Default
   - TransparentFX

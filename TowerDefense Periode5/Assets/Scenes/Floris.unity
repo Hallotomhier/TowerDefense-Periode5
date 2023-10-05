@@ -1466,7 +1466,7 @@ MonoBehaviour:
   waves:
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
-    enemyCounts: 01000000
+    enemyCounts: 09000000
   - enemyTypes:
     - {fileID: 6899640855874250686, guid: f4216131aa0889e488d69213b6f77f8d, type: 3}
     - {fileID: 2208681487260691388, guid: 2254060bb03423147a3e94b257f5faa6, type: 3}
@@ -6174,7 +6174,7 @@ GameObject:
   - component: {fileID: 1370862080}
   m_Layer: 0
   m_Name: tijdelijk
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6193,10 +6193,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnList: []
   cargo: {fileID: 0}
-  spawnPointLand: {fileID: 0}
-  currentEnemy: {fileID: 0}
+  spawnPointLand: {fileID: 137454522}
+  currentEnemy: []
   enemyPrefab: {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987,
     type: 3}
+  enemyCheck: {fileID: 0}
 --- !u!65 &1370862081
 BoxCollider:
   m_ObjectHideFlags: 0

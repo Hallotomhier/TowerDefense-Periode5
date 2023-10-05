@@ -220,3 +220,4 @@ MonoBehaviour:
   - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
   - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
   - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
+  destroyShipScript: {fileID: 0}
