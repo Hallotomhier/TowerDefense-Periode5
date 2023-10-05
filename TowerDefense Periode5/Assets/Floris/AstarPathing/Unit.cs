@@ -81,16 +81,16 @@ public class Unit : MonoBehaviour
                     yield break;
                 }
 
-                //var UnitRotation = Quaternion.LookRotation(currentWaypoint - transform.position);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, UnitRotation, speed * Time.deltaTime);
-                transform.LookAt(currentWaypoint);
+                var UnitRotation = Quaternion.LookRotation(currentWaypoint - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, UnitRotation, speed * Time.deltaTime);
+               
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
                 Debug.Log("Unit position: " + transform.position);
                 yield return null;
             }
 
             Debug.Log("Reached waypoint " + i + ".");
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
 
         

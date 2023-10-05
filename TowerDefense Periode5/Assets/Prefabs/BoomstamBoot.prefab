@@ -102,6 +102,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 9206458916461959692}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f312c8d4b8d63b44a26f81b3eaa7281,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9048706621098693955}
   m_SourcePrefab: {fileID: 100100000, guid: 4f312c8d4b8d63b44a26f81b3eaa7281, type: 3}
 --- !u!1 &6899640855874250686 stripped
 GameObject:
@@ -125,6 +129,7 @@ MonoBehaviour:
   speed: 20
   heightOffset: 1
   spawnManager: {fileID: 0}
+  recources: {fileID: 0}
 --- !u!65 &8657687264143543588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -199,3 +204,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   unit: {fileID: 0}
+--- !u!114 &9048706621098693955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899640855874250686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079b249504aa9bb429742ea0a2157f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cargoList:
+  - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
+  - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
+  - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}

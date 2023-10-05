@@ -4,62 +4,88 @@ using UnityEngine;
 
 public class DestroyShip : MonoBehaviour
 {
-    Unit unit;
-    public SpawnManager spawnManager;
-    public Enemy enemy;
+    public List<GameObject> spawnList;
+    public Cargo cargo;
     public Transform spawnPointLand;
+    public GameObject currentEnemy;
     public GameObject enemyPrefab;
-    public int totalEnemiesToSpawn = 5;
-    private int spawnedEnemiesLand = 0;
-
-   
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && spawnedEnemiesLand < totalEnemiesToSpawn)
+
+        if (other.gameObject.CompareTag("Enemy") && other.gameObject.GetComponent<Cargo>())
         {
-            Enemy enemyComponent = other.GetComponent<Enemy>();
-
-            if (enemyComponent != null)
-            {
-                enemyComponent.Check();
-            }
-
-            StartCoroutine(StandStillAndSpawn());
+           cargo = other.gameObject.GetComponent<Cargo>();
+            currentEnemy = other.gameObject;
+            AddSpawnList();
+           
         }
-        while(spawnedEnemiesLand > totalEnemiesToSpawn)
-        {
-            Testt();
-
-            break;
-        }
+       
     }
-    private void Testt()
+    public void AddSpawnList()
     {
-        if (spawnedEnemiesLand >= totalEnemiesToSpawn)
-        {
-            spawnManager.EnemyDefeated();
-            Destroy(unit.gameObject);
-
-            spawnedEnemiesLand = 0;
-        }
+       cargo.cargoList.Capacity = spawnList.Capacity;
     }
 
     private IEnumerator StandStillAndSpawn()
     {
-        while (spawnedEnemiesLand < totalEnemiesToSpawn)
+        while (spawnList.Count > 1)
         {
             yield return new WaitForSeconds(1.5f);
             SpawnEnemies();
+
+            Destroy(currentEnemy);
+
         }
 
-    }
 
+    }
     private void SpawnEnemies()
     {
-        if (spawnPointLand != null && enemyPrefab != null && spawnedEnemiesLand < totalEnemiesToSpawn)
+        if (spawnPointLand != null && enemyPrefab != null)
         {
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPointLand.position, Quaternion.identity);
-            spawnedEnemiesLand++;
+            spawnList.RemoveAt(spawnList.Count - 1);
+        }
+
+    }
+    /*
+    Unit unit;
+    public SpawnManager spawnManager;
+    public Enemy enemy;
+    
+   
+    public int totalEnemiesToSpawn = 5;
+    public int spawnedEnemiesLand = 0;
+    public GameObject testtt;
+
+    private void Update()
+    {
+        if(testtt == null)
+        {
+            ResetCounter();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy") && spawnedEnemiesLand < totalEnemiesToSpawn)
+        {
+           
+
+            StartCoroutine(StandStillAndSpawn());
+        }
+
+        testtt = other.gameObject;
+
+    }
+
+    
+
+   
+    private void ResetCounter()
+    {
+        Debug.Log("Fired");
+        spawnedEnemiesLand = 0;
+      
+    }
+    */
 }

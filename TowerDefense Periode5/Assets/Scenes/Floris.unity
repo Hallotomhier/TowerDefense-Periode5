@@ -6191,12 +6191,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993ac5a001019064f879bc28ab2e2920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnManager: {fileID: 381469399}
-  enemy: {fileID: 0}
-  spawnPointLand: {fileID: 137454522}
+  spawnList: []
+  cargo: {fileID: 0}
+  spawnPointLand: {fileID: 0}
+  currentEnemy: {fileID: 0}
   enemyPrefab: {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987,
     type: 3}
-  totalEnemiesToSpawn: 5
 --- !u!65 &1370862081
 BoxCollider:
   m_ObjectHideFlags: 0
