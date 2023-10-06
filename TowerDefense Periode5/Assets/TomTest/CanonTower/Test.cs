@@ -54,10 +54,14 @@ public class Test : MonoBehaviour
             ChooseTarget = null;
         }
 
-        if (targets[0] == null) 
+        if(targets.Count > 0)
         {
-            targets.RemoveAt(0);
+            if (targets[0] == null)
+            {
+                targets.RemoveAt(0);
+            }
         }
+       
 
 
         if (ChooseTarget == null && targets.Count > 0)
@@ -88,13 +92,13 @@ public class Test : MonoBehaviour
                 storedDistance = Mathf.Infinity;
             }
 
-            /*Unit unit = ChooseTarget.GetComponent<Unit>();
-            if (unit != null && unit.hp >= 0) 
+            EnemyHealth enemyHealth = ChooseTarget.GetComponent<EnemyHealth>();
+            if (enemyHealth != null && enemyHealth.health <= 1) 
             {
                 targets.Remove(ChooseTarget);
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
-            }*/
+            }
 
 
 

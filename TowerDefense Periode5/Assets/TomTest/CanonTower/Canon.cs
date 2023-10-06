@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Canon : MonoBehaviour
@@ -9,12 +10,14 @@ public class Canon : MonoBehaviour
     private float triggerDistance = 10f;
     public float maxRotationAngle = 45f;
 
+    public GameObject shootPoint;
+    public GameObject cannons;
     private bool isTargetInRange = false;
     private Quaternion initialLocalRotation;
 
 
     private Quaternion initialRotation;
-
+    RaycastHit hit;
 
     [Header("TargetSettings")]
     public Test detect;
@@ -62,7 +65,7 @@ public class Canon : MonoBehaviour
         }
         if (target.GetComponent<Unit>()) 
         {
-            //target.GetComponent<Unit>().hp -= damage[level];
+            target.GetComponent<EnemyHealth>().health -= damage[level];
         }
 
         
@@ -89,6 +92,15 @@ public class Canon : MonoBehaviour
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
 
                 isTargetInRange = true;
+
+                float xRotation = targetRotation.eulerAngles.x;
+                if(Physics.Raycast(shootPoint.transform.position,Vector3.forward,out hit, 100))
+                {
+                    if (hit.collider.CompareTag("Enemy"))
+                    {
+                       // xRotation
+                    }
+                }
             }
             else if (isTargetInRange)
             {
