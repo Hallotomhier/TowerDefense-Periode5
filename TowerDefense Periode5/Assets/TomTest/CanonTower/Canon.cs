@@ -21,7 +21,7 @@ public class Canon : MonoBehaviour
     public Transform target;
 
     [Header("DamageSettings")]
-    public float[] damage;
+    public int[] damage;
     public float[] delay;
 
     [Header("Level")]

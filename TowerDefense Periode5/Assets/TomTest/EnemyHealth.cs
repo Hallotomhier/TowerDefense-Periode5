@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float health;
+    public int health;
     public Unit unit;
     SpawnManager spawnManager;
     private void Awake()

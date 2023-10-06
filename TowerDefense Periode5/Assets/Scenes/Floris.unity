@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26792946, g: 0.463935, b: 0.61439043, a: 1}
+  m_IndirectSpecularColor: {r: 0.2679295, g: 0.46393502, b: 0.6143905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -571,6 +571,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'PalmBoom goed '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021189141764676779, guid: ed1c3f9438f11cb4eb0cc10824f86589,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4361158534788466193, guid: ed1c3f9438f11cb4eb0cc10824f86589,
         type: 3}
@@ -1522,7 +1527,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1581,13 +1586,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397049447}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 64.7, y: 50.15, z: 31.9}
+  m_LocalRotation: {x: 0.21557492, y: -0.7795322, z: 0.3635016, w: 0.46230245}
+  m_LocalPosition: {x: 102.6, y: 46.3, z: 31.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -118.66, z: 0}
 --- !u!114 &397049451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1742,6 +1747,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224287105}
     m_Modifications:
+    - target: {fileID: 2955766724892832253, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450974043635274314, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4991519075706865427, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1792,10 +1807,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5254644548253310230, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502826825375892477, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_Name
       value: Palmboom Medium (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903571947845392289, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2133,6 +2168,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224287105}
     m_Modifications:
+    - target: {fileID: 2955766724892832253, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450974043635274314, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4991519075706865427, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2183,10 +2228,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5254644548253310230, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502826825375892477, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_Name
       value: Palmboom Medium (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903571947845392289, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2207,6 +2272,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224287105}
     m_Modifications:
+    - target: {fileID: 2955766724892832253, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450974043635274314, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4991519075706865427, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2257,10 +2332,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5254644548253310230, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502826825375892477, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_Name
       value: Palmboom Medium (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903571947845392289, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2373,6 +2468,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224287105}
     m_Modifications:
+    - target: {fileID: 2955766724892832253, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450974043635274314, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4991519075706865427, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2423,10 +2528,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5254644548253310230, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502826825375892477, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_Name
       value: Palmboom Medium (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903571947845392289, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2464,7 +2589,7 @@ Transform:
   m_GameObject: {fileID: 534067576}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.11, y: 8.01, z: 56.7}
+  m_LocalPosition: {x: 1.11, y: 4.32, z: 56.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4066,7 +4191,7 @@ MonoBehaviour:
   recources: {fileID: 761415177}
   rocks: {fileID: 4887651412813224407, guid: dcc720ee96eee1145adf71279e9bb8c4, type: 3}
   towers:
-  - {fileID: 2954094635142603263, guid: daf776cc66e1b284cbf2c4f4397dfb76, type: 3}
+  - {fileID: 4154012338306315669, guid: b96e4e380e496024a9668b342ab86183, type: 3}
   - {fileID: 3655599015272444187, guid: e5316a8ec74335742bd959a3eda4b8b7, type: 3}
   startPosition: {fileID: 534067576}
   targetPosition: {fileID: 1500881963}
@@ -4118,8 +4243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e679edd5be172774ea7ad3a2e96fc17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: 0
-  wood: 0
+  stone: 30
+  wood: 30
   stoneText: {fileID: 2030745624}
   woodText: {fileID: 451540859}
 --- !u!1001 &820125254
@@ -4134,6 +4259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PalmBoom goed  (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021189141764676779, guid: ed1c3f9438f11cb4eb0cc10824f86589,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4361158534788466193, guid: ed1c3f9438f11cb4eb0cc10824f86589,
         type: 3}
@@ -4622,6 +4752,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880801583}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &913883378
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 68.74323
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.6049232
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 61.280605
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669823033090387759, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154012338306315669, guid: b96e4e380e496024a9668b342ab86183,
+        type: 3}
+      propertyPath: m_Name
+      value: kannon_towe_level_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b96e4e380e496024a9668b342ab86183, type: 3}
 --- !u!1 &987341158
 GameObject:
   m_ObjectHideFlags: 0
@@ -5265,6 +5463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PalmBoom goed  (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021189141764676779, guid: ed1c3f9438f11cb4eb0cc10824f86589,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4361158534788466193, guid: ed1c3f9438f11cb4eb0cc10824f86589,
         type: 3}
@@ -6463,6 +6666,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmBoom goed  (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4021189141764676779, guid: ed1c3f9438f11cb4eb0cc10824f86589,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4361158534788466193, guid: ed1c3f9438f11cb4eb0cc10824f86589,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7142,6 +7350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmBoom goed  (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4021189141764676779, guid: ed1c3f9438f11cb4eb0cc10824f86589,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4361158534788466193, guid: ed1c3f9438f11cb4eb0cc10824f86589,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7546,79 +7759,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594997089}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1602663735
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 896313248875742505, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: upgrade
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5416880846393352480, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_Name
-      value: Windmolen
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 44
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.604924
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 29.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987302985345639366, guid: a99f9eeff53ced145b1969fb2e0ebfab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a99f9eeff53ced145b1969fb2e0ebfab, type: 3}
 --- !u!1001 &1608258086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7810,6 +7950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PalmBoom goed  (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021189141764676779, guid: ed1c3f9438f11cb4eb0cc10824f86589,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4361158534788466193, guid: ed1c3f9438f11cb4eb0cc10824f86589,
         type: 3}
@@ -10450,6 +10595,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224287105}
     m_Modifications:
+    - target: {fileID: 2955766724892832253, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450974043635274314, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4991519075706865427, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10500,10 +10655,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5254644548253310230, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502826825375892477, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
         type: 3}
       propertyPath: m_Name
       value: Palmboom Medium (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624609506440273321, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903571947845392289, guid: 65df22293d1b641408b26207fd585a74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11077,5 +11252,5 @@ SceneRoots:
   - {fileID: 1728828381}
   - {fileID: 2086327494}
   - {fileID: 1182896749}
-  - {fileID: 1602663735}
   - {fileID: 1224287105}
+  - {fileID: 913883378}

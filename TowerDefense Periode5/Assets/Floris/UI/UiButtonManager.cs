@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class UiButtonManager : MonoBehaviour
 {
     public GameObject canvas;
@@ -10,6 +11,8 @@ public class UiButtonManager : MonoBehaviour
     public Camera buildingCam;
     public TMP_Text currentSwitch;
     public Movement movement;
+   
+
 
     public string[] towerName;
 
@@ -30,5 +33,6 @@ public class UiButtonManager : MonoBehaviour
         }
     }
 
+    
 
 }
