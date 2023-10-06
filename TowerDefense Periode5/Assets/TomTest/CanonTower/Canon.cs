@@ -56,7 +56,16 @@ public class Canon : MonoBehaviour
 
     private void Shoot()
     {
-        target.GetComponent<EnemyHealth>().health -= damage[level];
+        if (target.GetComponent<FollowPath>()) 
+        {
+            target.GetComponent<FollowPath>().hp -= damage[level];
+        }
+        if (target.GetComponent<Unit>()) 
+        {
+            //target.GetComponent<Unit>().hp -= damage[level];
+        }
+
+        
     }
 
     private void RotateWithTarget()

@@ -366,14 +366,11 @@ MonoBehaviour:
   maxRotationAngle: 45
   detect: {fileID: 3916414013411462176}
   target: {fileID: 0}
-  damage:
-  - 5
-  - 10
-  - 15
+  damage: 050000000a0000000f000000
   delay:
-  - 3
-  - 2
-  - 1
+  - 0.3
+  - 0.3
+  - 0.3
   level: 0
 --- !u!4 &5296973752571939691 stripped
 Transform:

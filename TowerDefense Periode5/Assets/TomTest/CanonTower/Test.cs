@@ -13,8 +13,7 @@ public class Test : MonoBehaviour
     [Header("Enemys")]
     public List<Transform> targets;
 
-    [Header("Scripts")]
-    public EnemyHealth enemyPlayer;
+    
 
     
 
@@ -40,6 +39,7 @@ public class Test : MonoBehaviour
             targets.Remove(other.transform);
             if (ChooseTarget == other.transform) 
             {
+                
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
             }
@@ -49,6 +49,16 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
+        if (ChooseTarget == null) 
+        {
+            ChooseTarget = null;
+        }
+
+        if (targets[0] == null) 
+        {
+            targets.RemoveAt(0);
+        }
+
 
         if (ChooseTarget == null && targets.Count > 0)
         {
@@ -69,13 +79,25 @@ public class Test : MonoBehaviour
 
         if (ChooseTarget != null) 
         {
-            EnemyHealth enemyHealth = ChooseTarget.GetComponent<EnemyHealth>();
-            if (enemyHealth != null && enemyHealth.health == 0) 
+            FollowPath followpath = ChooseTarget.GetComponent<FollowPath>();
+            if (followpath != null && followpath.hp <= 0) 
             {
+                targets.RemoveAt(0);
                 targets.Remove(ChooseTarget);
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
             }
+
+            /*Unit unit = ChooseTarget.GetComponent<Unit>();
+            if (unit != null && unit.hp >= 0) 
+            {
+                targets.Remove(ChooseTarget);
+                ChooseTarget = null;
+                storedDistance = Mathf.Infinity;
+            }*/
+
+
+
         }
         
     }
