@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
 {
     [Header("Private")]
     public PlayerInput playerInput;
+    public GameObject Donkey;
     private float x;
     private float y;
     private float xrotation;
@@ -18,8 +19,10 @@ public class Movement : MonoBehaviour
     [Header("Camera")]
     public Camera playerCamera;
     public Camera buildingCamera;
-    
-    
+
+    [Header("Scripts")]
+    public Recources recources;
+    public DonkeyFollowPath donkeyFollowPath;
     
     [Header("playerSettings")]
     public float speed;
@@ -106,6 +109,17 @@ public class Movement : MonoBehaviour
                 if (buildingCamera)
                 {
                     Cursor.lockState = CursorLockMode.None;
+                }
+            }
+            else if (hit.collider.CompareTag("DonkeyHouse"))
+            {
+                if(recources.wood >= 20 && recources.stone >= 12)
+                {
+                    recources.wood -= 20;
+                    recources.stone -= 12;
+                    donkeyFollowPath.enabled = true;
+
+                    Donkey.SetActive(true);
                 }
             }
         }

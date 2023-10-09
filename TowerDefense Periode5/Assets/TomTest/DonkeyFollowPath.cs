@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DonkeyFollowPath : MonoBehaviour
 {
+    public Recources recources;
     private int numberOfWaypoints = 31;
     public Transform[] pathPos;
     private int nowPos = 0;
@@ -42,7 +43,9 @@ public class DonkeyFollowPath : MonoBehaviour
         }
         else
         {
+            
             nowPos = (nowPos + 1) % pathPos.Length;
         }
+
     }
 }
