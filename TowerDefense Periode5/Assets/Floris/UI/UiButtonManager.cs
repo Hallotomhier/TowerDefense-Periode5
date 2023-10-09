@@ -11,7 +11,7 @@ public class UiButtonManager : MonoBehaviour
     public Camera buildingCam;
     public TMP_Text currentSwitch;
     public Movement movement;
-   
+    public GameObject towerBuildUI;
 
 
     public string[] towerName;
@@ -23,7 +23,8 @@ public class UiButtonManager : MonoBehaviour
 
     public void Back()
     {
-        canvas.SetActive(false);
+        canvas.SetActive(true);
+        towerBuildUI.SetActive(false);
         playerCam.enabled = true;
         buildingCam.enabled = false;
         movement.playerInput.Enable();

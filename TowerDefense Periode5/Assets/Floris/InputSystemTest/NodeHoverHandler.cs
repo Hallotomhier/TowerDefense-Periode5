@@ -8,6 +8,7 @@ public class NodeHoverHandler : MonoBehaviour
     public Node node;
     private Renderer nodeRenderer;
     private Material originalColor;
+    public GameObject buildingCam;
 
     private void Start()
     {
@@ -17,14 +18,19 @@ public class NodeHoverHandler : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (node != null)
+        if (buildingCam == true)
         {
-            nodeRenderer.material = grid.hoverColor;
+            if (node != null)
+            {
+                nodeRenderer.material = grid.hoverColor;
+            }
         }
+       
     }
 
     private void OnMouseExit()
     {
+
         if (node != null)
         {
             nodeRenderer.material = originalColor;
