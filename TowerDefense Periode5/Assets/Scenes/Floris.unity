@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2679295, g: 0.46393502, b: 0.6143905, a: 1}
+  m_IndirectSpecularColor: {r: 0.26792946, g: 0.463935, b: 0.61439043, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7222,7 +7222,7 @@ MonoBehaviour:
   recources: {fileID: 761415177}
   donkeyFollowPath: {fileID: 460053799}
   speed: 5
-  camSpeed: 100
+  camSpeed: 50
   gravity: -9.81
   jumpHeight: 0
   canvas: {fileID: 866821476}
