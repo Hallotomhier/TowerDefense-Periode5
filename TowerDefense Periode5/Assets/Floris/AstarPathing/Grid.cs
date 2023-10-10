@@ -72,6 +72,7 @@ public class Grid: MonoBehaviour
                 GameObject nodeObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 nodeObject.transform.position = grid[x, y].worldPosition;
                 nodeObject.transform.localScale = Vector3.one * nodeDiameter;
+                nodeObject.GetComponent<BoxCollider >().enabled = false;
 
                
                 if (nodeObject.TryGetComponent<Renderer>(out Renderer nodeRenderer))

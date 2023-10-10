@@ -43,6 +43,8 @@ public class Canon : MonoBehaviour
 
         if (target != null)
         {
+            
+
             timer += Time.deltaTime;
             if (timer > delay[level])
             {
