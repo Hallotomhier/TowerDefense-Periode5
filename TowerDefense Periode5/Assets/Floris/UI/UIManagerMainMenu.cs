@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class UIManagerMainMenu : MonoBehaviour
 {
     private int nextSceneToLoad;
+    private int artScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,10 @@ public class UIManagerMainMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void LoadArtScene()
+    {
+        artScene = SceneManager.GetActiveScene().buildIndex + 2;
+        SceneManager.LoadScene(artScene);
     }
 }

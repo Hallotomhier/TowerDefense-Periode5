@@ -84,7 +84,7 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    
+
 
     /*private void Jump_performed(InputAction.CallbackContext context)
     {
@@ -96,30 +96,49 @@ public class Movement : MonoBehaviour
 
     public void Interact_performed(InputAction.CallbackContext context)
     {
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward , out hit, 10f))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
         {
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("BuildTable"))
             {
                 playerInput.Disable();
-                buildingCamera.enabled = true;
-                playerCamera.enabled = false;
+
+               
+                if (buildingCamera != null)
+                {
+                    buildingCamera.enabled = true;
+                }
+
+                if (playerCamera != null)
+                {
+                    playerCamera.enabled = false;
+                }
 
                 canvas.SetActive(true);
-                if (buildingCamera)
+
+               
+                if (buildingCamera != null)
                 {
                     Cursor.lockState = CursorLockMode.None;
                 }
             }
             else if (hit.collider.CompareTag("DonkeyHouse"))
             {
-                if(recources.wood >= 20 && recources.stone >= 12)
+                if (recources.wood >= 20 && recources.stone >= 12)
                 {
                     recources.wood -= 20;
                     recources.stone -= 12;
-                    donkeyFollowPath.enabled = true;
 
-                    Donkey.SetActive(true);
+                    
+                    if (donkeyFollowPath != null)
+                    {
+                        donkeyFollowPath.enabled = true;
+                    }
+
+                    if (Donkey != null)
+                    {
+                        Donkey.SetActive(true);
+                    }
                 }
             }
         }

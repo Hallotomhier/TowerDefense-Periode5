@@ -7,6 +7,7 @@ public class Wave
 {
     public GameObject[] enemyTypes;
     public int[] enemyCounts;
+    public float[] enemyDelays;
 }
 
 public class SpawnManager : MonoBehaviour
@@ -109,15 +110,16 @@ public class SpawnManager : MonoBehaviour
                 int spawnPointIndex = Random.Range(0, spawnPoints.Length);
                 Instantiate(wave.enemyTypes[i], spawnPoints[spawnPointIndex].position, Quaternion.identity);
                 totalEnemiesSpawned++;
-                yield return new WaitForSeconds(1f);
-
-                gameState = GameState.WaveInProgress;
+                float delay = wave.enemyDelays[i];
+                yield return new WaitForSeconds(delay);
                 
                 
 
 
             }
         }
+        gameState = GameState.WaveInProgress;
+
     }
 
     private void StartBuildPhase()

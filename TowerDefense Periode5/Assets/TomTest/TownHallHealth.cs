@@ -5,7 +5,9 @@ using TMPro;
 public class TownHallHealth : MonoBehaviour
 {
     public int townHealth;
-
+    public GameObject gameOverPanel;
+    public GameObject panelUI;
+    public GameObject panelBuilding;
     public TMP_Text currentHealth;
     void Start()
     {
@@ -18,7 +20,12 @@ public class TownHallHealth : MonoBehaviour
        UpdateHealth();
         if (townHealth <= 0) 
         {
-            Debug.Log("GameOver");
+            panelBuilding.SetActive(false);
+            panelUI.SetActive(false);
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            
         }
     }
     void UpdateHealth()

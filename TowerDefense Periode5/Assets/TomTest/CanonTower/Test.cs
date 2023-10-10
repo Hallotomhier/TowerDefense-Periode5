@@ -49,66 +49,64 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        if (ChooseTarget == null) 
+        if (ChooseTarget == null)
         {
             ChooseTarget = null;
         }
 
-        if(targets.Count > 0)
+        if (targets.Count > 0)
         {
             if (targets[0] == null)
             {
                 targets.RemoveAt(0);
             }
         }
-       
-
 
         if (ChooseTarget == null && targets.Count > 0)
         {
             foreach (var target in targets)
             {
-                if (target != null) 
+                if (target != null)
                 {
-                    float distance = Vector3.Distance(tower.position, target.position);
-                    if (distance < storedDistance)
+                   
+                    FollowPath followpath = target.GetComponent<FollowPath>();
+                    
+                    EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+
+                    if (followpath != null || enemyHealth != null)
                     {
-                        storedDistance = distance;
-                        ChooseTarget = target;
+                       
+                        float distance = Vector3.Distance(tower.position, target.position);
+                        if (distance < storedDistance)
+                        {
+                            storedDistance = distance;
+                            ChooseTarget = target;
+                        }
                     }
                 }
                 break;
             }
         }
 
-        if (ChooseTarget != null) 
+        if (ChooseTarget != null)
         {
             FollowPath followpath = ChooseTarget.GetComponent<FollowPath>();
-            if (followpath != null && followpath.hp <= 0) 
+            EnemyHealth enemyHealth = ChooseTarget.GetComponent<EnemyHealth>();
+
+            if ((followpath != null && followpath.hp <= 0) || (enemyHealth != null && enemyHealth.health <= 1))
             {
                 targets.RemoveAt(0);
                 targets.Remove(ChooseTarget);
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
             }
-
-            EnemyHealth enemyHealth = ChooseTarget.GetComponent<EnemyHealth>();
-            if (enemyHealth != null && enemyHealth.health <= 1) 
-            {
-                targets.Remove(ChooseTarget);
-                ChooseTarget = null;
-                storedDistance = Mathf.Infinity;
-            }
-
-
-
         }
-        
     }
 
 
-    
-    
+
+
+
 
 
 }

@@ -92,8 +92,8 @@ public class Canon : MonoBehaviour
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
 
                 isTargetInRange = true;
-
-                float xRotation = targetRotation.eulerAngles.x;
+                
+               /* float xRotation = targetRotation.eulerAngles.x;
                 if(Physics.Raycast(shootPoint.transform.position,Vector3.forward,out hit, 100))
                 {
                     if (hit.collider.CompareTag("Enemy"))
@@ -101,6 +101,7 @@ public class Canon : MonoBehaviour
                        // xRotation
                     }
                 }
+               */
             }
             else if (isTargetInRange)
             {
