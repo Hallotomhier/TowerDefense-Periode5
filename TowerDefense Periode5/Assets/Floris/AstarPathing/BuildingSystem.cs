@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
+using System.IO;
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class BuildingSystem : MonoBehaviour
     public BuildingSystem building;
     public Unit unit;
     public Recources recources;
+    public PathFinding pathfinding;
 
     [Header("Prefab")]
     public GameObject rocks;
@@ -25,6 +29,15 @@ public class BuildingSystem : MonoBehaviour
     public int selectedTowerIndex = 0;
     public string[] towerNames;
     public Camera buildCam;
+    RaycastHit hit;
+    
+    [Header("Vector3")]
+    public Vector3 startClickPosition;
+    public Vector3 endClickPoisition;
+
+    [Header("Bool")]
+    public bool isPathSucces;
+    public List<Vector3> buildingPath;
 
     public TMP_Text currentTowerText;
     // Update is called once per frame
@@ -38,7 +51,8 @@ public class BuildingSystem : MonoBehaviour
         }
         if (isRockPlacingMode)
         {
-            BuilderRocks();
+            NewBuildingRockMode();
+            //BuilderRocks();
         }
     }
     public void HandleTowerPlacement()
@@ -85,7 +99,25 @@ public class BuildingSystem : MonoBehaviour
        
 
     }
-    public void BuilderRocks()
+    public void NewBuildingRockMode()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+           
+            Ray ray =buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if(Physics.Raycast(ray, out hit))
+            {
+                FindPathBuilding(startClickPosition, endClickPoisition);
+                if(isPathSucces && Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    Debug.Log(startClickPosition.x + startClickPosition.z);
+                }
+                
+            }
+          
+        }
+    }
+    /*public void BuilderRocks()
     {
         if (recources.stone >= 1)
         {
@@ -125,6 +157,68 @@ public class BuildingSystem : MonoBehaviour
         }
 
 
+    }
+    */
+    public List<Node> FindPathBuilding(Vector3 startPos, Vector3 targetPos)
+    {
+       
+        List<Node> pathBuilding = new List<Node>();
+        Node startNodeBuilding = grid.NodeFromWorldPoint(startPos);
+        Node targetNodeBuilding = grid.NodeFromWorldPoint(targetPos);
+
+        if (startNodeBuilding != null && targetNodeBuilding != null && startNodeBuilding.walkable && targetNodeBuilding.walkable)
+        {
+
+            Heap<Node> openSetBuilding = new Heap<Node>(grid.MaxSize);
+            HashSet<Node> closedSetBuilding = new HashSet<Node>();
+            openSetBuilding.Add(startNodeBuilding);
+
+            while (openSetBuilding.Count > 0)
+            {
+                Node currentNode = openSetBuilding.RemoveFirst();
+                closedSetBuilding.Add(currentNode);
+
+                if (currentNode == targetNodeBuilding)
+                {
+                    isPathSucces = true;
+                   
+                    break;
+                }
+
+                foreach (Node neighbour in grid.CalculateNeighbours(currentNode))
+                {
+                    if (!neighbour.walkable || closedSetBuilding.Contains(neighbour))
+                    {
+                        continue;
+                    }
+
+                    int newMovementCostToNeighbour = currentNode.gCost + pathfinding.GetDistance(currentNode, neighbour);
+                    if (newMovementCostToNeighbour < neighbour.gCost || !openSetBuilding.Contains(neighbour))
+                    {
+                        neighbour.gCost = newMovementCostToNeighbour;
+                        neighbour.hCost = pathfinding.GetDistance(neighbour, targetNodeBuilding);
+                        neighbour.parent = currentNode;
+
+                        if (!openSetBuilding.Contains(neighbour))
+                            openSetBuilding.Add(neighbour);
+                        else
+                            openSetBuilding.UpdateItem(neighbour);
+                    }
+                }
+            }
+        }
+
+        return pathBuilding;
+    }
+    public void ClickBuildMode()
+    {
+        Node node = grid.NodeFromWorldPoint(hit.point);
+        startClickPosition = node.worldPosition;
+    }
+    public void ClickEndBuildmode()
+    {
+        Node node = grid.NodeFromWorldPoint(hit.point);
+        endClickPoisition = node.worldPosition;
     }
     public void Towers()
     {

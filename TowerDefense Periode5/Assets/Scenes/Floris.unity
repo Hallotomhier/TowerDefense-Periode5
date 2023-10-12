@@ -10291,6 +10291,7 @@ MonoBehaviour:
   building: {fileID: 761415174}
   unit: {fileID: 0}
   recources: {fileID: 761415177}
+  pathfinding: {fileID: 1725532433}
   rocks: {fileID: 4887651412813224407, guid: dcc720ee96eee1145adf71279e9bb8c4, type: 3}
   towers:
   - {fileID: 6486466182666267849, guid: c5e8cb94a85bdde4e848f6fef60528d9, type: 3}
@@ -10304,6 +10305,10 @@ MonoBehaviour:
   - CannonTower
   - WindMill
   buildCam: {fileID: 1321253689}
+  startClickPosition: {x: 0, y: 0, z: 0}
+  endClickPoisition: {x: 0, y: 0, z: 0}
+  isPathSucces: 0
+  buildingPath: []
   currentTowerText: {fileID: 5852455}
 --- !u!4 &761415175
 Transform:
