@@ -11,6 +11,8 @@ public class PathFinding : MonoBehaviour
     public bool pathSuccess = false;
 
     public GameObject waypointMarkerPrefab;
+    public int distanceX;
+    public int distanceY;
 
     private void Awake()
     {
@@ -100,8 +102,8 @@ public class PathFinding : MonoBehaviour
 
     public int GetDistance(Node nodeA, Node nodeB)
     {
-        int distanceX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-        int distanceY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+        distanceX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
+        distanceY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 
         if (distanceX > distanceY)
         {
