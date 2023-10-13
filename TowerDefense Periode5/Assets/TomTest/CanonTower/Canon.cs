@@ -10,8 +10,7 @@ public class Canon : MonoBehaviour
     private float triggerDistance = 10f;
     public float maxRotationAngle = 45f;
 
-    public GameObject shootPoint;
-    public GameObject cannons;
+    public GameObject[] cannons;
     private bool isTargetInRange = false;
     private Quaternion initialLocalRotation;
 
@@ -28,8 +27,9 @@ public class Canon : MonoBehaviour
     public float[] delay;
 
     [Header("Level")]
+    public GameObject[] towers;
     private float timer;
-    public int level;
+    public int level = 1;
 
 
     public void Start()
@@ -56,7 +56,18 @@ public class Canon : MonoBehaviour
         {
             timer = 0f;
         }
+
+        if (level <= 0)
+        {
+            level = 1;
+        }
+
+        if (level >= 3)
+        {
+            level = 3;
+        }
         RotateWithTarget();
+        UpgradeTower();
     }
 
     private void Shoot()
@@ -72,6 +83,53 @@ public class Canon : MonoBehaviour
 
         
     }
+
+    private void UpgradeTower() 
+    {
+        if (level == 1)
+        {
+            towers[0].SetActive(true);
+        }
+        else 
+        {
+            towers[0].SetActive(false);
+        }
+
+        if (level == 2)
+        {
+            towers[1].SetActive(true);
+        }
+        else
+        {
+            towers[1].SetActive(false);
+        }
+
+        if (level == 3)
+        {
+            towers[2].SetActive(true);
+        }
+        else
+        {
+            towers[2].SetActive(false);
+        }
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void RotateWithTarget()
     {
@@ -91,30 +149,20 @@ public class Canon : MonoBehaviour
                 targetRotation = Quaternion.Euler(0, yRotation, 0);
 
                 
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                cannons[level].transform.localRotation = Quaternion.Slerp(cannons[level].transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
 
                 isTargetInRange = true;
-                
-               /* float xRotation = targetRotation.eulerAngles.x;
-                if(Physics.Raycast(shootPoint.transform.position,Vector3.forward,out hit, 100))
-                {
-                    if (hit.collider.CompareTag("Enemy"))
-                    {
-                       // xRotation
-                    }
-                }
-               */
             }
             else if (isTargetInRange)
             {
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
+                cannons[level].transform.localRotation = Quaternion.Slerp(cannons[level].transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
                 isTargetInRange = false;
             }
         }
         else
         {
-            
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
+
+            cannons[level].transform.localRotation = Quaternion.Slerp(cannons[level].transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
         }
     }
 }
