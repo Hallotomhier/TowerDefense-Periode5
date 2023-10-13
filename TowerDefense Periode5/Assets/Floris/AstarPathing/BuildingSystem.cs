@@ -36,7 +36,8 @@ public class BuildingSystem : MonoBehaviour
     public Vector3 startClickPosition;
     public Vector3 endClickPoisition;
 
-    public int distance;
+    public float distanceNodes;
+    
     [Header("Bool")]
     
     
@@ -44,6 +45,14 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Mouse.current.leftButton.isPressed)
+        {
+           Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+           RaycastHit hit;
+           
+
+
+        }
         
         if (isTowerPlacingMode)
         {
@@ -52,7 +61,7 @@ public class BuildingSystem : MonoBehaviour
         }
         if (isRockPlacingMode)
         {
-            NewBuildingRockMode();
+            //NewBuildingRockMode();
             ClickEndBuildmode();
             //BuilderRocks();
         }
@@ -101,29 +110,16 @@ public class BuildingSystem : MonoBehaviour
        
 
     }
-    public void NewBuildingRockMode()
+   
+
+    public void InstantiateRock(Vector3 position)
     {
-        if (Mouse.current.leftButton.isPressed)
-        {
-            Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            Node nodeA = grid.NodeFromWorldPoint(hit.point);
-            Node nodeB = grid.NodeFromWorldPoint(hit.point);
-            if(Physics.Raycast(ray, out hit))
-            {
-               
-                Node nodeC = grid.NodeFromWorldPoint(hit.point);
 
-                Vector3 buildingpos = nodeA.worldPosition;
-                Vector3 buildingPos = nodeB.worldPosition;
-                
-                Instantiate(rocks, buildingpos, Quaternion.identity);
-                pathfinding.GetDistance(nodeA, nodeB);
-               // if(pathfinding)               
+        
+        Instantiate(rocks, position, Quaternion.identity);
+        
+        
 
-            }
-           
-          
-        }
     }
     /*public void BuilderRocks()
     {

@@ -6,10 +6,11 @@ OcclusionCullingSettings:
   serializedVersion: 2
   m_OcclusionBakeSettings:
     smallestOccluder: 5
-    smallestHole: 0.25
+    smallestHole: 0.1
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 3352eccc1b219384d993566019d531a2
+  m_OcclusionCullingData: {fileID: 36300000, guid: e3bf48bc886aba547bf8983de847b80e,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -10771,7 +10772,7 @@ MonoBehaviour:
   buildCam: {fileID: 1321253689}
   startClickPosition: {x: 0, y: 0, z: 0}
   endClickPoisition: {x: 0, y: 0, z: 0}
-  distance: 0
+  distanceNodes: 0
   currentTowerText: {fileID: 5852455}
 --- !u!4 &761415175
 Transform:
@@ -15286,6 +15287,49 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2347017986817723835}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1156871179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156871181}
+  - component: {fileID: 1156871180}
+  m_Layer: 0
+  m_Name: Occlusion Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!192 &1156871180
+OcclusionArea:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156871179}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_IsViewVolume: 1
+--- !u!4 &1156871181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156871179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 89.2, y: 35, z: 59.5}
+  m_LocalScale: {x: 254.47, y: 254.47, z: 254.47}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182896743
 GameObject:
   m_ObjectHideFlags: 0
@@ -16000,7 +16044,7 @@ Transform:
   m_GameObject: {fileID: 1221328833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 3.93, z: 49.7}
+  m_LocalPosition: {x: 98.7, y: 3.93, z: 89.1}
   m_LocalScale: {x: 500, y: 1, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19572,7 +19616,6 @@ GameObject:
   - component: {fileID: 1485407020}
   - component: {fileID: 1485407019}
   - component: {fileID: 1485407022}
-  - component: {fileID: 1485407023}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -19715,17 +19758,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 1ea4c379a2dd2494782043f9afe61eda, type: 2}
---- !u!192 &1485407023
-OcclusionArea:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485407017}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
-  m_IsViewVolume: 1
 --- !u!1001 &1492723652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35335,3 +35367,4 @@ SceneRoots:
   - {fileID: 1341852788}
   - {fileID: 258070311}
   - {fileID: 939683802}
+  - {fileID: 1156871181}
