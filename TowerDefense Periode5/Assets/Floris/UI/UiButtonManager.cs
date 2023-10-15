@@ -9,19 +9,16 @@ public class UiButtonManager : MonoBehaviour
     public GameObject canvas;
     public Camera playerCam;
     public Camera buildingCam;
-    public TMP_Text currentSwitch;
+
     public Movement movement;
     public GameObject towerBuildUI;
 
     int currentScene;
 
 
-    public string[] towerName;
+    
 
-    public void Update()
-    {
-        currentSwitch.text = towerName[0];
-    }
+    
 
     public void Back()
     {

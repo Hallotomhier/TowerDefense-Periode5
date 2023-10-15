@@ -118,19 +118,6 @@ public class Canon : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void RotateWithTarget()
     {
         if (target != null)

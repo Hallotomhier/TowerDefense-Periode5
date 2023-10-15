@@ -20,53 +20,85 @@ public class BuildingSystem : MonoBehaviour
 
     [Header("Prefab")]
     public GameObject rocks;
-    public GameObject[] towers;
-
+    public GameObject windmill;
+    public GameObject raft;
+    public GameObject cannonTower;
     public GameObject startPosition;
     public GameObject targetPosition;
-    
+
+    [Header ("Bool")]
     public bool isTowerPlacingMode;
     public bool isRockPlacingMode;
-    public int selectedTowerIndex = 0;
-    public string[] towerNames;
-    public Camera buildCam;
-    RaycastHit hit;
-    
-    [Header("Vector3")]
-    public Vector3 startClickPosition;
-    public Vector3 endClickPoisition;
 
-    public float distanceNodes;
+    public bool spawnCannonTower = false;
+    public bool spawnRocks = false;
+    public bool spawnWindmill = false;
+    public bool spawnRaft = false;
     
-    [Header("Bool")]
+    public Camera buildCam;
     
-    
-    public TMP_Text currentTowerText;
+
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.leftButton.isPressed)
+        if (spawnManager.isBuildPhase)
         {
-           Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
-           RaycastHit hit;
-           
+            if (spawnCannonTower)
+            {
+                HandleCannonPlacement();
 
-
+            }
+            else if(spawnWindmill)
+            {
+                HandleWindmillPlacement();
+            }
+            else if (spawnRaft)
+            {
+                BuilderRaft();
+            }
+            else if (spawnRocks)
+            {
+                BuilderRocks();
+            }
         }
         
-        if (isTowerPlacingMode)
-        {
-            HandleTowerPlacement();
-            
-        }
-        if (isRockPlacingMode)
-        {
-            //NewBuildingRockMode();
-            ClickEndBuildmode();
-            //BuilderRocks();
-        }
+        
     }
-    public void HandleTowerPlacement()
+
+    public void SpawnCannonTower()
+    {
+        spawnCannonTower = true;
+        spawnWindmill = false;
+        spawnRocks = false;
+        spawnRaft = false;
+
+    }
+
+    public void SpawnWindmill()
+    {
+        spawnCannonTower = false;
+        spawnWindmill = true;
+        spawnRaft = false;
+        spawnRocks = false;
+    }
+
+    public void SpawnRaft()
+    {
+        spawnCannonTower = false;
+        spawnWindmill = false;
+        spawnRaft = true;
+        spawnRocks = false;
+    }
+
+    public void SpawnRocks()
+    {
+        spawnCannonTower = false;
+        spawnWindmill = false;
+        spawnRaft = false;
+        spawnRocks = true;
+    }
+
+    public void HandleCannonPlacement()
     {
         Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
@@ -81,19 +113,12 @@ public class BuildingSystem : MonoBehaviour
                 if (node != null && !node.walkable)
                 {
 
-                    if (Keyboard.current.tKey.wasPressedThisFrame)
-                    {
-                        //switch index
-                        selectedTowerIndex = (selectedTowerIndex + 1) % towers.Length;
-
-                    }
-                    currentTowerText.text = towerNames[selectedTowerIndex];
 
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
                         //place tower
-                        GameObject selectedTowerPrefab = towers[selectedTowerIndex];
-                        Instantiate(selectedTowerPrefab, buildingPosition, Quaternion.identity);
+                      
+                        Instantiate(cannonTower, hit.point, Quaternion.identity);
                         isTowerPlacingMode = false;
                         recources.wood -= 5;
                         recources.stone -= 2;
@@ -110,22 +135,90 @@ public class BuildingSystem : MonoBehaviour
        
 
     }
-   
 
-    public void InstantiateRock(Vector3 position)
+    public void HandleWindmillPlacement()
     {
+        Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
 
-        
-        Instantiate(rocks, position, Quaternion.identity);
-        
-        
+        if (recources.wood >= 5 && recources.stone >= 2)
+        {
+            if (Physics.Raycast(ray, out hit))
+            {
+                Node node = grid.NodeFromWorldPoint(hit.point);
+                Vector3 buildingPosition = node.worldPosition;
+
+                if (node != null && !node.walkable /* && !hit.collider.CompareTag("Path")*/)
+                {
+
+
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        //place tower
+
+                        Instantiate(windmill, hit.point, Quaternion.identity);
+                        isTowerPlacingMode = false;
+                        recources.wood -= 5;
+                        recources.stone -= 2;
+
+                        //Cancel
+                        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                        {
+                            isTowerPlacingMode = false;
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
-    /*public void BuilderRocks()
+
+    /*
+    public void HandleKamikazePlacement()
+    {
+        Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+
+        if (recources.wood >= 5 && recources.stone >= 2)
+        {
+            if (Physics.Raycast(ray, out hit))
+            {
+                Node node = grid.NodeFromWorldPoint(hit.point);
+                Vector3 buildingPosition = node.worldPosition;
+
+                if (node != null && !node.walkable && !hit.collider.CompareTag("Path"))
+                {
+
+
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
+                    {
+                        //place tower
+
+                        Instantiate(, hit.point, Quaternion.identity);
+                        isTowerPlacingMode = false;
+                        recources.wood -= 5;
+                        recources.stone -= 2;
+
+                        //Cancel
+                        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                        {
+                            isTowerPlacingMode = false;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+    */
+
+    public void BuilderRocks()
     {
         if (recources.stone >= 1)
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.leftButton.isPressed)
             {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -138,7 +231,7 @@ public class BuildingSystem : MonoBehaviour
                     if (node != null && node.walkable)
                     {
                         bool originalWalkable = node.walkable;
-                        //node.walkable = false;
+                        node.walkable = false;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
                         node.walkable = originalWalkable;
@@ -162,30 +255,51 @@ public class BuildingSystem : MonoBehaviour
 
 
     }
-    */
-  
-  
-    
-    public void ClickEndBuildmode()
+
+    public void BuilderRaft()
     {
-        Node node = grid.NodeFromWorldPoint(hit.point);
-        endClickPoisition = node.worldPosition;
-    }
-    public void Towers()
-    {
-        if (spawnManager.isBuildPhase)
+        if (recources.stone >= 1 && recources.wood >= 5)
         {
-            isTowerPlacingMode = true;
+            if (Mouse.current.leftButton.isPressed)
+            {
+                Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                   
+                    Node node = grid.NodeFromWorldPoint(hit.point);
+                    Vector3 buildingPosition = node.worldPosition;
+                    Debug.Log("" + hit.collider.name);
+                    if (node != null && node.walkable)
+                    {
+                        bool originalWalkable = node.walkable;
+                        node.walkable = false;
+                        bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
+
+                        node.walkable = originalWalkable;
+
+                        if (validPathExists)
+                        {
+                            Instantiate(raft, buildingPosition, Quaternion.identity);
+                            node.walkable = false;
+                            recources.stone -= 1;
+                            recources.wood -= 5;
+                        }
+                        else
+                        {
+                            Debug.Log("noPath.");
+                        }
+                    }
+
+                }
+            }
+
         }
 
+
     }
-    public void Rocks()
-    {
-        if (spawnManager.isBuildPhase)
-        {
-            isRockPlacingMode = true;
-        }
-    }
+
 }
 
 
