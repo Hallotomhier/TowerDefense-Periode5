@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEstt
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb388fc06d86ffa43ad5c16bb1ddd0a6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     - target: {fileID: 6862221435064771883, guid: fb388fc06d86ffa43ad5c16bb1ddd0a6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -294,8 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRotationAngle: 45
-  shootPoint: {fileID: 4194574523568228833}
-  cannons: {fileID: 7652596038144711987}
+  cannons:
+  - {fileID: 0}
   detect: {fileID: 576617476343640717}
   target: {fileID: 0}
   damage: 050000000a00000014000000
@@ -303,4 +308,5 @@ MonoBehaviour:
   - 3
   - 2
   - 1
+  towers: []
   level: 0

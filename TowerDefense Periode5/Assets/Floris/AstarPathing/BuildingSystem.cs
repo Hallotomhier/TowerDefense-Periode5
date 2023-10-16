@@ -110,7 +110,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable)
+                if (node != null && !node.walkable || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
                 {
 
 
@@ -118,8 +118,8 @@ public class BuildingSystem : MonoBehaviour
                     {
                         //place tower
                       
-                        Instantiate(cannonTower, hit.point, Quaternion.identity);
-                        isTowerPlacingMode = false;
+                        Instantiate(cannonTower, buildingPosition, Quaternion.identity);
+                        isTowerPlacingMode = true;
                         recources.wood -= 5;
                         recources.stone -= 2;
 
@@ -148,7 +148,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable /* && !hit.collider.CompareTag("Path")*/)
+                if (node != null && !node.walkable || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
                 {
 
 
@@ -156,8 +156,8 @@ public class BuildingSystem : MonoBehaviour
                     {
                         //place tower
 
-                        Instantiate(windmill, hit.point, Quaternion.identity);
-                        isTowerPlacingMode = false;
+                        Instantiate(windmill,buildingPosition, Quaternion.identity);
+                        isTowerPlacingMode = true;
                         recources.wood -= 5;
                         recources.stone -= 2;
 
@@ -231,7 +231,7 @@ public class BuildingSystem : MonoBehaviour
                     if (node != null && node.walkable)
                     {
                         bool originalWalkable = node.walkable;
-                        node.walkable = false;
+                        node.walkable = true;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
                         node.walkable = originalWalkable;
@@ -270,6 +270,7 @@ public class BuildingSystem : MonoBehaviour
                    
                     Node node = grid.NodeFromWorldPoint(hit.point);
                     Vector3 buildingPosition = node.worldPosition;
+                 
                     Debug.Log("" + hit.collider.name);
                     if (node != null && node.walkable)
                     {
