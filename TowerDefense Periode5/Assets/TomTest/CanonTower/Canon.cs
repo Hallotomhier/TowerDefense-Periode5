@@ -7,16 +7,16 @@ public class Canon : MonoBehaviour
 {
     private float rotationSpeed = 5f;
     private float returnSpeed = 2f;
-    private float triggerDistance = 10f;
-    public float maxRotationAngle = 45f;
+    private float triggerDistance = 100f;
+    public float maxRotationAngle = 360f;
 
     public GameObject[] cannons;
-    private bool isTargetInRange = false;
+    public bool isTargetInRange = false;
     private Quaternion initialLocalRotation;
 
 
-    private Quaternion initialRotation;
-    RaycastHit hit;
+    //private Quaternion initialRotation;
+    //RaycastHit hit;
 
     [Header("TargetSettings")]
     public Detect detect;
@@ -43,7 +43,7 @@ public class Canon : MonoBehaviour
 
         if (target != null)
         {
-            
+     
 
             timer += Time.deltaTime;
             if (timer > delay[level])
@@ -67,7 +67,7 @@ public class Canon : MonoBehaviour
             level = 3;
         }
         RotateWithTarget();
-        UpgradeTower();
+        //UpgradeTower();
     }
 
     private void Shoot()
@@ -83,7 +83,7 @@ public class Canon : MonoBehaviour
 
         
     }
-
+    /*
     private void UpgradeTower() 
     {
         if (level == 1)
@@ -116,7 +116,7 @@ public class Canon : MonoBehaviour
         
     }
 
-
+    */
 
     private void RotateWithTarget()
     {
@@ -126,7 +126,7 @@ public class Canon : MonoBehaviour
 
             if (distanceToTarget <= triggerDistance)
             {
-                
+                Debug.Log("Test");
                 Vector3 directionToTarget = target.position - transform.position;
                 directionToTarget.y = 0; 
                 Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
@@ -146,11 +146,12 @@ public class Canon : MonoBehaviour
                 isTargetInRange = false;
             }
         }
-        else
+        /*else
         {
 
             cannons[level].transform.localRotation = Quaternion.Slerp(cannons[level].transform.localRotation, initialLocalRotation, returnSpeed * Time.deltaTime);
         }
+        */
     }
 }
 

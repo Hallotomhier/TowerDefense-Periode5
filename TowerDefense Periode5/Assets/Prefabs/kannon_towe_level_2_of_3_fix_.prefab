@@ -199,6 +199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: kannon_towe_level_2_of_3_fix_
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0476f6b6816cb1d49aadcefd795d5b09,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     - target: {fileID: 6862221435064771883, guid: 0476f6b6816cb1d49aadcefd795d5b09,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -221,12 +226,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7223402263545668514}
   m_SourcePrefab: {fileID: 100100000, guid: 0476f6b6816cb1d49aadcefd795d5b09, type: 3}
---- !u!1 &163946179193167252 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -3133498875991405556, guid: 0476f6b6816cb1d49aadcefd795d5b09,
-    type: 3}
-  m_PrefabInstance: {fileID: 6252658133368639896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5859005049150666355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0476f6b6816cb1d49aadcefd795d5b09,
@@ -279,8 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRotationAngle: 360
-  shootPoint: {fileID: 163946179193167252}
-  cannons: {fileID: 6486466182666267849}
+  cannons:
+  - {fileID: 8448276944695120466}
   detect: {fileID: 4630052380958194893}
   target: {fileID: 0}
   damage: 140000002800000050000000
@@ -288,4 +287,8 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.2
-  level: 0
+  towers:
+  - {fileID: 6486466182666267849}
+  - {fileID: 919132149155446097, guid: 781844c26042e144395bba909e9d857b, type: 3}
+  - {fileID: 2029771052035489442, guid: 750413a315d8d6e4b85691a38c7734dd, type: 3}
+  level: 1

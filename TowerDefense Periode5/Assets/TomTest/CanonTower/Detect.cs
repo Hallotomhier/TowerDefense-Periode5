@@ -63,9 +63,7 @@ public class Detect : MonoBehaviour
         {
             foreach (var target in targets)
             {
-                if (target != null)
-                {
-                   
+                 
                     FollowPath followpath = target.GetComponent<FollowPath>();
                     
                     EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
@@ -80,7 +78,7 @@ public class Detect : MonoBehaviour
                             ChooseTarget = target;
                         }
                     }
-                }
+                
                 break;
             }
         }

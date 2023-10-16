@@ -21,7 +21,7 @@ public class InstanceVogel : MonoBehaviour
     public Transform above;
 
     [Header("scripts")]
-    public Test detectEnemy;
+    public Detect detectEnemy;
 
     void Update()
     {
