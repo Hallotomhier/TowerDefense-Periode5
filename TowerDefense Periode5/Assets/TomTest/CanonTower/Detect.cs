@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class Detect : MonoBehaviour
 {
     private float storedDistance;
 
@@ -39,14 +39,11 @@ public class Test : MonoBehaviour
             targets.Remove(other.transform);
             if (ChooseTarget == other.transform) 
             {
-                
                 ChooseTarget = null;
                 storedDistance = Mathf.Infinity;
             }
         }
     }
-
-
     private void Update()
     {
         if (ChooseTarget == null)

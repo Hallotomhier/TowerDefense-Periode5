@@ -19,7 +19,7 @@ public class Canon : MonoBehaviour
     RaycastHit hit;
 
     [Header("TargetSettings")]
-    public Test detect;
+    public Detect detect;
     public Transform target;
 
     [Header("DamageSettings")]

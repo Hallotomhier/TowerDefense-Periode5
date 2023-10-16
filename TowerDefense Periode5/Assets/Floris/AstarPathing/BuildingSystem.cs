@@ -269,11 +269,12 @@ public class BuildingSystem : MonoBehaviour
                 {
                    
                     Node node = grid.NodeFromWorldPoint(hit.point);
-                    Vector3 buildingPosition = node.worldPosition;
-                 
+                   
+                    Vector3 buildingPosition = new Vector3(node.worldPosition.x, 4.3f, node.worldPosition.z);
                     Debug.Log("" + hit.collider.name);
                     if (node != null && node.walkable)
                     {
+
                         bool originalWalkable = node.walkable;
                         node.walkable = false;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
