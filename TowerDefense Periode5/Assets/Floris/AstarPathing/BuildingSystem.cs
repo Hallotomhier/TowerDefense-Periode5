@@ -218,7 +218,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (recources.stone >= 1)
         {
-            if (Mouse.current.leftButton.isPressed)
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -230,21 +230,23 @@ public class BuildingSystem : MonoBehaviour
                     Debug.Log("" + hit.collider.name);
                     if (node != null && node.walkable)
                     {
-                        bool originalWalkable = node.walkable;
+                       
                         node.walkable = true;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
-                        node.walkable = originalWalkable;
+           
 
                         if (validPathExists)
                         {
-                            Instantiate(rocks, buildingPosition, Quaternion.identity);
+                            GameObject newRock = Instantiate(rocks, buildingPosition, Quaternion.identity);
+                            pathValidation.rocksAndRafts.Add(newRock);
                             node.walkable = false;
                             recources.stone -= 1;
                         }
                         else
                         {
                             Debug.Log("noPath.");
+                            node.walkable = true;
                         }
                     }
 
@@ -260,7 +262,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (recources.stone >= 1 && recources.wood >= 5)
         {
-            if (Mouse.current.leftButton.isPressed)
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -275,15 +277,16 @@ public class BuildingSystem : MonoBehaviour
                     if (node != null && node.walkable)
                     {
 
-                        bool originalWalkable = node.walkable;
+                      
                         node.walkable = false;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
-                        node.walkable = originalWalkable;
+                     
 
                         if (validPathExists)
                         {
-                            Instantiate(raft, buildingPosition, Quaternion.identity);
+                            GameObject newRaft = Instantiate(raft, buildingPosition, Quaternion.identity);
+                            pathValidation.rocksAndRafts.Add(raft);
                             node.walkable = false;
                             recources.stone -= 1;
                             recources.wood -= 5;
@@ -291,6 +294,7 @@ public class BuildingSystem : MonoBehaviour
                         else
                         {
                             Debug.Log("noPath.");
+                            node.walkable = true;
                         }
                     }
 

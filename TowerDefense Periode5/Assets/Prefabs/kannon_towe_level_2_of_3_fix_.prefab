@@ -137,17 +137,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0476f6b6816cb1d49aadcefd795d5b09,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.39364
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0476f6b6816cb1d49aadcefd795d5b09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.90493
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0476f6b6816cb1d49aadcefd795d5b09,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 105.584465
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0476f6b6816cb1d49aadcefd795d5b09,
         type: 3}
@@ -224,6 +224,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2592851207085736906, guid: 0476f6b6816cb1d49aadcefd795d5b09,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1174307803816845697}
+    - targetCorrespondingSourceObject: {fileID: 2592851207085736906, guid: 0476f6b6816cb1d49aadcefd795d5b09,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7223402263545668514}
   m_SourcePrefab: {fileID: 100100000, guid: 0476f6b6816cb1d49aadcefd795d5b09, type: 3}
 --- !u!4 &5859005049150666355 stripped
@@ -265,7 +269,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6252658133368639896}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7223402263545668514
+--- !u!114 &1174307803816845697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,12 +278,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 8448276944695120466}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b393da05f72ba478a1945fa3336a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detect: {fileID: 4630052380958194893}
+  target: {fileID: 0}
+  damage: 0a000000140000001e000000
+  delay:
+  - 3
+  - 2
+  - 1
+  level: 0
+  timer: 0
+--- !u!114 &7223402263545668514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448276944695120466}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61048505ce016144f88fb0a916e1c1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxRotationAngle: 360
   cannons:
   - {fileID: 8448276944695120466}
+  isTargetInRange: 0
   detect: {fileID: 4630052380958194893}
   target: {fileID: 0}
   damage: 140000002800000050000000

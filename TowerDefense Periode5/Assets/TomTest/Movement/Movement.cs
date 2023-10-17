@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
     private CharacterController charCon;
     private Vector3 velocity;
-
+    public bool boughtDonkey = false;
     [Header("Camera")]
     public Camera playerCamera;
     public Camera buildingCamera;
@@ -85,15 +85,6 @@ public class Movement : MonoBehaviour
     }
 
 
-
-    /*private void Jump_performed(InputAction.CallbackContext context)
-    {
-        if (isGrounded == true)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-    }*/
-
     public void Interact_performed(InputAction.CallbackContext context)
     {
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
@@ -122,10 +113,12 @@ public class Movement : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                 }
             }
-            else if (hit.collider.CompareTag("DonkeyHouse"))
+            
+            else if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
             {
                 if (recources.wood >= 20 && recources.stone >= 12)
                 {
+                    boughtDonkey = true;
                     recources.wood -= 20;
                     recources.stone -= 12;
 

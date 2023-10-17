@@ -7,12 +7,12 @@ using UnityEngine.InputSystem;
 public class Grid: MonoBehaviour
 {
     public bool displayGridGizmo;
-    Node[,] grid;
+    public Node[,] grid;
     public Vector2 gridWorldSize;
     public float nodeRadius;
     
     float nodeDiameter;
-    int gridSizeX, gridSizeY;
+    public int gridSizeX, gridSizeY;
     public LayerMask unWalkable;
     public LayerMask unBuildable;
 
@@ -20,6 +20,13 @@ public class Grid: MonoBehaviour
     private Node hoveredNode;
     public Material transparant;
 
+    public Grid(Vector2 gridWorldSize, float nodeRadius, Vector3 position)
+    {
+        this.gridWorldSize = gridWorldSize;
+        this.nodeRadius = nodeRadius;
+        transform.position = position;
+        CreateGrid();
+    }
     void Awake()
     {
         // berekent diameter knoop punt

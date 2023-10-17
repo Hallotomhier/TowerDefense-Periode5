@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 329530315246163512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.84, z: 0}
-  m_LocalScale: {x: 20.64, y: 20.64, z: 20.392939}
+  m_LocalPosition: {x: -0.09, y: 4.05, z: 0}
+  m_LocalScale: {x: 43.95417, y: 43.95417, z: 43.95417}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3669823033090387759}
@@ -121,7 +121,6 @@ MonoBehaviour:
   tower: {fileID: 3669823033090387759}
   ChooseTarget: {fileID: 0}
   targets: []
-  enemyPlayer: {fileID: 0}
 --- !u!1001 &3848165248156256452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,17 +132,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74.81508
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6049194
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 63.17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
@@ -180,26 +179,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 781844c26042e144395bba909e9d857b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
       propertyPath: m_Name
       value: kannon_towe_level_1
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 781844c26042e144395bba909e9d857b,
+    - target: {fileID: 2982408803557973007, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3544541331817042242, guid: 781844c26042e144395bba909e9d857b,
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bde177b61e3cbe84bb5d513384432ab9, type: 2}
+    - target: {fileID: 6317578925029434746, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bde177b61e3cbe84bb5d513384432ab9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -211,7 +205,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1018664272722485354, guid: 781844c26042e144395bba909e9d857b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8361085221241519744}
+      addedObject: {fileID: 8838360816651308211}
   m_SourcePrefab: {fileID: 100100000, guid: 781844c26042e144395bba909e9d857b, type: 3}
 --- !u!4 &3669823033090387759 stripped
 Transform:
@@ -225,7 +219,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3848165248156256452}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8361085221241519744
+--- !u!114 &8838360816651308211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,13 +228,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4952719178514945874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61048505ce016144f88fb0a916e1c1c0, type: 3}
+  m_Script: {fileID: 11500000, guid: c0b393da05f72ba478a1945fa3336a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationAngle: 45
   detect: {fileID: 2738976376016049200}
   target: {fileID: 0}
-  damage: 0a000000
+  damage: 1e000000320000003c000000
   delay:
+  - 2.5
+  - 2
   - 1
   level: 0
+  timer: 0
