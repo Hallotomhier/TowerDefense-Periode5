@@ -5,14 +5,13 @@ using UnityEngine;
 public class FollowPath : MonoBehaviour
 {
     public Transform[] pathPos;
-    private int nowPos = 0; 
-    public float speed;
+    private int nowPos = 0;
+    public float speed = 5;
     public float hp;
     public TownHallHealth thh;
     private int numberOfWaypoints = 22;
 
-    private float timer;
-    private float delay = 4f;
+  
 
     void Start()
     {
@@ -56,7 +55,7 @@ public class FollowPath : MonoBehaviour
 
         if(nowPos == 22)
         {
-            thh.townHealth -= 1;
+            thh.townHealth -= 10;
             Destroy(gameObject);
         }
 
@@ -64,7 +63,7 @@ public class FollowPath : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        /*
         if (speed < 5) 
         {
             timer = Time.deltaTime;
@@ -74,5 +73,6 @@ public class FollowPath : MonoBehaviour
                 timer -= delay;
             }  
         }
+        */
     }
 }
