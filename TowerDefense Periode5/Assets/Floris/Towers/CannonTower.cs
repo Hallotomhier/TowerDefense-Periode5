@@ -8,6 +8,7 @@ public class CannonTower : MonoBehaviour
     public Transform target;
     public int[] damage;
     public float[] delay;
+    public GameObject[] towerLevel;
     public int level;
     public float timer;
     // Start is called before the first frame update
@@ -60,4 +61,24 @@ public class CannonTower : MonoBehaviour
 
 
     }
+   
+    public void UpgradeSystem()
+    {
+        if (towerLevel[0])
+        {
+            towerLevel[level].SetActive(true);
+
+        }
+        else if (towerLevel[1])
+        {
+            towerLevel[0].SetActive(false);
+            towerLevel[level].SetActive(true);
+        }
+        else if (towerLevel[2])
+        {
+            towerLevel[1].SetActive(false);
+            towerLevel[level].SetActive(true);
+        }
+    }
+    
 }

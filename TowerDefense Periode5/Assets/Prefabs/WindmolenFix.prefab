@@ -137,6 +137,10 @@ MonoBehaviour:
   detection: {fileID: 5652639961100083406}
   unit: {fileID: 0}
   enemyPathing: {fileID: 0}
+  towerUpgrade:
+  - {fileID: 3655599015272444187}
+  - {fileID: 5837690902186402861, guid: 7e280e470813a70469bae54b66936a11, type: 3}
+  - {fileID: 4969124467053991848, guid: 08ed261149cfca44585b6c7f542118b7, type: 3}
 --- !u!114 &5652639961100083406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +156,4 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 20
   nearestEnemy: {fileID: 0}
+  enemies: []

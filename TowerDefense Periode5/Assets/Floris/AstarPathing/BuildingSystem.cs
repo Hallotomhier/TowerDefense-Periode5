@@ -17,6 +17,10 @@ public class BuildingSystem : MonoBehaviour
     public Unit unit;
     public Recources recources;
     public PathFinding pathfinding;
+    public InstanceVogel birdTowerScript;
+    public CannonTower cannonTowerScript;
+    public WindMill windMillScript;
+
 
     public Vector3 buildingPos;
     [Header("Prefab")]
@@ -42,6 +46,7 @@ public class BuildingSystem : MonoBehaviour
     public float timer;
     public float delay;
 
+    public string[] tags;
 
     private void Awake()
     {
@@ -340,6 +345,30 @@ public class BuildingSystem : MonoBehaviour
         }
 
 
+    }
+    public void UpgradeSystem()
+    {
+        Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            string[] upgradeTags = new string[] { "CannonTower", "WindMill", "BirdTower" };
+            if (upgradeTags.Contains(hit.collider.name))
+            {
+                if(hit.collider.name == "CannonTower"  && cannonTowerScript.level != 2)
+                {
+                    cannonTowerScript.level++;
+                }
+                else if( hit.collider.name == "WindMill" && windMillScript.level != 2)
+                {
+                    windMillScript.level++;
+                }
+                else if (hit.collider.name == "BirdTower" && birdTowerScript.level !=2)
+                {
+                    birdTowerScript.level++;
+                }
+            }
+        }
     }
 
 }

@@ -14,6 +14,7 @@ public class InstanceVogel : MonoBehaviour
 
     [Header("Vogel")]
     public GameObject littleBoy;
+    public GameObject[] towerLevel;
     
 
     [Header("Target")]
@@ -53,5 +54,23 @@ public class InstanceVogel : MonoBehaviour
 
     }
 
-    
+    public void UpgradeSystem()
+    {
+        if (towerLevel[0])
+        {
+            towerLevel[level].SetActive(true);
+
+        }
+        else if (towerLevel[1])
+        {
+            towerLevel[0].SetActive(false);
+            towerLevel[level].SetActive(true);
+        }
+        else if (towerLevel[2])
+        {
+            towerLevel[1].SetActive(false);
+            towerLevel[level].SetActive(true);
+        }
+    }
+
 }

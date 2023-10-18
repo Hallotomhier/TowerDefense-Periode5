@@ -158,6 +158,10 @@ MonoBehaviour:
   level: 0
   littleBoy: {fileID: 5096683815860175746, guid: ad0dda0c070ec464ab06c7a648c8f654,
     type: 3}
+  towerLever:
+  - {fileID: 8909428264886474039}
+  - {fileID: 8909428264886474039}
+  - {fileID: 8909428264886474039}
   target: {fileID: 0}
   above: {fileID: 8735723531135778927}
   detectEnemy: {fileID: 8763284736424438762}

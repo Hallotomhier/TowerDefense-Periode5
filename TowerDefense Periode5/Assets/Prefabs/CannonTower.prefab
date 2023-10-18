@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74.56523
+      value: 77.32587
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.9049225
+      value: 4.9049234
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 113.646515
+      value: 51.917694
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
@@ -111,6 +111,10 @@ MonoBehaviour:
   - 1.5
   - 1
   - 0.5
+  towerLevel:
+  - {fileID: 4154012338306315669}
+  - {fileID: 6486466182666267849, guid: c5e8cb94a85bdde4e848f6fef60528d9, type: 3}
+  - {fileID: 6121390140157405198, guid: 6b7784cb4843554468c06da6a30f65c4, type: 3}
   level: 0
   timer: 0
 --- !u!114 &8308010751955030099
@@ -128,3 +132,10 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 20
   nearestEnemy: {fileID: 0}
+  enemies: []
+--- !u!1 &4154012338306315669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3848165248156256452}
+  m_PrefabAsset: {fileID: 0}

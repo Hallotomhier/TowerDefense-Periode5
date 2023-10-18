@@ -7,6 +7,9 @@ public class WindMill : MonoBehaviour
     public DetectionV2 detection;
     public Unit unit;
     public FollowPath enemyPathing;
+    public int[] slowdown;
+    public GameObject[] towerUpgrade;
+    public int level;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,7 @@ public class WindMill : MonoBehaviour
             }
             else if(unit == null)
             {
-                unit.speed = 2f;
+                unit.speed = slowdown[level];
             }
 
             if(enemyPathing != null)
@@ -42,12 +45,30 @@ public class WindMill : MonoBehaviour
             }
             else if (enemyPathing == null)
             {
-                enemyPathing.speed = 2f;
+                enemyPathing.speed = slowdown[level];
             }
         }
     }
     public void RotateWindMill()
     {
 
+    }
+    public void UpgradeSystem()
+    {
+        if (towerUpgrade[level])
+        {
+            towerUpgrade[level].SetActive(true);
+            
+        }
+        else if(towerUpgrade[level])
+        {
+            towerUpgrade[0].SetActive(false);
+            towerUpgrade[level].SetActive(true);
+        }
+        else if (towerUpgrade[level])
+        {
+            towerUpgrade[1].SetActive(false);
+            towerUpgrade[level].SetActive(true);
+        }
     }
 }
