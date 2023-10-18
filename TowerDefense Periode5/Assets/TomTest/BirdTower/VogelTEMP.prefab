@@ -121,9 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  flySpeed: 3
+  flySpeed: 9
   closestTarget: {fileID: 0}
   boem: {fileID: 4309216076226529248}
+  isExploding: 0
   timer: 0
   delay: 0.1
 --- !u!114 &7164613566211115413

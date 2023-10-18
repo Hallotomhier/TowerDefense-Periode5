@@ -26,6 +26,7 @@ public class BuildingSystem : MonoBehaviour
     public GameObject cannonTower;
     public GameObject startPosition;
     public GameObject targetPosition;
+    public GameObject birdTower;
 
     [Header ("Bool")]
     public bool isTowerPlacingMode;
@@ -35,6 +36,7 @@ public class BuildingSystem : MonoBehaviour
     public bool spawnRocks = false;
     public bool spawnWindmill = false;
     public bool spawnRaft = false;
+    public bool birdTowers = false;
     
     public Camera buildCam;
     public float timer;
@@ -54,12 +56,16 @@ public class BuildingSystem : MonoBehaviour
             if (spawnCannonTower)
             {
                 HandleCannonPlacement();
-               
+
             }
-            else if(spawnWindmill)
+            else if (spawnWindmill)
             {
                 HandleWindmillPlacement();
-               
+
+            }
+            else if (birdTowers)
+            {
+                HandleKamikazePlacement();
             }
             else if (spawnRaft)
             {
@@ -72,26 +78,17 @@ public class BuildingSystem : MonoBehaviour
                 
             }
         }
-        Timer();
-
+       
 
     }
-    public void Timer()
-    {
-        timer += Time.deltaTime;
-        if (timer >= delay)
-        {
-            timer = 0;
-            delay = 0;
-        }
-        
-    }
+ 
     public void SpawnCannonTower()
     {
         spawnCannonTower = true;
         spawnWindmill = false;
         spawnRocks = false;
         spawnRaft = false;
+        birdTowers = false;
 
     }
 
@@ -101,6 +98,7 @@ public class BuildingSystem : MonoBehaviour
         spawnWindmill = true;
         spawnRaft = false;
         spawnRocks = false;
+        birdTowers = false;
     }
 
     public void SpawnRaft()
@@ -109,6 +107,7 @@ public class BuildingSystem : MonoBehaviour
         spawnWindmill = false;
         spawnRaft = true;
         spawnRocks = false;
+        birdTowers = false;
     }
 
     public void SpawnRocks()
@@ -117,6 +116,15 @@ public class BuildingSystem : MonoBehaviour
         spawnWindmill = false;
         spawnRaft = false;
         spawnRocks = true;
+        birdTowers = false;
+    }
+    public void SpawnBirdTower()
+    {
+        spawnCannonTower = false;
+        spawnWindmill = false;
+        spawnRaft = false;
+        spawnRocks = false;
+        birdTowers = true;
     }
 
     public void HandleCannonPlacement()
@@ -200,7 +208,7 @@ public class BuildingSystem : MonoBehaviour
 
     }
 
-    /*
+    
     public void HandleKamikazePlacement()
     {
         Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -213,7 +221,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable && !hit.collider.CompareTag("Path"))
+                if (node != null && !node.walkable /*&& !hit.collider.CompareTag("Path")*/)
                 {
 
 
@@ -221,8 +229,8 @@ public class BuildingSystem : MonoBehaviour
                     {
                         //place tower
 
-                        Instantiate(, hit.point, Quaternion.identity);
-                        isTowerPlacingMode = false;
+                        Instantiate(birdTower, hit.point, Quaternion.identity);
+                        isTowerPlacingMode = true;
                         recources.wood -= 5;
                         recources.stone -= 2;
 
@@ -238,7 +246,7 @@ public class BuildingSystem : MonoBehaviour
 
 
     }
-    */
+    
 
     public void BuilderRocks()
     {
@@ -268,7 +276,6 @@ public class BuildingSystem : MonoBehaviour
                             pathValidation.rocksAndRafts.Add(newRock);
                             node.walkable = false;
                             recources.stone -= 1;
-                            Timer();
                             delay = 0;
                         }
                         else
@@ -318,7 +325,6 @@ public class BuildingSystem : MonoBehaviour
                             node.walkable = false;
                             recources.stone -= 1;
                             recources.wood -= 5;
-                            Timer();
                             delay = 0;
 
                         }

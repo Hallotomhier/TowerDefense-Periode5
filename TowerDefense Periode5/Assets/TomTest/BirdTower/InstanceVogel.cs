@@ -21,11 +21,11 @@ public class InstanceVogel : MonoBehaviour
     public Transform above;
 
     [Header("scripts")]
-    public Detect detectEnemy;
+    public DetectionV2 detectEnemy;
 
     void Update()
     {
-        
+        target = detectEnemy.nearestEnemy.transform;
         Delay();
 
     }
@@ -33,7 +33,7 @@ public class InstanceVogel : MonoBehaviour
 
     private void Delay() 
     {
-        target = detectEnemy.ChooseTarget;
+        
         if (target != null) 
         {
             timer += Time.deltaTime;
@@ -47,8 +47,10 @@ public class InstanceVogel : MonoBehaviour
     private void VogelSpawn() 
     {
         Vector3 aboveTower = above.position;
-        Instantiate(littleBoy , aboveTower , Quaternion.identity);
-        
+        GameObject newBird = Instantiate(littleBoy, aboveTower, Quaternion.identity);
+        VogelBoem birdScript = newBird.GetComponent<VogelBoem>();
+        birdScript.target = detectEnemy.nearestEnemy;
+
     }
 
     

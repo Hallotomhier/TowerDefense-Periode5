@@ -865,7 +865,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 28594129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 761415174}
+        m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
+        m_MethodName: SpawnBirdTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &28594129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11039,12 +11051,15 @@ MonoBehaviour:
     type: 3}
   startPosition: {fileID: 534067576}
   targetPosition: {fileID: 1500881963}
+  birdTower: {fileID: 8909428264886474039, guid: 8f4a798c1acb76b48915949bc9170bb7,
+    type: 3}
   isTowerPlacingMode: 0
   isRockPlacingMode: 0
   spawnCannonTower: 0
   spawnRocks: 0
   spawnWindmill: 0
   spawnRaft: 0
+  birdTowers: 0
   buildCam: {fileID: 1321253689}
   timer: 0
   delay: 0

@@ -9,8 +9,8 @@ public class VogelBoem : MonoBehaviour
     public float flySpeed;
     public GameObject closestTarget;
     public ParticleSystem boem;
-    private bool isPlayed = false;
-
+   
+    public bool isExploding = false;
     public float timer;
     public float delay = 0.1f;
     
@@ -28,12 +28,12 @@ public class VogelBoem : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length > 0)
         {
-            closestTarget = null;
+           
             float closestDistance = Mathf.Infinity;
-            Vector3 currentPosition = transform.position;
+           
             foreach (GameObject enemy in enemies)
             {
-                float distance = Vector3.Distance(currentPosition, enemy.transform.position);
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
@@ -41,11 +41,13 @@ public class VogelBoem : MonoBehaviour
                 }
             }
             target = closestTarget;
+            
 
         }
         else 
         {
             target = null;
+            StartCoroutine(DestroyWhenNoEnemys());
         }
     }
 
@@ -58,15 +60,26 @@ public class VogelBoem : MonoBehaviour
 
         if (target != null)
         {
-            Vector3 follow = target.transform.position;
+            
             var speed = flySpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, follow, speed);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
+        }
+        if (target == null)
+        {
+            SearchForEnemies();
         }
         
+        if(target != null && Vector3.Distance(transform.position,target.transform.position) < 2.0f)
+        {
+            if (!isExploding)
+            {
+                boem.Play();
+                isExploding = true;
+                StartCoroutine(ExplodeAfterDelay());
+            }
+        }
 
-        
-
-
+        /*
         if ((gameObject.transform.position - target.transform.position).magnitude < 2.0f) 
         {
 
@@ -84,5 +97,28 @@ public class VogelBoem : MonoBehaviour
             }     
             
         }
+       */
+    }
+
+    private IEnumerator ExplodeAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        if (target != null)
+        {
+            var enemyHealth = target.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.health -= 50;
+            }
+        }
+        isExploding = false;
+        SearchForEnemies();
+        Destroy(gameObject);
+    }
+    private IEnumerator DestroyWhenNoEnemys()
+    {
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
     }
 }
