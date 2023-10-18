@@ -18,6 +18,7 @@ public class BuildingSystem : MonoBehaviour
     public Recources recources;
     public PathFinding pathfinding;
 
+    public Vector3 buildingPos;
     [Header("Prefab")]
     public GameObject rocks;
     public GameObject windmill;
@@ -36,35 +37,55 @@ public class BuildingSystem : MonoBehaviour
     public bool spawnRaft = false;
     
     public Camera buildCam;
-    
+    public float timer;
+    public float delay;
 
+
+    private void Awake()
+    {
+       
+
+    }
     // Update is called once per frame
     void Update()
     {
-        if (spawnManager.isBuildPhase)
+        if (spawnManager.isBuildPhase && delay == 0 )
         {
             if (spawnCannonTower)
             {
                 HandleCannonPlacement();
-
+               
             }
             else if(spawnWindmill)
             {
                 HandleWindmillPlacement();
+               
             }
             else if (spawnRaft)
             {
                 BuilderRaft();
+             
             }
             else if (spawnRocks)
             {
                 BuilderRocks();
+                
             }
         }
-        
+        Timer();
+
+
+    }
+    public void Timer()
+    {
+        timer += Time.deltaTime;
+        if (timer >= delay)
+        {
+            timer = 0;
+            delay = 0;
+        }
         
     }
-
     public void SpawnCannonTower()
     {
         spawnCannonTower = true;
@@ -114,6 +135,7 @@ public class BuildingSystem : MonoBehaviour
                 {
 
 
+
                     if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
                         //place tower
@@ -122,6 +144,8 @@ public class BuildingSystem : MonoBehaviour
                         isTowerPlacingMode = true;
                         recources.wood -= 5;
                         recources.stone -= 2;
+                        
+                        delay = 2f;
 
                         //Cancel
                         if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -160,6 +184,8 @@ public class BuildingSystem : MonoBehaviour
                         isTowerPlacingMode = true;
                         recources.wood -= 5;
                         recources.stone -= 2;
+                      
+                        delay = 2f;
 
                         //Cancel
                         if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -242,6 +268,8 @@ public class BuildingSystem : MonoBehaviour
                             pathValidation.rocksAndRafts.Add(newRock);
                             node.walkable = false;
                             recources.stone -= 1;
+                            Timer();
+                            delay = 0;
                         }
                         else
                         {
@@ -290,6 +318,9 @@ public class BuildingSystem : MonoBehaviour
                             node.walkable = false;
                             recources.stone -= 1;
                             recources.wood -= 5;
+                            Timer();
+                            delay = 0;
+
                         }
                         else
                         {

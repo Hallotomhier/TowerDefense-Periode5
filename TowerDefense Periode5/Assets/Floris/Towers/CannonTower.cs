@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CannonTower : MonoBehaviour
 {
-    public Detect detect;
+    public DetectionV2 detect;
     public Transform target;
     public int[] damage;
     public float[] delay;
@@ -19,7 +19,7 @@ public class CannonTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = detect.ChooseTarget;
+        target = detect.nearestEnemy.transform;
         if (target != null)
         {
             timer += Time.deltaTime;
@@ -39,9 +39,9 @@ public class CannonTower : MonoBehaviour
     {
         if(target != null)
         {
-           if(detect.ChooseTarget != null)
+           if(detect.nearestEnemy != null)
            {
-                Vector3 lookAtTarget = detect.ChooseTarget.transform.position - transform.position;
+                Vector3 lookAtTarget = detect.nearestEnemy.transform.position - transform.position;
                 Quaternion targetRotation = Quaternion.LookRotation(lookAtTarget);
                 transform.rotation = targetRotation;
            }
