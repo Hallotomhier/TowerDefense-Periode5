@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay:
-  - 5
-  - 4
-  - 3
+  - 10
+  - 8
+  - 6
   level: 0
   littleBoy: {fileID: 5096683815860175746, guid: ad0dda0c070ec464ab06c7a648c8f654,
     type: 3}

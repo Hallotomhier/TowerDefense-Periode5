@@ -79,25 +79,6 @@ public class VogelBoem : MonoBehaviour
             }
         }
 
-        /*
-        if ((gameObject.transform.position - target.transform.position).magnitude < 2.0f) 
-        {
-
-            timer += Time.deltaTime;
-            if (!isPlayed) 
-            {
-                boem.Play();
-                if (timer >= delay)
-                {
-                    timer -= delay;
-                    isPlayed = true;
-                    target.GetComponent<EnemyHealth>().health -= 50;
-                    Destroy(gameObject);
-                }
-            }     
-            
-        }
-       */
     }
 
     private IEnumerator ExplodeAfterDelay()
@@ -105,10 +86,15 @@ public class VogelBoem : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (target != null)
         {
+            var enemyLandHealth = target.GetComponent<FollowPath>();
             var enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.health -= 50;
+            }
+            if(enemyLandHealth != null)
+            {
+                enemyLandHealth.hp -= 50;
             }
         }
         isExploding = false;

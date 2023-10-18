@@ -51,23 +51,10 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnManager.isBuildPhase && delay == 0 )
+        if (spawnManager.isBuildPhase)
         {
-            if (spawnCannonTower)
-            {
-                HandleCannonPlacement();
-
-            }
-            else if (spawnWindmill)
-            {
-                HandleWindmillPlacement();
-
-            }
-            else if (birdTowers)
-            {
-                HandleKamikazePlacement();
-            }
-            else if (spawnRaft)
+            
+            if (spawnRaft)
             {
                 BuilderRaft();
              
@@ -77,6 +64,18 @@ public class BuildingSystem : MonoBehaviour
                 BuilderRocks();
                 
             }
+        }
+        else if (spawnCannonTower)
+        {
+            HandleCannonPlacement();
+        }
+        else if (spawnWindmill)
+        {
+            HandleWindmillPlacement();
+        }
+        else if (birdTowers)
+        {
+            HandleKamikazePlacement();
         }
        
 
@@ -221,7 +220,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable /*&& !hit.collider.CompareTag("Path")*/)
+                if (node != null && !node.walkable || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
                 {
 
 
