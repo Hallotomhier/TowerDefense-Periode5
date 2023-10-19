@@ -464,3 +464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 60
+  degree: 45
+  waitDuration: 1
+  canRotate: 1

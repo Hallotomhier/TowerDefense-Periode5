@@ -17,6 +17,7 @@ public class CannonTower : MonoBehaviour
     
     public int level;
     public float timer;
+    public bool canRotate = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +27,16 @@ public class CannonTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(detect.nearestEnemy!= null)
+        if (level == 2)
         {
-            target = detect.nearestEnemy.transform;
+            if (detect.nearestEnemy != null)
+            {
+                target = detect.nearestEnemy.transform;
+                rotations.canRotate = true;
+            }
         }
+        
+        
        
         if (target != null)
         {
@@ -44,10 +51,7 @@ public class CannonTower : MonoBehaviour
         {
             timer = 0f;
         }
-        if (level == 2)
-        {
-            rotations.RotateLevel3();
-        }
+       
 
     }
     
@@ -56,18 +60,12 @@ public class CannonTower : MonoBehaviour
         if (target.GetComponent<FollowPath>())
         {
             target.GetComponent<FollowPath>().hp -= damage[level];
-            if (level == 3)
-            {
-                rotations.RotateLevel3();
-            }
 
         }
         if (target.GetComponent<Unit>())
         {
             target.GetComponent<EnemyHealth>().health -= damage[level];
             Debug.Log("Shot");
-            
-
 
         }
 
@@ -78,9 +76,7 @@ public class CannonTower : MonoBehaviour
     {
         if (towerLevel[level] == towerLevel[0])
         {
-            
             towerLevel[level].SetActive(true);
-
         }
         
         if (towerLevel[level] == towerLevel[1])

@@ -276,10 +276,8 @@ public class BuildingSystem : MonoBehaviour
 
     public void BuilderRocks()
     {
-        if (recources.stone >= 1)
+        if (recources.stone >= 1 && Mouse.current.leftButton.isPressed)
         {
-            if (Mouse.current.leftButton.isPressed)
-            {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
 
@@ -312,7 +310,7 @@ public class BuildingSystem : MonoBehaviour
                     }
 
                 }
-            }
+            
 
         }
 
@@ -409,14 +407,11 @@ public class BuildingSystem : MonoBehaviour
 
             }
         }
-
-            
-            
-        
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             isTowerPlacingMode = false;
         }
+
     }
 
 }

@@ -33,15 +33,19 @@ public class DetectionV2 : MonoBehaviour
         {
            float distanceEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             
-            if(distanceEnemy < shortestDistance)
+            if(distanceEnemy < range && distanceEnemy < shortestDistance)
             {
                 shortestDistance = distanceEnemy;
                 nearestEnemy = enemy;
             }
         }
-        if(nearestEnemy != null && shortestDistance <= range)
+        if(nearestEnemy != null)
         {
             target = nearestEnemy.transform;
+        }
+        else
+        {
+            target = null;
         }
     }
     private void OnDrawGizmosSelected()

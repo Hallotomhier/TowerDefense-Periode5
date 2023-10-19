@@ -7,7 +7,7 @@ public class RotateTarget : MonoBehaviour
 {
     public CannonTower tower;
     public DetectionV2 detect;
-/*
+
     private void Update()
     {
         RotateToTarget();
@@ -24,5 +24,5 @@ public class RotateTarget : MonoBehaviour
             }
         }
     }
-*/
+
 }
