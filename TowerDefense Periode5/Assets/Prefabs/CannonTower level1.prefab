@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       propertyPath: m_Name
-      value: CannonTower
+      value: CannonTower level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
@@ -183,7 +188,7 @@ MonoBehaviour:
   - 0.5
   towerLevel:
   - {fileID: 4154012338306315669}
-  - {fileID: 6486466182666267849, guid: c5e8cb94a85bdde4e848f6fef60528d9, type: 3}
-  - {fileID: 6121390140157405198, guid: 6b7784cb4843554468c06da6a30f65c4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   level: 0
   timer: 0

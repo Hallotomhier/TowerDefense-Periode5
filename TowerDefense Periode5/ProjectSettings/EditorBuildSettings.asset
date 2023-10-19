@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Floris.unity
     guid: 3352eccc1b219384d993566019d531a2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Art.unity
     guid: 93fddb0b053767b4594d7b78b8987e3d
   m_configObjects: {}

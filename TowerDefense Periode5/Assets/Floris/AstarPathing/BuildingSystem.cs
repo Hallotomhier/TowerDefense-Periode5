@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using System.IO;
 using System.Linq;
 
@@ -279,7 +278,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (recources.stone >= 1)
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.leftButton.isPressed)
             {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -383,29 +382,31 @@ public class BuildingSystem : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-
-
-                Debug.LogError(hit.collider.name);
-
-               
-                if (upgradeTags.Contains(hit.collider.name))
+                if (hit.collider.CompareTag("CannonTower")) /*&& cannonTowerScript.level != 2)*/
                 {
-                    if (hit.collider.tag == "CannonTower" && cannonTowerScript.level != 2)
+                    cannonTowerScript = hit.collider.GetComponent<CannonTower>();
+                    if (cannonTowerScript != null)
                     {
-                        cannonTowerScript = hit.collider.GetComponent<CannonTower>();
                         cannonTowerScript.level++;
+                        cannonTowerScript.UpgradeSystem();
                     }
-                    else if (hit.collider.tag == "WindMill" && windMillScript.level != 2)
-                    {
-                        windMillScript = hit.collider.GetComponent<WindMill>();
-                        windMillScript.level++;
-                    }
-                    else if (hit.collider.tag == "BirdTower" && birdTowerScript.level != 2)
-                    {
-                        birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
-                        birdTowerScript.level++;
-                    }
+
                 }
+                else if (hit.collider.CompareTag("WindMill") && windMillScript.level != 2)
+                {
+                    windMillScript = hit.collider.GetComponent<WindMill>();
+                    windMillScript.level++;
+                }
+                else if (hit.collider.CompareTag("BirdTower") && birdTowerScript.level != 2)
+                {
+                    birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
+                    birdTowerScript.level++;
+                }
+
+
+
+
+
             }
         }
 

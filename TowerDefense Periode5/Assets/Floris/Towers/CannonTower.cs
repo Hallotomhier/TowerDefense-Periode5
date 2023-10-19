@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class CannonTower : MonoBehaviour
 {
+    public Rotateevel3 rotations;
     public DetectionV2 detect;
     public Transform target;
     public int[] damage;
     public float[] delay;
     public GameObject[] towerLevel;
+
+    public GameObject level1;
+    public GameObject level2;
+    public GameObject level3;
+    
     public int level;
     public float timer;
     // Start is called before the first frame update
@@ -38,7 +44,11 @@ public class CannonTower : MonoBehaviour
         {
             timer = 0f;
         }
-        
+        if (level == 2)
+        {
+            rotations.RotateLevel3();
+        }
+
     }
     
     public void Shoot()
@@ -46,10 +56,19 @@ public class CannonTower : MonoBehaviour
         if (target.GetComponent<FollowPath>())
         {
             target.GetComponent<FollowPath>().hp -= damage[level];
+            if (level == 3)
+            {
+                rotations.RotateLevel3();
+            }
+
         }
         if (target.GetComponent<Unit>())
         {
             target.GetComponent<EnemyHealth>().health -= damage[level];
+            Debug.Log("Shot");
+            
+
+
         }
 
 
@@ -57,20 +76,25 @@ public class CannonTower : MonoBehaviour
    
     public void UpgradeSystem()
     {
-        if (towerLevel[0])
+        if (towerLevel[level] == towerLevel[0])
         {
+            
             towerLevel[level].SetActive(true);
 
         }
-        else if (towerLevel[1])
+        
+        if (towerLevel[level] == towerLevel[1])
         {
-            towerLevel[0].SetActive(false);
             towerLevel[level].SetActive(true);
+            level1.SetActive(false);
+            
         }
-        else if (towerLevel[2])
+        
+        if (towerLevel[level] == towerLevel[2])
         {
-            towerLevel[1].SetActive(false);
             towerLevel[level].SetActive(true);
+            level2.SetActive(false);
+            
         }
     }
     
