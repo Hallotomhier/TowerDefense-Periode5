@@ -41,12 +41,14 @@ public class BuildingSystem : MonoBehaviour
     public bool spawnWindmill = false;
     public bool spawnRaft = false;
     public bool birdTowers = false;
+    public bool upgradeTowers = false;
     
     public Camera buildCam;
     public float timer;
     public float delay;
 
-    public string[] tags;
+    public string[] upgradeTags;
+  
 
     private void Awake()
     {
@@ -70,17 +72,22 @@ public class BuildingSystem : MonoBehaviour
                 
             }
         }
-        else if (spawnCannonTower)
+        
+        if (spawnCannonTower && isTowerPlacingMode ==true)
         {
             HandleCannonPlacement();
         }
-        else if (spawnWindmill)
+        else if (spawnWindmill && isTowerPlacingMode == true)
         {
             HandleWindmillPlacement();
         }
-        else if (birdTowers)
+        else if (birdTowers && isTowerPlacingMode == true)
         {
             HandleKamikazePlacement();
+        }
+        else if(upgradeTowers && isTowerPlacingMode == true)
+        {
+            UpgradeSystem();
         }
        
 
@@ -88,6 +95,7 @@ public class BuildingSystem : MonoBehaviour
  
     public void SpawnCannonTower()
     {
+        isTowerPlacingMode = true;
         spawnCannonTower = true;
         spawnWindmill = false;
         spawnRocks = false;
@@ -98,6 +106,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void SpawnWindmill()
     {
+        isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = true;
         spawnRaft = false;
@@ -107,6 +116,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void SpawnRaft()
     {
+        isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = false;
         spawnRaft = true;
@@ -116,6 +126,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void SpawnRocks()
     {
+        isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = false;
         spawnRaft = false;
@@ -124,11 +135,23 @@ public class BuildingSystem : MonoBehaviour
     }
     public void SpawnBirdTower()
     {
+        isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = false;
         spawnRaft = false;
         spawnRocks = false;
         birdTowers = true;
+    }
+
+    public void UpgradeTowersCheck() 
+    {
+        isTowerPlacingMode = true;
+        spawnCannonTower = false;
+        spawnWindmill = false;
+        spawnRaft = false;
+        spawnRocks = false;
+        birdTowers = false;
+        upgradeTowers = true;
     }
 
     public void HandleCannonPlacement()
@@ -143,7 +166,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
+                if (node != null && !node.walkable && hit.collider.tag != ("Tower") || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
                 {
 
 
@@ -160,15 +183,16 @@ public class BuildingSystem : MonoBehaviour
                         delay = 2f;
 
                         //Cancel
-                        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                        {
-                            isTowerPlacingMode = false;
-                        }
+                        
                     }
                 }
             }
         }
-       
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            isTowerPlacingMode = false;
+        }
+
 
     }
 
@@ -184,7 +208,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
+                if (node != null && !node.walkable && hit.collider.tag != ("Tower") || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
                 {
 
 
@@ -200,15 +224,15 @@ public class BuildingSystem : MonoBehaviour
                         delay = 2f;
 
                         //Cancel
-                        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                        {
-                            isTowerPlacingMode = false;
-                        }
+                       
                     }
                 }
             }
         }
-
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            isTowerPlacingMode = false;
+        }
 
     }
 
@@ -225,7 +249,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
+                if (node != null && !node.walkable && hit.collider.tag != ("Tower")|| node != null && !node.walkable && hit.collider.CompareTag("Raft"))
                 {
 
 
@@ -238,17 +262,16 @@ public class BuildingSystem : MonoBehaviour
                         recources.wood -= 5;
                         recources.stone -= 2;
 
-                        //Cancel
-                        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                        {
-                            isTowerPlacingMode = false;
-                        }
+                        
                     }
                 }
             }
         }
 
-
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            isTowerPlacingMode = false;
+        }
     }
     
 
@@ -294,7 +317,10 @@ public class BuildingSystem : MonoBehaviour
 
         }
 
-
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            isTowerPlacingMode = false;
+        }
     }
 
     public void BuilderRaft()
@@ -343,31 +369,52 @@ public class BuildingSystem : MonoBehaviour
             }
 
         }
-
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            isTowerPlacingMode = false;
+        }
 
     }
     public void UpgradeSystem()
     {
         Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            string[] upgradeTags = new string[] { "CannonTower", "WindMill", "BirdTower" };
-            if (upgradeTags.Contains(hit.collider.name))
+            if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.name == "CannonTower"  && cannonTowerScript.level != 2)
+
+
+                Debug.LogError(hit.collider.name);
+
+               
+                if (upgradeTags.Contains(hit.collider.name))
                 {
-                    cannonTowerScript.level++;
-                }
-                else if( hit.collider.name == "WindMill" && windMillScript.level != 2)
-                {
-                    windMillScript.level++;
-                }
-                else if (hit.collider.name == "BirdTower" && birdTowerScript.level !=2)
-                {
-                    birdTowerScript.level++;
+                    if (hit.collider.tag == "CannonTower" && cannonTowerScript.level != 2)
+                    {
+                        cannonTowerScript = hit.collider.GetComponent<CannonTower>();
+                        cannonTowerScript.level++;
+                    }
+                    else if (hit.collider.tag == "WindMill" && windMillScript.level != 2)
+                    {
+                        windMillScript = hit.collider.GetComponent<WindMill>();
+                        windMillScript.level++;
+                    }
+                    else if (hit.collider.tag == "BirdTower" && birdTowerScript.level != 2)
+                    {
+                        birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
+                        birdTowerScript.level++;
+                    }
                 }
             }
+        }
+
+            
+            
+        
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            isTowerPlacingMode = false;
         }
     }
 

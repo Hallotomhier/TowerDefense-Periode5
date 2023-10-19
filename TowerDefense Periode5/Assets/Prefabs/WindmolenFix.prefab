@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3b1803da5df7c7b4ca3d625243765f7f,
         type: 3}
       propertyPath: m_TagString
-      value: Tower
+      value: WindMill
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -137,10 +137,12 @@ MonoBehaviour:
   detection: {fileID: 5652639961100083406}
   unit: {fileID: 0}
   enemyPathing: {fileID: 0}
+  slowdown: 
   towerUpgrade:
   - {fileID: 3655599015272444187}
   - {fileID: 5837690902186402861, guid: 7e280e470813a70469bae54b66936a11, type: 3}
   - {fileID: 4969124467053991848, guid: 08ed261149cfca44585b6c7f542118b7, type: 3}
+  level: 0
 --- !u!114 &5652639961100083406
 MonoBehaviour:
   m_ObjectHideFlags: 0

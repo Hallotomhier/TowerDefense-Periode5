@@ -17,6 +17,9 @@ TagManager:
   - DonkeyHouse
   - Raft
   - Tower
+  - WindMill
+  - CannonTower
+  - BirdTower
   layers:
   - Default
   - TransparentFX

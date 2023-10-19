@@ -20,7 +20,11 @@ public class CannonTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = detect.nearestEnemy.transform;
+        if(detect.nearestEnemy!= null)
+        {
+            target = detect.nearestEnemy.transform;
+        }
+       
         if (target != null)
         {
             timer += Time.deltaTime;
@@ -34,20 +38,9 @@ public class CannonTower : MonoBehaviour
         {
             timer = 0f;
         }
-        RotateToTarget();
+        
     }
-    public void RotateToTarget()
-    {
-        if(target != null)
-        {
-           if(detect.nearestEnemy != null)
-           {
-                Vector3 lookAtTarget = detect.nearestEnemy.transform.position - transform.position;
-                Quaternion targetRotation = Quaternion.LookRotation(lookAtTarget);
-                transform.rotation = targetRotation;
-           }
-        }
-    }
+    
     public void Shoot()
     {
         if (target.GetComponent<FollowPath>())

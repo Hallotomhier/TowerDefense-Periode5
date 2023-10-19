@@ -72,7 +72,7 @@ public class Unit : MonoBehaviour
             }
 
             Vector3 currentWaypoint = path[i];
-            Debug.Log("Moving to waypoint " + i + ": " + currentWaypoint);
+            //Debug.Log("Moving to waypoint " + i + ": " + currentWaypoint);
 
             while (Vector3.Distance(transform.position, currentWaypoint) >= distanceThreshold)
             {
@@ -85,7 +85,7 @@ public class Unit : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, UnitRotation, speed * Time.deltaTime);
                
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-                Debug.Log("Unit position: " + transform.position);
+                //Debug.Log("Unit position: " + transform.position);
                 yield return null;
             }
 

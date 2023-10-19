@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       propertyPath: m_Name
-      value: kannon_towe_level_1
+      value: CannonTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
+        type: 3}
+      propertyPath: m_TagString
+      value: CannonTower
       objectReference: {fileID: 0}
     - target: {fileID: 2982408803557973007, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
@@ -77,14 +82,22 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4424396828587804706, guid: c515973ec9c017e428c6bc6679784afc,
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5042784743781228660}
+      addedObject: {fileID: 8478392019040856685}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4340660262515506958}
     - targetCorrespondingSourceObject: {fileID: 4424396828587804706, guid: c515973ec9c017e428c6bc6679784afc,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8308010751955030099}
+    - targetCorrespondingSourceObject: {fileID: 4424396828587804706, guid: c515973ec9c017e428c6bc6679784afc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406447952786829390}
   m_SourcePrefab: {fileID: 100100000, guid: c515973ec9c017e428c6bc6679784afc, type: 3}
 --- !u!1 &577006792904278246 stripped
 GameObject:
@@ -92,13 +105,70 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3848165248156256452}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5042784743781228660
+--- !u!114 &8308010751955030099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577006792904278246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38ba487210daf444848a9cedbefa3fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  range: 20
+  nearestEnemy: {fileID: 0}
+  enemies: []
+--- !u!114 &1406447952786829390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577006792904278246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187c6e59f9eac684f80e7bc09bf1a8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 4340660262515506958}
+  detect: {fileID: 8308010751955030099}
+--- !u!1 &4154012338306315669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3848165248156256452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8478392019040856685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154012338306315669}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1862013, y: 5.3981504, z: 2.2439084}
+  m_Center: {x: 0, y: 2.1990752, z: 0}
+--- !u!114 &4340660262515506958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154012338306315669}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0b393da05f72ba478a1945fa3336a5b, type: 3}
@@ -117,25 +187,3 @@ MonoBehaviour:
   - {fileID: 6121390140157405198, guid: 6b7784cb4843554468c06da6a30f65c4, type: 3}
   level: 0
   timer: 0
---- !u!114 &8308010751955030099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577006792904278246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38ba487210daf444848a9cedbefa3fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  range: 20
-  nearestEnemy: {fileID: 0}
-  enemies: []
---- !u!1 &4154012338306315669 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c515973ec9c017e428c6bc6679784afc,
-    type: 3}
-  m_PrefabInstance: {fileID: 3848165248156256452}
-  m_PrefabAsset: {fileID: 0}

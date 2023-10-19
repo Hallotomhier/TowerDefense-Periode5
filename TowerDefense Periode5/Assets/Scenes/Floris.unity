@@ -817,9 +817,9 @@ RectTransform:
   - {fileID: 1068067154}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -215.0318}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &28594128
@@ -2739,9 +2739,9 @@ RectTransform:
   - {fileID: 1557082122}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -415.0954}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196420421
@@ -5508,9 +5508,9 @@ RectTransform:
   - {fileID: 2044813932}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -365.0795}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &386269684
@@ -5559,7 +5559,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 761415174}
         m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
-        m_MethodName: SpawnRaft
+        m_MethodName: UpgradeTowersCheck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5759,9 +5759,9 @@ RectTransform:
   - {fileID: 1004433692}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -115}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &406291347
@@ -11264,10 +11264,11 @@ MonoBehaviour:
   spawnWindmill: 0
   spawnRaft: 0
   birdTowers: 0
+  upgradeTowers: 0
   buildCam: {fileID: 1321253689}
   timer: 0
   delay: 0
-  tags: []
+  upgradeTags: []
 --- !u!4 &761415175
 Transform:
   m_ObjectHideFlags: 0
@@ -13048,9 +13049,9 @@ RectTransform:
   - {fileID: 332555667}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -315.0636}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &951112314
@@ -15142,9 +15143,9 @@ RectTransform:
   - {fileID: 492499488}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -265.0477}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1071080910
@@ -18930,9 +18931,9 @@ RectTransform:
   - {fileID: 1270128622}
   m_Father: {fileID: 866821479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 687, y: -165.0159}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338600020
@@ -35106,7 +35107,7 @@ PrefabInstance:
     - target: {fileID: 381552113823605882, guid: b8f1d54fcc084ed43838303f081ae068,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1194467401903097460, guid: b8f1d54fcc084ed43838303f081ae068,
         type: 3}
@@ -35386,7 +35387,7 @@ PrefabInstance:
     - target: {fileID: 7269688800163026667, guid: b8f1d54fcc084ed43838303f081ae068,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7903783984781625513, guid: b8f1d54fcc084ed43838303f081ae068,
         type: 3}
