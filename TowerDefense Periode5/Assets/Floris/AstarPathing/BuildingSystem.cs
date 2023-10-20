@@ -1,10 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+
+
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -276,7 +273,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void BuilderRocks()
     {
-        if (recources.stone >= 1 && Mouse.current.leftButton.isPressed)
+        if (recources.stone >= 1 && Mouse.current.leftButton.wasPressedThisFrame)
         {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -390,12 +387,17 @@ public class BuildingSystem : MonoBehaviour
                     }
 
                 }
-                else if (hit.collider.CompareTag("WindMill") && windMillScript.level != 2)
+                else if (hit.collider.CompareTag("WindMill"))/*&& windMillScript.level != 2)*/
                 {
                     windMillScript = hit.collider.GetComponent<WindMill>();
-                    windMillScript.level++;
+                    if(windMillScript != null)
+                    {
+                        windMillScript.level++;
+                        windMillScript.UpgradeSystem();
+                    }
+                   
                 }
-                else if (hit.collider.CompareTag("BirdTower") && birdTowerScript.level != 2)
+                else if (hit.collider.CompareTag("BirdTower")) /* && birdTowerScript.level != 2)*/
                 {
                     birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
                     birdTowerScript.level++;

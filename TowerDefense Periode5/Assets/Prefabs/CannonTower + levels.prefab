@@ -52,11 +52,13 @@ MonoBehaviour:
   rotations: {fileID: 6275145214001320679}
   detect: {fileID: 6283236303773232301}
   target: {fileID: 0}
+  rotateTargetLevel0: {fileID: 4500994085124881145}
+  rotateTargetLevel1: {fileID: 8818382550293402272}
   damage: 0a0000001400000028000000
   delay:
-  - 2
   - 1.5
   - 1
+  - 0.5
   towerLevel:
   - {fileID: 1464811745506361122}
   - {fileID: 8633168658936564547}
@@ -66,6 +68,7 @@ MonoBehaviour:
   level3: {fileID: 1293243782008845715}
   level: 0
   timer: 0
+  canRotate: 0
 --- !u!114 &6283236303773232301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +354,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3310720444028390071}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4500994085124881145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1406447952786829390, guid: b96e4e380e496024a9668b342ab86183,
+    type: 3}
+  m_PrefabInstance: {fileID: 3310720444028390071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187c6e59f9eac684f80e7bc09bf1a8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4972270548747263389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -464,6 +479,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 60
-  degree: 45
-  waitDuration: 1
+  currentRotation: 0
+  maxRotations: 8
+  rotationDelay: 1
+  timeSinceLastRotation: 0
+  targetRotation: 0
   canRotate: 1

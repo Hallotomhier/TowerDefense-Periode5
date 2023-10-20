@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rotattiewindmill : MonoBehaviour
 {
     public float speed;
+    public bool canRotate = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,11 @@ public class Rotattiewindmill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Rotate(1*speed, 0, 0);
+        if (canRotate)
+        {
+            gameObject.transform.Rotate(0, 0, 1 * speed *Time.deltaTime);
+        }
+       
         
     }
 }

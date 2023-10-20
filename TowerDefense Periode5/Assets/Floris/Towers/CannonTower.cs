@@ -7,6 +7,8 @@ public class CannonTower : MonoBehaviour
     public Rotateevel3 rotations;
     public DetectionV2 detect;
     public Transform target;
+    public RotateTarget rotateTargetLevel0;
+    public RotateTarget rotateTargetLevel1;
     public int[] damage;
     public float[] delay;
     public GameObject[] towerLevel;
@@ -36,6 +38,22 @@ public class CannonTower : MonoBehaviour
             }
         }
         
+        if( level == 0)
+        {
+            if(detect.nearestEnemy != null)
+            {
+                target = detect.nearestEnemy.transform;
+                rotateTargetLevel0.RotateToTarget();
+            }
+        }
+        if(level == 1)
+        {
+            if(detect.nearestEnemy != null)
+            {
+                target = detect.nearestEnemy.transform;
+                rotateTargetLevel1.RotateToTarget();
+            }
+        }
         
        
         if (target != null)
