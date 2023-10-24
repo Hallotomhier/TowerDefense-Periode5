@@ -13,7 +13,7 @@ public class Recources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stoneText.text = "Stone :" + stone.ToString();
-        woodText.text ="Wood :" + wood.ToString();
+        stoneText.text = stone.ToString();
+        woodText.text = wood.ToString();
     }
 }

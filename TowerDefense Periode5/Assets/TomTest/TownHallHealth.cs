@@ -30,6 +30,6 @@ public class TownHallHealth : MonoBehaviour
     }
     void UpdateHealth()
     {
-        currentHealth.text = "Health: " + townHealth.ToString();
+        currentHealth.text = townHealth.ToString();
     }
 }

@@ -6,7 +6,9 @@ using TMPro;
 
 public class Movement : MonoBehaviour
 {
+    /*
     [Header("Private")]
+    public GameObject player;
     public PlayerInput playerInput;
     public GameObject Donkey;
     private float x;
@@ -22,7 +24,7 @@ public class Movement : MonoBehaviour
 
     [Header("Scripts")]
     public Recources recources;
-    public DonkeyFollowPath donkeyFollowPath;
+    
     
     [Header("playerSettings")]
     public float speed;
@@ -31,16 +33,20 @@ public class Movement : MonoBehaviour
     public float jumpHeight;
 
     [Header("UserInterface")]
-    public GameObject canvas;
+   
     RaycastHit hit;
     private void Awake()
     {
-        playerInput = new PlayerInput();
-        playerInput.Player.Enable();
-        
-        playerInput.Player.Mouse.performed += Mouse_performed;
-        playerInput.Player.Interact.performed += Interact_performed;
-        
+        if(player != null)
+        {
+            playerInput = new PlayerInput();
+            playerInput.Player.Enable();
+
+            playerInput.Player.Mouse.performed += Mouse_performed;
+            playerInput.Player.Interact.performed += Interact_performed;
+
+        }
+
     }
 
     
@@ -52,7 +58,11 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        MovePlayer();
+        if(player != null)
+        {
+            MovePlayer();
+        }
+        
     }
 
     private void MovePlayer() 
@@ -71,19 +81,7 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void Mouse_performed(InputAction.CallbackContext context)
-    {
-        Vector2 mouserotation = context.ReadValue<Vector2>();
-        float mouseX = mouserotation.x * camSpeed * Time.deltaTime;
-        float mouseY = mouserotation.y * camSpeed * Time.deltaTime;
-
-        xrotation -= mouseY;
-        xrotation = Mathf.Clamp(xrotation, -90f, 90f);
-
-        playerCamera.transform.localRotation = Quaternion.Euler(xrotation, 0, 0);
-        transform.Rotate(Vector3.up * mouseX);
-    }
-
+   
 
     public void Interact_performed(InputAction.CallbackContext context)
     {
@@ -94,7 +92,7 @@ public class Movement : MonoBehaviour
             {
                 playerInput.Disable();
 
-               
+
                 if (buildingCamera != null)
                 {
                     buildingCamera.enabled = true;
@@ -107,13 +105,13 @@ public class Movement : MonoBehaviour
 
                 canvas.SetActive(true);
 
-               
+
                 if (buildingCamera != null)
                 {
                     Cursor.lockState = CursorLockMode.None;
                 }
             }
-            
+
             else if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
             {
                 if (recources.wood >= 20 && recources.stone >= 12)
@@ -122,7 +120,7 @@ public class Movement : MonoBehaviour
                     recources.wood -= 20;
                     recources.stone -= 12;
 
-                    
+
                     if (donkeyFollowPath != null)
                     {
                         donkeyFollowPath.enabled = true;
@@ -138,5 +136,5 @@ public class Movement : MonoBehaviour
     }
 
 
-
+    */
 }

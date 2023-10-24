@@ -79,7 +79,7 @@ public class BuildingSystem : MonoBehaviour
         }
         else if (birdTowers && isTowerPlacingMode == true)
         {
-            HandleKamikazePlacement();
+           // HandleKamikazePlacement();
         }
         else if(upgradeTowers && isTowerPlacingMode == true)
         {
@@ -162,7 +162,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable && hit.collider.tag != ("Tower") || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
+                if (node != null && !node.walkable && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill") || node != null && !node.walkable && hit.collider.CompareTag("Raft") && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill"))
                 {
 
 
@@ -204,7 +204,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable && hit.collider.tag != ("Tower") || node != null && !node.walkable && hit.collider.CompareTag("Raft"))
+                if (node != null && !node.walkable && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill") || node != null && !node.walkable && hit.collider.CompareTag("Raft") && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill"))
                 {
 
 
@@ -232,7 +232,7 @@ public class BuildingSystem : MonoBehaviour
 
     }
 
-    
+    /*
     public void HandleKamikazePlacement()
     {
         Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -245,7 +245,7 @@ public class BuildingSystem : MonoBehaviour
                 Node node = grid.NodeFromWorldPoint(hit.point);
                 Vector3 buildingPosition = node.worldPosition;
 
-                if (node != null && !node.walkable && hit.collider.tag != ("Tower")|| node != null && !node.walkable && hit.collider.CompareTag("Raft"))
+                if (node != null && !node.walkable && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill") || node != null && !node.walkable && hit.collider.CompareTag("Raft") && hit.collider.tag != ("CannonTower") && hit.collider.tag !=("WindMill"))
                 {
 
 
@@ -269,6 +269,7 @@ public class BuildingSystem : MonoBehaviour
             isTowerPlacingMode = false;
         }
     }
+    */
     
 
     public void BuilderRocks()
@@ -289,9 +290,9 @@ public class BuildingSystem : MonoBehaviour
                         node.walkable = true;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
-           
 
-                        if (validPathExists)
+
+                        if (validPathExists && hit.collider.CompareTag("Maze"))
                         {
                             GameObject newRock = Instantiate(rocks, buildingPosition, Quaternion.identity);
                             pathValidation.rocksAndRafts.Add(newRock);
@@ -342,7 +343,7 @@ public class BuildingSystem : MonoBehaviour
 
                      
 
-                        if (validPathExists)
+                        if (validPathExists && hit.collider.CompareTag("Maze"))
                         {
                             GameObject newRaft = Instantiate(raft, buildingPosition, Quaternion.identity);
                             pathValidation.rocksAndRafts.Add(raft);

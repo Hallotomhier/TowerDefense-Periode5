@@ -10,11 +10,11 @@ public class UiButtonManager : MonoBehaviour
     public Camera playerCam;
     public Camera buildingCam;
 
-    public Movement movement;
+    public PlayerMovement movement;
     public GameObject towerBuildUI;
 
     int currentScene;
-
+    ToolTipManager toolTipManager;
 
     
 
@@ -26,23 +26,12 @@ public class UiButtonManager : MonoBehaviour
         towerBuildUI.SetActive(false);
         playerCam.enabled = true;
         buildingCam.enabled = false;
-        movement.playerInput.Enable();
+        movement.input.Enable();
         Cursor.lockState = CursorLockMode.Locked;
-       
     }
 
     public void RestartGame()
     {
-        
-        if (playerCam != null)
-        {
-            playerCam.enabled = true;
-        }
-
-        if (buildingCam != null)
-        {
-            buildingCam.enabled = false;
-        }
 
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
@@ -53,5 +42,6 @@ public class UiButtonManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().buildIndex - 1;
         SceneManager.LoadScene(currentScene);
     }
+
 
 }
