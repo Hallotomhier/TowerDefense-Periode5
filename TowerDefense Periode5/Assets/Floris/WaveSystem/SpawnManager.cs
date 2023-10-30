@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Wave
@@ -17,6 +18,7 @@ public class SpawnManager : MonoBehaviour
     public float timeBetweenWaves = 10f;
     public float buildPhaseDuration;
     public float timer;
+    private float uiTimer = 4f;
 
     public List<Wave> waves = new List<Wave>();
     private int currentWave = 0;
@@ -25,6 +27,9 @@ public class SpawnManager : MonoBehaviour
     public bool isWaveActive = false;
     private int totalEnemiesSpawned = 0;
     private int totalEnemiesDefeated = 0;
+    
+    public GameObject buildPhaseUi;
+    public Image image;
 
     private enum GameState { WaitingForStart, WaveInProgress, BuildPhase }
     private GameState gameState = GameState.WaitingForStart;
@@ -52,30 +57,36 @@ public class SpawnManager : MonoBehaviour
                 {
                    
                     isBuildPhase = true;
+
+                    buildPhaseUi.SetActive(true);
                     timer += Time.deltaTime;
+                   
                     if(timer >= buildPhaseDuration)
                     {
                         totalEnemiesDefeated = 0;
                         totalEnemiesSpawned = 0;
                         StartBuildPhase();
+                       
                     }
                    
                 }
                 break;
 
             case GameState.BuildPhase:
+
                
                 if (isBuildPhase && timer >= buildPhaseDuration)
                 {
-                    timer = 0;
                     
+                    timer = 0;
+                   
                     StartNextWave();
                     
                     
                 }
                 break;
         }
-        
+        UpdateUi();
     }
 
     private void StartNextWave()
@@ -137,6 +148,15 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Total Enemies Defeated: " + totalEnemiesDefeated);
         
    }
-    
+   
+    public void UpdateUi()
+    {
+        if (timer >= uiTimer)
+        {
+            buildPhaseUi.GetComponent<Image>().color -= color (0f,0f,0f,1f);
+            
+           // buildPhaseUi.SetActive(false);
+        }
+    }
 }
 
