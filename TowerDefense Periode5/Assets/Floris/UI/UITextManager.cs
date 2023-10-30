@@ -8,15 +8,34 @@ public class UITextManager : MonoBehaviour
 {
     public GameObject currentTowerText;
     public BuildingSystem buildingSystem;
-    
-    void Start()
+    public GameObject cannonTooltip;
+    public GameObject windmillTooltip;
+    public GameObject rocksToolTip;
+    public GameObject raftTooltip;
+    public GameObject upgradeToolTip;
+
+    public void CannonTowerToolTipActive()
     {
-        
+        cannonTooltip.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WindMillTowerToolTipActive()
     {
-      
+        windmillTooltip.SetActive(true);
+    }
+    
+    public void RocksPlacementToolTipActive()
+    {
+        rocksToolTip.SetActive(true);
+    }
+
+    public void RaftPlacementToolTipActive()
+    {
+        raftTooltip.SetActive(true);
+    }
+
+    public void UpgradeToolTipActive()
+    {
+        upgradeToolTip.SetActive(true);
     }
 }
