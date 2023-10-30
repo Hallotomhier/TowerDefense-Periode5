@@ -214,8 +214,8 @@ public class BuildingSystem : MonoBehaviour
 
                         Instantiate(windmill,buildingPosition, Quaternion.identity);
                         isTowerPlacingMode = true;
-                        recources.wood -= 5;
-                        recources.stone -= 2;
+                        recources.wood -= 3;
+                        recources.stone -= 3;
                       
                         delay = 2f;
 
