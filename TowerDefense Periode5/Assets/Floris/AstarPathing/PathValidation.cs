@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PathValidation : MonoBehaviour
 {
+    public BuildingSystem buildingSystem;
     public PathFinding pathFinding;
     public List<GameObject> rocksAndRafts;
-
+    public Grid grid;
     public bool IsPathValid(Vector3 startPos, Vector3 targetPos)
     { 
 
@@ -15,18 +16,27 @@ public class PathValidation : MonoBehaviour
         {
             return true;
         }
-        
-        foreach(var obstacle in rocksAndRafts)
+        else
         {
-            obstacle.SetActive(false);
-            path = pathFinding.FindPath(startPos, targetPos);
+            Node node = grid.NodeFromWorldPoint(buildingSystem.lastPlaced.transform.position);
+            node.walkable = true;
+            Destroy(buildingSystem.lastPlaced);
+            
+        }
 
+        foreach (var obstacle in rocksAndRafts)
+        {
+           
+            path = pathFinding.FindPath(startPos, targetPos);
+            
             if(path.Count > 0)
             {
-                obstacle.SetActive(true);
+                
                 return true;
             }
-            obstacle.SetActive(true);
+          
+            
+           
         }
         return false;
     }

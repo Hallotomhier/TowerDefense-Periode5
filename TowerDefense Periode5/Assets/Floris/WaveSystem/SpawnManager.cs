@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,10 +14,14 @@ public class Wave
 
 public class SpawnManager : MonoBehaviour
 {
+    public float clock;
+    public TMP_Text timerText;
+    public bool animHasPlayed = false;
     public Transform[] spawnPoints;
     public float startTime = 50f;
     public float timeBetweenWaves = 10f;
     public float buildPhaseDuration;
+    public float timerUI= 20;
     public float timer;
     private float uiTimer = 4f;
 
@@ -38,6 +43,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+       
         timer += Time.deltaTime;
         gameState = GameState.WaveInProgress;
     }
@@ -62,8 +68,9 @@ public class SpawnManager : MonoBehaviour
 
                     buildPhaseUi.SetActive(true);
                     timer += Time.deltaTime;
-                   
-                    if(timer >= buildPhaseDuration)
+                    timerUI -= Time.deltaTime;
+
+                    if (timer >= buildPhaseDuration)
                     {
                         totalEnemiesDefeated = 0;
                         totalEnemiesSpawned = 0;
@@ -89,7 +96,9 @@ public class SpawnManager : MonoBehaviour
                 break;
         }
 
+       
         UpdateUi();
+       
     }
 
     private void StartNextWave()
@@ -138,10 +147,6 @@ public class SpawnManager : MonoBehaviour
 
     private void StartBuildPhase()
     {
-
-        
-        Debug.Log("Entering Build Phase...");
-        
         gameState = GameState.BuildPhase;
     }
 
@@ -154,13 +159,19 @@ public class SpawnManager : MonoBehaviour
    
     public void UpdateUi()
     {
-        if (timer >= uiTimer)
+       
+        timerText.text = timerUI.ToString("N0");
+
+        if (timer >= uiTimer && animHasPlayed == false)
         {
-            animator.SetTrigger("Start");
+            animator.Play("UIAnim", 1);
+            animHasPlayed = true;
+            
+           
         }
-        else
+        if(timer <= uiTimer && animHasPlayed == true)
         {
-           // animator.SetBool("UI", false);
+            animHasPlayed = false;
         }
     }
 }

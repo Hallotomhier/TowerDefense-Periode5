@@ -2117,9 +2117,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1080835360884238634}
+  - {fileID: 425793956603572295}
   - {fileID: 7840506642231196896}
   - {fileID: 414697585460059174}
-  - {fileID: 425793956603572295}
   - {fileID: 4501780576798475674}
   - {fileID: 8496579214091453964}
   - {fileID: 3743509174872253924}
@@ -2207,6 +2207,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTowerText: {fileID: 2125925924529761073}
   buildingSystem: {fileID: 0}
+  cannonTooltip: {fileID: 0}
+  windmillTooltip: {fileID: 0}
+  rocksToolTip: {fileID: 0}
+  raftTooltip: {fileID: 0}
+  upgradeToolTip: {fileID: 0}
 --- !u!1 &2869272596285900335
 GameObject:
   m_ObjectHideFlags: 0

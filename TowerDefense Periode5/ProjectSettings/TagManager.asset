@@ -20,6 +20,7 @@ TagManager:
   - WindMill
   - CannonTower
   - BirdTower
+  - Maze
   layers:
   - Default
   - TransparentFX

@@ -44,7 +44,7 @@ public class BuildingSystem : MonoBehaviour
     public float delay;
 
     public string[] upgradeTags;
-  
+    public GameObject lastPlaced;
 
     private void Awake()
     {
@@ -274,7 +274,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void BuilderRocks()
     {
-        if (recources.stone >= 1 && Mouse.current.leftButton.wasPressedThisFrame)
+        if (recources.stone >= 1 && Mouse.current.leftButton.isPressed)
         {
                 Ray ray = buildCam.ScreenPointToRay(Mouse.current.position.ReadValue());
                 RaycastHit hit;
@@ -290,20 +290,23 @@ public class BuildingSystem : MonoBehaviour
                         node.walkable = true;
                         bool validPathExists = pathValidation.IsPathValid(startPosition.transform.position, targetPosition.transform.position);
 
-
-
-                        if (validPathExists && hit.collider.CompareTag("Maze"))
+                        if (validPathExists == true &&  hit.collider.tag != "Maze")
                         {
                             GameObject newRock = Instantiate(rocks, buildingPosition, Quaternion.identity);
                             pathValidation.rocksAndRafts.Add(newRock);
+                            lastPlaced = newRock;
                             node.walkable = false;
+                            validPathExists = false;
                             recources.stone -= 1;
                             delay = 0;
                         }
-                        else
+                        else if (validPathExists == false)
                         {
+                           
                             Debug.Log("noPath.");
                             node.walkable = true;
+                            
+                            
                         }
                     }
 
