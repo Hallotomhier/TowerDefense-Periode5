@@ -139,12 +139,12 @@ PrefabInstance:
     - target: {fileID: 5859005049150666355, guid: c5e8cb94a85bdde4e848f6fef60528d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23000026
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5859005049150666355, guid: c5e8cb94a85bdde4e848f6fef60528d9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.20995903
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5859005049150666355, guid: c5e8cb94a85bdde4e848f6fef60528d9,
         type: 3}
@@ -1354,6 +1354,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4f8b2989a44016479b883139f832f2a, type: 3}
+--- !u!1001 &395643355685093998
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446212600284787676, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259164471670565222, guid: 0e3487e5b6b578b4bb8716bc4812b621,
+        type: 3}
+      propertyPath: m_Name
+      value: Papagaai tower lvl 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e3487e5b6b578b4bb8716bc4812b621, type: 3}
 --- !u!1001 &483660295014897244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1490,6 +1558,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedbb47f0a4ed574787eb3a1dc251016, type: 3}
+--- !u!1001 &1731224368844821537
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159743925541497689, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969177325645935075, guid: 934ca461c83a1e044b8c4e639c4669a8,
+        type: 3}
+      propertyPath: m_Name
+      value: Papagaai tower lvl 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 934ca461c83a1e044b8c4e639c4669a8, type: 3}
 --- !u!1001 &1897583910355290537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3064,6 +3200,74 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4176577703487715542}
   m_SourcePrefab: {fileID: 100100000, guid: c2fa2e01cb4ea5a4b879563c9d09bbeb, type: 3}
+--- !u!1001 &6367102166693642473
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250998717784778281, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064654207643270291, guid: 1752ce05ecc50c648ac7eba2630c6b2a,
+        type: 3}
+      propertyPath: m_Name
+      value: Papagaai tower lvl 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1752ce05ecc50c648ac7eba2630c6b2a, type: 3}
 --- !u!1001 &6389351262194091516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3587,3 +3791,6 @@ SceneRoots:
   - {fileID: 4507291198104088657}
   - {fileID: 1897583910355290537}
   - {fileID: 4556039133807144916}
+  - {fileID: 1731224368844821537}
+  - {fileID: 6367102166693642473}
+  - {fileID: 395643355685093998}
