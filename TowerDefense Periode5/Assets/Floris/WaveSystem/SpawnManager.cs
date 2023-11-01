@@ -30,6 +30,8 @@ public class SpawnManager : MonoBehaviour
     
     public GameObject buildPhaseUi;
     public Image image;
+    public AnimationClip animationClips;
+    public Animator animator;
 
     private enum GameState { WaitingForStart, WaveInProgress, BuildPhase }
     private GameState gameState = GameState.WaitingForStart;
@@ -86,6 +88,7 @@ public class SpawnManager : MonoBehaviour
                 }
                 break;
         }
+
         UpdateUi();
     }
 
@@ -153,9 +156,11 @@ public class SpawnManager : MonoBehaviour
     {
         if (timer >= uiTimer)
         {
-            buildPhaseUi.GetComponent<Image>().color -= color (0f,0f,0f,1f);
-            
-           // buildPhaseUi.SetActive(false);
+            animator.SetTrigger("Start");
+        }
+        else
+        {
+           // animator.SetBool("UI", false);
         }
     }
 }
