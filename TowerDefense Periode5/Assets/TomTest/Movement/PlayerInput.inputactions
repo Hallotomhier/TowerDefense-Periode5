@@ -6,15 +6,6 @@
             "id": "49a5857d-0c01-4625-a1bf-b66d45a49a24",
             "actions": [
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "80997c36-ccbe-4952-98b8-229d73fd793c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Movement",
                     "type": "Value",
                     "id": "20568fb0-191e-4923-9f0b-4969eb45bf42",
@@ -42,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
-                    "type": "PassThrough",
-                    "id": "60376cfc-cfca-4538-aa9c-db40819e234e",
+                    "name": "Pause Menu",
+                    "type": "Button",
+                    "id": "d7e8943f-c038-4ef0-9918-cea19f5d7462",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -120,17 +111,6 @@
                 },
                 {
                     "name": "",
-                    "id": "758e7eb1-99c5-417c-a94d-5c04e41a42a7",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b16b5ba1-5c4d-4241-a6ae-5951d77ee05d",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -153,12 +133,12 @@
                 },
                 {
                     "name": "",
-                    "id": "7f290ca3-6be4-418b-acc6-97d28b2e8812",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "59357b04-bcc3-44d4-a999-945f347d1356",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Sprint",
+                    "action": "Pause Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

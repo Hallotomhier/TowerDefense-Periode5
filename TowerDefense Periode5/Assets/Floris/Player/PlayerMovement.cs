@@ -17,15 +17,22 @@ public class PlayerMovement : MonoBehaviour
     public DonkeyFollowPath donkeyFollowPath;
     public GameObject donkey;
     public GameObject canvas;
+    public GameObject pauzeMenu;
     public float xRotation;
     public float camSpeed;
     RaycastHit hit;
+    public GameObject uiBuildTable;
+    public GameObject uiDonkeyTower;
+    public GameObject uiExplanationDonkeyTower;
+    public bool activatedTable;
+
     // Start is called before the first frame update
     private void Awake()
     {
         input = new PlayerInput();
         input.Player.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
         input.Player.Movement.canceled += ctx => OnMovement(Vector2.zero);
+        input.Player.PauseMenu.performed += ctx => OnPauze(ctx);
 
         input.Player.Mouse.performed += ctx => OnMouse(ctx.ReadValue<Vector2>());
         input.Player.Interact.performed += ctx => InteractPerformed(ctx);
@@ -40,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Update()
     {
+        UiHandler();
         MovementHandler();
     }
     public void MovementHandler()
@@ -49,7 +57,38 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector3(worldMovement.x * speed * Time.deltaTime, rb.velocity.y, worldMovement.z * speed * Time.deltaTime);
     }
+    public void UiHandler()
+    {
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
+        {
+            
+            if (hit.collider.CompareTag("BuildTable"))
+            {
+                uiBuildTable.SetActive(true);
+                if (activatedTable == true)
+                {
+                    uiBuildTable.SetActive(false);
+                }
+            }
+            else
+            {
+                uiBuildTable.SetActive(false);
+            }
 
+            if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
+            {
+                uiExplanationDonkeyTower.SetActive(true);
+                uiDonkeyTower.SetActive(true);
+            }
+            else
+            {
+
+                uiExplanationDonkeyTower.SetActive(false);
+                uiDonkeyTower.SetActive(false);
+            }
+        }  
+    }        
+    
     public void InteractPerformed(InputAction.CallbackContext context)
     {
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
@@ -57,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("BuildTable"))
             {
+                activatedTable = true;
                 input.Disable();
 
 
@@ -78,9 +118,11 @@ public class PlayerMovement : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                 }
             }
+            
 
-            else if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
+            if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
             {
+                
                 if (recources.wood >= 20 && recources.stone >= 12)
                 {
                     boughtDonkey = true;
@@ -99,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
+           
         }
     }
 
@@ -108,12 +151,32 @@ public class PlayerMovement : MonoBehaviour
         input.Player.Mouse.Enable();
         input.Player.Movement.Enable();
         input.Player.Interact.Enable();
+        input.Player.PauseMenu.Enable();
     }
     private void OnDisable()
     {
+        input.Player.PauseMenu.Disable();
         input.Player.Mouse.Disable();
         input.Player.Interact.Disable();
         input.Player.Movement.Disable();
+    }
+    void OnPauze(InputAction.CallbackContext context)
+    {
+        if(Time.timeScale != 0)
+        {
+            pauzeMenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if(Time.timeScale == 0)
+        {
+            pauzeMenu.SetActive(false);
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+       
+        
+
     }
     void OnMouse(Vector2 delta)
     {

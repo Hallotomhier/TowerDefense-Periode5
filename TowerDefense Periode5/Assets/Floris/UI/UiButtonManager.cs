@@ -12,14 +12,32 @@ public class UiButtonManager : MonoBehaviour
 
     public PlayerMovement movement;
     public GameObject towerBuildUI;
-
+    public GameObject pauzeMenuGame;
+    public GameObject settingsMenu;
     int currentScene;
     ToolTipManager toolTipManager;
 
     
 
-    
+    public void PauzeMenuGameBack()
+    {
+        pauzeMenuGame.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
+    public void SettingInGame()
+    {
+         pauzeMenuGame.SetActive(false);
+         settingsMenu.SetActive(true);
+       
+    }
+    public void BackSettingsMenuinGame()
+    {
+        settingsMenu.SetActive(false);
+        pauzeMenuGame.SetActive(true);
+    }
+   
     public void Back()
     {
         canvas.SetActive(true);
