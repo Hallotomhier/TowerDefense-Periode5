@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject uiDonkeyTower;
     public GameObject uiExplanationDonkeyTower;
     public bool activatedTable;
-
+    public Tutorial tutorial;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("BuildTable"))
             {
+                tutorial.tutorialStep1 = true;
                 activatedTable = true;
                 input.Disable();
 

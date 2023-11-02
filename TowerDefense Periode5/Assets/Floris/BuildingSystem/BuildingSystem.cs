@@ -16,7 +16,7 @@ public class BuildingSystem : MonoBehaviour
     public InstanceVogel birdTowerScript;
     public CannonTower cannonTowerScript;
     public WindMill windMillScript;
-
+    public Tutorial tutorial;
 
     public Vector3 buildingPos;
     [Header("Prefab")]
@@ -91,6 +91,8 @@ public class BuildingSystem : MonoBehaviour
  
     public void SpawnCannonTower()
     {
+        tutorial.tutorialStep1 = false;
+        tutorial.tutorialStep2 = true;
         isTowerPlacingMode = true;
         spawnCannonTower = true;
         spawnWindmill = false;
@@ -102,6 +104,8 @@ public class BuildingSystem : MonoBehaviour
 
     public void SpawnWindmill()
     {
+        tutorial.tutorialStep1 = false;
+        tutorial.tutorialStep2 = true;
         isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = true;
@@ -122,6 +126,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void SpawnRocks()
     {
+        tutorial.tutorialStep2 = false;
         isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = false;
@@ -131,6 +136,8 @@ public class BuildingSystem : MonoBehaviour
     }
     public void SpawnBirdTower()
     {
+        tutorial.tutorialStep1 = false;
+        tutorial.tutorialStep2 = true;
         isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = false;
@@ -141,6 +148,8 @@ public class BuildingSystem : MonoBehaviour
 
     public void UpgradeTowersCheck() 
     {
+        tutorial.tutorialStep3 = false;
+        tutorial.tutorialStep4 = true;
         isTowerPlacingMode = true;
         spawnCannonTower = false;
         spawnWindmill = false;
@@ -175,6 +184,7 @@ public class BuildingSystem : MonoBehaviour
                         isTowerPlacingMode = true;
                         recources.wood -= 5;
                         recources.stone -= 2;
+                       
                         
                         delay = 2f;
 
@@ -216,7 +226,8 @@ public class BuildingSystem : MonoBehaviour
                         isTowerPlacingMode = true;
                         recources.wood -= 3;
                         recources.stone -= 3;
-                      
+                        tutorial.tutorialStep2 = true;
+
                         delay = 2f;
 
                         //Cancel
@@ -299,7 +310,8 @@ public class BuildingSystem : MonoBehaviour
                             validPathExists = false;
                             recources.stone -= 1;
                             delay = 0;
-                        }
+                            tutorial.tutorialStep3 = true;
+                    }
                         else if (validPathExists == false)
                         {
                            
@@ -354,6 +366,7 @@ public class BuildingSystem : MonoBehaviour
                             recources.stone -= 1;
                             recources.wood -= 5;
                             delay = 0;
+                            tutorial.tutorialStep3 = true;
 
                         }
                         else
@@ -386,6 +399,7 @@ public class BuildingSystem : MonoBehaviour
                     cannonTowerScript = hit.collider.GetComponent<CannonTower>();
                     if (cannonTowerScript != null)
                     {
+                        tutorial.tutorialStep4 = true;
                         cannonTowerScript.level++;
                         cannonTowerScript.UpgradeSystem();
                     }
@@ -396,6 +410,7 @@ public class BuildingSystem : MonoBehaviour
                     windMillScript = hit.collider.GetComponent<WindMill>();
                     if(windMillScript != null)
                     {
+                        tutorial.tutorialStep4 = true;
                         windMillScript.level++;
                         windMillScript.UpgradeSystem();
                     }
@@ -403,6 +418,7 @@ public class BuildingSystem : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("BirdTower")) /* && birdTowerScript.level != 2)*/
                 {
+                    tutorial.tutorialStep4 = true;
                     birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
                     birdTowerScript.level++;
                 }

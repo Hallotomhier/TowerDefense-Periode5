@@ -46,6 +46,7 @@ public class UiButtonManager : MonoBehaviour
         buildingCam.enabled = false;
         movement.input.Enable();
         Cursor.lockState = CursorLockMode.Locked;
+        movement.activatedTable = false;
     }
 
     public void RestartGame()
