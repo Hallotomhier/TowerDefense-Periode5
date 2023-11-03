@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4160785391729001550}
   - component: {fileID: 3599251607279110789}
   - component: {fileID: 3203517638895311269}
-  - component: {fileID: 1956345019700360990}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -144,6 +143,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   speed: 3
   hp: 30
   thh: {fileID: 0}
@@ -174,15 +178,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &1956345019700360990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085647485430701020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511f22586c0d64140b4ff73498bd21c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -169,7 +169,7 @@ public class BuildingSystem : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Node node = grid.NodeFromWorldPoint(hit.point);
-                Vector3 buildingPosition = node.worldPosition;
+                Vector3 buildingPosition = hit.point;
 
                 if (node != null && !node.walkable && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill") || node != null && !node.walkable && hit.collider.CompareTag("Raft") && hit.collider.tag != ("CannonTower") && hit.collider.tag != ("WindMill"))
                 {

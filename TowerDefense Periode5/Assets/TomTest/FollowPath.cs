@@ -53,7 +53,7 @@ public class FollowPath : MonoBehaviour
             nowPos = (nowPos + 1) % pathPos.Length;
         }
 
-        if(nowPos == 22)
+        if(nowPos == 32)
         {
             thh.townHealth -= 10;
             Destroy(gameObject);
