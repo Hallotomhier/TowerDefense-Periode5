@@ -358,7 +358,7 @@ public class BuildingSystem : MonoBehaviour
 
                      
 
-                        if (validPathExists && hit.collider.CompareTag("Maze"))
+                        if (validPathExists && hit.collider.tag != ("Maze"))
                         {
                             GameObject newRaft = Instantiate(raft, buildingPosition, Quaternion.identity);
                             pathValidation.rocksAndRafts.Add(raft);
@@ -418,10 +418,16 @@ public class BuildingSystem : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("BirdTower")) /* && birdTowerScript.level != 2)*/
                 {
-                    tutorial.tutorialStep4 = true;
                     birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
-                    birdTowerScript.level++;
+                    if(birdTowerScript != null)
+                    {
+                        tutorial.tutorialStep4 = true;
+                        birdTowerScript.level++;
+                        birdTowerScript.UpgradeSystemBird();
+                    }
+                    
                 }
+               
 
 
 

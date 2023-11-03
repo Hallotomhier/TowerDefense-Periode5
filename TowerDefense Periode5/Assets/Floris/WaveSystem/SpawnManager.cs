@@ -148,6 +148,7 @@ public class SpawnManager : MonoBehaviour
     private void StartBuildPhase()
     {
         gameState = GameState.BuildPhase;
+        timerUI = 20;
     }
 
    public void EnemyDefeated()
@@ -161,7 +162,7 @@ public class SpawnManager : MonoBehaviour
     {
        
         timerText.text = timerUI.ToString("N0");
-
+        // kijk hier nog na vanavond
         if (timer >= uiTimer && animHasPlayed == false)
         {
             animator.Play("UIAnim", 1);

@@ -54,23 +54,24 @@ public class InstanceVogel : MonoBehaviour
 
     }
 
-    public void UpgradeSystem()
+   
+
+    public void UpgradeSystemBird()
     {
-        if (towerLevel[0])
+        if (towerLevel[level] == towerLevel[0])
         {
             towerLevel[level].SetActive(true);
 
         }
-        else if (towerLevel[1])
+        else if (towerLevel[level] == towerLevel[1])
         {
             towerLevel[0].SetActive(false);
             towerLevel[level].SetActive(true);
         }
-        else if (towerLevel[2])
+        else if (towerLevel[level] == towerLevel[2])
         {
             towerLevel[1].SetActive(false);
             towerLevel[level].SetActive(true);
         }
     }
-
 }

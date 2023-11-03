@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class DonkeyFollowPath : MonoBehaviour
@@ -7,6 +8,8 @@ public class DonkeyFollowPath : MonoBehaviour
     public Recources recources;
     private int numberOfWaypoints = 31;
     public Transform[] pathPos;
+    public Transform front;
+    
     private int nowPos = 0;
     public float speed = 5;
 
@@ -31,15 +34,21 @@ public class DonkeyFollowPath : MonoBehaviour
         }
     }
 
-    
+    private void Awake()
+    {
+        
+    }
+
     void Update()
     {
 
         if (transform.position != pathPos[nowPos].position)
         {
-            gameObject.transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position, speed * Time.deltaTime);
-            var targetRotation = Quaternion.LookRotation(pathPos[nowPos].position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+            
+            transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position, speed * Time.deltaTime);
+            transform.LookAt(pathPos[nowPos]);
+            //var targetRotation = Quaternion.LookRotation(pathPos[nowPos].position - front.transform.position);
+            //transform.rotation = Quaternion.Slerp(front.transform.rotation, targetRotation, speed * Time.deltaTime);
         }
         else
         {
