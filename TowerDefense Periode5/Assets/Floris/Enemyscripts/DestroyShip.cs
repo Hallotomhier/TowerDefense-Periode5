@@ -30,7 +30,7 @@ public class DestroyShip : MonoBehaviour
 
     private IEnumerator StandStillAndSpawn()
     {
-        Debug.Log("Fired");
+        Debug.Log("spawning enemy");
         while (spawnList.Count > 0)
         {
 

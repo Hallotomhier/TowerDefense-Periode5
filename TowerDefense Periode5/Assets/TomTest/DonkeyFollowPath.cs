@@ -44,11 +44,9 @@ public class DonkeyFollowPath : MonoBehaviour
 
         if (transform.position != pathPos[nowPos].position)
         {
-            
+          
             transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position, speed * Time.deltaTime);
-            transform.LookAt(pathPos[nowPos]);
-            //var targetRotation = Quaternion.LookRotation(pathPos[nowPos].position - front.transform.position);
-            //transform.rotation = Quaternion.Slerp(front.transform.rotation, targetRotation, speed * Time.deltaTime);
+         
         }
         else
         {

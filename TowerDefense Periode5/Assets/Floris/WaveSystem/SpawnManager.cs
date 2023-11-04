@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
     public float buildPhaseDuration;
     public float timerUI= 20;
     public float timer;
-    private float uiTimer = 4f;
+   
 
     public List<Wave> waves = new List<Wave>();
     private int currentWave = 0;
@@ -44,8 +44,8 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
        
-        timer += Time.deltaTime;
-        gameState = GameState.WaveInProgress;
+        
+        gameState = GameState.WaitingForStart;
     }
 
     private void Update()
@@ -53,73 +53,91 @@ public class SpawnManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.WaitingForStart:
-                if (Time.time >= startTime)
+                if (timer >= startTime)
                 {
-                    StartNextWave();
+                    Debug.Log(gameState);
+
+                    gameState = GameState.WaveInProgress;
                 }
                 break;
 
             case GameState.WaveInProgress:
-              
                 if (totalEnemiesDefeated == totalEnemiesSpawned)
                 {
-                   
-                    isBuildPhase = true;
-
                     buildPhaseUi.SetActive(true);
-                    timer += Time.deltaTime;
+                    Debug.Log(gameState);
+                    isBuildPhase = true;
+                    isWaveActive = false;
+
+                    
+                   
+                   
                     timerUI -= Time.deltaTime;
 
-                    if (timer >= buildPhaseDuration)
+
+                    if (timerUI <= 1)
                     {
                         totalEnemiesDefeated = 0;
                         totalEnemiesSpawned = 0;
-                        StartBuildPhase();
-                       
+                        
+                        timer = 0;
+
+                        StartNextWave();
+                        timerUI = 20;
+                        
+
+
                     }
-                   
+
                 }
+                
                 break;
+
 
             case GameState.BuildPhase:
 
-               
+                isWaveActive = true;
+                isBuildPhase = false;
                 if (isBuildPhase && timer >= buildPhaseDuration)
                 {
-                    
+
                     timer = 0;
-                   
+                    timerUI = 20;
+                    
                     StartNextWave();
                     
-                    
+
+
                 }
                 break;
+
+               
         }
 
        
         UpdateUi();
-       
+        timer += Time.deltaTime;
+        
     }
 
     private void StartNextWave()
     {
-        if (totalEnemiesDefeated >= totalEnemiesSpawned)
-        {
             currentWave++;
             isBuildPhase = false;
             isWaveActive = true;
-            
+            buildPhaseUi.SetActive(false);
 
             Debug.Log("Starting Wave " + currentWave);
+            animator.SetTrigger("BuildPhaseStart");
            
-            if(currentWave <= waves.Count)
+            if(currentWave < waves.Count)
             {
                 StartCoroutine(SpawnWaveEnemies(currentWave));
 
             }
 
             gameState = GameState.WaveInProgress;
-        }
+            
     }
 
     private IEnumerator SpawnWaveEnemies(int currentWave)
@@ -145,11 +163,7 @@ public class SpawnManager : MonoBehaviour
 
     }
 
-    private void StartBuildPhase()
-    {
-        gameState = GameState.BuildPhase;
-        timerUI = 20;
-    }
+   
 
    public void EnemyDefeated()
    {
@@ -163,17 +177,18 @@ public class SpawnManager : MonoBehaviour
        
         timerText.text = timerUI.ToString("N0");
         // kijk hier nog na vanavond
-        if (timer >= uiTimer && animHasPlayed == false)
+        if(gameState != GameState.WaveInProgress)
         {
-            animator.Play("UIAnim", 1);
-            animHasPlayed = true;
+            animator.ResetTrigger("StartBuildPhase");
             
-           
         }
-        if(timer <= uiTimer && animHasPlayed == true)
-        {
-            animHasPlayed = false;
-        }
+        
+        
+            
+        
+       
+        
+        
     }
 }
 

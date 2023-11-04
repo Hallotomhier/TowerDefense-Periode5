@@ -54,7 +54,7 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnManager.isBuildPhase)
+        if (spawnManager.isWaveActive == true)
         {
             
             if (spawnRaft)
@@ -397,8 +397,10 @@ public class BuildingSystem : MonoBehaviour
                 if (hit.collider.CompareTag("CannonTower")) /*&& cannonTowerScript.level != 2)*/
                 {
                     cannonTowerScript = hit.collider.GetComponent<CannonTower>();
-                    if (cannonTowerScript != null)
+                    if (cannonTowerScript != null && recources.wood >= 10 && recources.stone >= 10)
                     {
+                        recources.wood -= 10;
+                        recources.stone -= 10;
                         tutorial.tutorialStep4 = true;
                         cannonTowerScript.level++;
                         cannonTowerScript.UpgradeSystem();
@@ -408,8 +410,10 @@ public class BuildingSystem : MonoBehaviour
                 else if (hit.collider.CompareTag("WindMill"))/*&& windMillScript.level != 2)*/
                 {
                     windMillScript = hit.collider.GetComponent<WindMill>();
-                    if(windMillScript != null)
+                    if(windMillScript != null && recources.wood >= 10 && recources.stone >= 10)
                     {
+                        recources.wood -= 10;
+                        recources.stone -= 10;
                         tutorial.tutorialStep4 = true;
                         windMillScript.level++;
                         windMillScript.UpgradeSystem();
@@ -419,8 +423,10 @@ public class BuildingSystem : MonoBehaviour
                 else if (hit.collider.CompareTag("BirdTower")) /* && birdTowerScript.level != 2)*/
                 {
                     birdTowerScript = hit.collider.GetComponent<InstanceVogel>();
-                    if(birdTowerScript != null)
+                    if(birdTowerScript != null && recources.wood >=10 && recources.stone >= 10)
                     {
+                        recources.wood -= 10;
+                        recources.stone -= 10;
                         tutorial.tutorialStep4 = true;
                         birdTowerScript.level++;
                         birdTowerScript.UpgradeSystemBird();

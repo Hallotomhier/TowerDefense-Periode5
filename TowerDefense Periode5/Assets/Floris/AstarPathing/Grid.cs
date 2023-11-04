@@ -146,7 +146,7 @@ public class Grid: MonoBehaviour
             
             if (hit.transform.gameObject.layer == unWalkable)
             {
-                Debug.Log(hit.transform.name);
+                //Debug.Log(hit.transform.name);
                 return false;
             }
         }

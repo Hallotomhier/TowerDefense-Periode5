@@ -89,7 +89,7 @@ public class Unit : MonoBehaviour
                 yield return null;
             }
 
-            Debug.Log("Reached waypoint " + i + ".");
+            //Debug.Log("Reached waypoint " + i + ".");
             yield return null;
         }
 

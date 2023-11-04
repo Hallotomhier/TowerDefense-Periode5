@@ -7,7 +7,8 @@ public class DonkeyCollect : MonoBehaviour
     public Recources recources;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Donkey"))
+        Debug.Log(other.name);
+        if (other.gameObject.tag == "Donkey")
         {
             recources.wood += 11;
             recources.stone += 12;
