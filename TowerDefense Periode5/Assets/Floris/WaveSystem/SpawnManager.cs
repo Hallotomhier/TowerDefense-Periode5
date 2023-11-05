@@ -103,7 +103,7 @@ public class SpawnManager : MonoBehaviour
 
                     timer = 0;
                     timerUI = 20;
-                    
+                    animator.SetBool("PlayTimer", true);
                     StartNextWave();
                     
 
@@ -128,7 +128,7 @@ public class SpawnManager : MonoBehaviour
             buildPhaseUi.SetActive(false);
 
             Debug.Log("Starting Wave " + currentWave);
-            animator.SetTrigger("BuildPhaseStart");
+            animator.SetBool("PlayBuildPhase", true);
            
             if(currentWave < waves.Count)
             {
@@ -179,7 +179,7 @@ public class SpawnManager : MonoBehaviour
         // kijk hier nog na vanavond
         if(gameState != GameState.WaveInProgress)
         {
-            animator.ResetTrigger("StartBuildPhase");
+            animator.SetBool("PlayBuildPhase",false);
             
         }
         
