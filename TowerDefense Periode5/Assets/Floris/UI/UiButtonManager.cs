@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class UiButtonManager : MonoBehaviour
 {
     public GameObject canvas;
@@ -15,7 +16,8 @@ public class UiButtonManager : MonoBehaviour
     public GameObject pauzeMenuGame;
     public GameObject settingsMenu;
     int currentScene;
-    ToolTipManager toolTipManager;
+   
+    public SpawnManager spawnManager;
 
     
 
@@ -62,5 +64,10 @@ public class UiButtonManager : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
+    public void StartNextWave()
+    {
+        spawnManager.timer = 20;
+        spawnManager.gameState = SpawnManager.GameState.BuildPhase;
+    }
 
 }

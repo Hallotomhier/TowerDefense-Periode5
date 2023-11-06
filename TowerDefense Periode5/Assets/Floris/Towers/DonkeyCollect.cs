@@ -10,8 +10,8 @@ public class DonkeyCollect : MonoBehaviour
         Debug.Log(other.name);
         if (other.gameObject.tag == "Donkey")
         {
-            recources.wood += 11;
-            recources.stone += 12;
+            recources.wood += 5;
+            recources.stone += 8;
         }
     }
 }

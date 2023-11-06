@@ -54,7 +54,7 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnManager.isWaveActive == true)
+        if (spawnManager.isWaveActive == false)
         {
             
             if (spawnRaft)

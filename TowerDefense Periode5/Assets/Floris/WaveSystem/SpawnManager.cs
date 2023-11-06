@@ -30,16 +30,20 @@ public class SpawnManager : MonoBehaviour
   
     public bool isBuildPhase = false;
     public bool isWaveActive = false;
-    private int totalEnemiesSpawned = 0;
-    private int totalEnemiesDefeated = 0;
+    public int totalEnemiesSpawned = 0;
+    public int totalEnemiesDefeated = 0;
     
     public GameObject buildPhaseUi;
     public Image image;
     public AnimationClip animationClips;
     public Animator animator;
 
-    private enum GameState { WaitingForStart, WaveInProgress, BuildPhase }
-    private GameState gameState = GameState.WaitingForStart;
+    public Button buttonNextWave;
+    public Button buttonSpawnRocks;
+    public Button buttonSpawnRaft;
+
+    public enum GameState { WaitingForStart, WaveInProgress, BuildPhase }
+    public GameState gameState = GameState.WaitingForStart;
 
     private void Start()
     {
@@ -56,7 +60,7 @@ public class SpawnManager : MonoBehaviour
                 if (timer >= startTime)
                 {
                     Debug.Log(gameState);
-
+                    animator.SetBool("PlayBuildphase", true);
                     gameState = GameState.WaveInProgress;
                 }
                 break;
@@ -65,6 +69,9 @@ public class SpawnManager : MonoBehaviour
                 if (totalEnemiesDefeated == totalEnemiesSpawned)
                 {
                     buildPhaseUi.SetActive(true);
+                    buttonNextWave.interactable = true;
+                    buttonSpawnRaft.interactable = true;
+                    buttonSpawnRocks.interactable = true;
                     Debug.Log(gameState);
                     isBuildPhase = true;
                     isWaveActive = false;
@@ -98,12 +105,16 @@ public class SpawnManager : MonoBehaviour
 
                 isWaveActive = true;
                 isBuildPhase = false;
-                if (isBuildPhase && timer >= buildPhaseDuration)
+                if (isWaveActive && timer >= buildPhaseDuration)
                 {
 
+                    buttonNextWave.interactable = false;
+                    buttonSpawnRaft.interactable = false;
+                    buttonSpawnRocks.interactable = false;
                     timer = 0;
                     timerUI = 20;
                     animator.SetBool("PlayTimer", true);
+                    
                     StartNextWave();
                     
 
@@ -120,7 +131,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    private void StartNextWave()
+    public void StartNextWave()
     {
             currentWave++;
             isBuildPhase = false;
@@ -128,7 +139,7 @@ public class SpawnManager : MonoBehaviour
             buildPhaseUi.SetActive(false);
 
             Debug.Log("Starting Wave " + currentWave);
-            animator.SetBool("PlayBuildPhase", true);
+            
            
             if(currentWave < waves.Count)
             {

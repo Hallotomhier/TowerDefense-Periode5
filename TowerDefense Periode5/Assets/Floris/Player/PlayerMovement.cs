@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera buildingCamera;
     bool boughtDonkey;
     public DonkeyFollowPath donkeyFollowPath;
+    public InstanceVogel birdTowerScript;
     public GameObject donkey;
     public GameObject canvas;
     public GameObject pauzeMenu;
@@ -24,7 +23,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject uiBuildTable;
     public GameObject uiDonkeyTower;
     public GameObject uiExplanationDonkeyTower;
+    public GameObject uiExplanationBirdTower;
+
     public bool activatedTable;
+    public bool hasBoughtBird;
     public Tutorial tutorial;
     // Start is called before the first frame update
     private void Awake()
@@ -70,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
                     uiBuildTable.SetActive(false);
                 }
             }
-            else
+            else if(hit.collider.tag != ("BuildTable"))
             {
                 uiBuildTable.SetActive(false);
             }
@@ -84,6 +86,17 @@ public class PlayerMovement : MonoBehaviour
             {
 
                 uiExplanationDonkeyTower.SetActive(false);
+                uiDonkeyTower.SetActive(false);
+            }
+
+            if (hit.collider.CompareTag("BirdTower") && !hasBoughtBird)
+            {
+                uiExplanationBirdTower.SetActive(true);
+                uiDonkeyTower.SetActive(true);
+            }
+            else
+            {
+                uiExplanationBirdTower.SetActive(false);
                 uiDonkeyTower.SetActive(false);
             }
         }  
@@ -140,6 +153,16 @@ public class PlayerMovement : MonoBehaviour
                     {
                         donkey.SetActive(true);
                     }
+                }
+            }
+            else if(hit.collider.CompareTag("BirdTower") && !hasBoughtBird)
+            {
+                if(recources.wood >= 30 && recources.stone >= 25)
+                {
+                    hasBoughtBird = true;
+                    recources.wood -= 30;
+                    recources.stone -= 25;
+                    birdTowerScript.enabled = true;
                 }
             }
            
