@@ -90,11 +90,11 @@ public class VogelBoem : MonoBehaviour
             var enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.health -= 50;
+                enemyHealth.health -= 25;
             }
             if(enemyLandHealth != null)
             {
-                enemyLandHealth.hp -= 50;
+                enemyLandHealth.hp -= 25;
             }
         }
         isExploding = false;

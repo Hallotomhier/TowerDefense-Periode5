@@ -130,6 +130,8 @@ MonoBehaviour:
   heightOffset: 1
   spawnManager: {fileID: 0}
   recources: {fileID: 0}
+  getWood: 3
+  getStone: 3
 --- !u!65 &8657687264143543588
 BoxCollider:
   m_ObjectHideFlags: 0

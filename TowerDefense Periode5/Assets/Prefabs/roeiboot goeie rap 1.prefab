@@ -135,6 +135,8 @@ MonoBehaviour:
   heightOffset: 1
   spawnManager: {fileID: 0}
   recources: {fileID: 0}
+  getWood: 4
+  getStone: 2
 --- !u!114 &7440596857696366299
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ public class Unit : MonoBehaviour
     public float heightOffset = 1.0f;
     public SpawnManager spawnManager;
     public Recources recources;
-    
+    public int getWood;
+    public int getStone;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,8 +107,8 @@ public class Unit : MonoBehaviour
         }
         spawnManager.EnemyDefeated();
 
-        recources.wood += 10;
-        recources.stone += 5;
+        getWood += recources.wood;
+        getStone += recources.stone;
         
         Destroy(gameObject);
     }

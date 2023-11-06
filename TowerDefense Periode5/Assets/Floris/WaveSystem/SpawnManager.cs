@@ -23,10 +23,11 @@ public class SpawnManager : MonoBehaviour
     public float buildPhaseDuration;
     public float timerUI= 20;
     public float timer;
+    public GameObject victoryScreen;
    
 
     public List<Wave> waves = new List<Wave>();
-    private int currentWave = 0;
+    public int currentWave = 0;
   
     public bool isBuildPhase = false;
     public bool isWaveActive = false;
@@ -108,13 +109,14 @@ public class SpawnManager : MonoBehaviour
                 if (isWaveActive && timer >= buildPhaseDuration)
                 {
 
-                    buttonNextWave.interactable = false;
-                    buttonSpawnRaft.interactable = false;
-                    buttonSpawnRocks.interactable = false;
                     timer = 0;
                     timerUI = 20;
                     animator.SetBool("PlayTimer", true);
-                    
+
+                    buttonNextWave.interactable = false;
+                    buttonSpawnRaft.interactable = false;
+                    buttonSpawnRocks.interactable = false;
+
                     StartNextWave();
                     
 
@@ -125,6 +127,13 @@ public class SpawnManager : MonoBehaviour
                
         }
 
+       if(totalEnemiesSpawned == totalEnemiesDefeated)
+       {
+            if (currentWave == waves.Count)
+            {
+                Victory();
+            }
+        }
        
         UpdateUi();
         timer += Time.deltaTime;
@@ -176,13 +185,17 @@ public class SpawnManager : MonoBehaviour
 
    
 
-   public void EnemyDefeated()
-   {
+    public void EnemyDefeated()
+    {
         totalEnemiesDefeated++;
         Debug.Log("Total Enemies Defeated: " + totalEnemiesDefeated);
         
-   }
+    }
    
+    public void Victory()
+    {
+        victoryScreen.SetActive(true);
+    }
     public void UpdateUi()
     {
        

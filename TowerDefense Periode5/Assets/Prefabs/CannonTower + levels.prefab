@@ -54,11 +54,11 @@ MonoBehaviour:
   target: {fileID: 0}
   rotateTargetLevel0: {fileID: 4500994085124881145}
   rotateTargetLevel1: {fileID: 8818382550293402272}
-  damage: 0a0000001400000028000000
+  damage: 050000000a00000014000000
   delay:
-  - 1.5
+  - 3
+  - 2
   - 1
-  - 0.5
   towerLevel:
   - {fileID: 1464811745506361122}
   - {fileID: 8633168658936564547}

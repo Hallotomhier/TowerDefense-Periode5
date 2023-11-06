@@ -62,7 +62,7 @@ public class CannonTower : MonoBehaviour
             if (timer > delay[level])
             {
                 Shoot();
-                timer -= delay[level];
+                timer = 0;
             }
         }
         else
