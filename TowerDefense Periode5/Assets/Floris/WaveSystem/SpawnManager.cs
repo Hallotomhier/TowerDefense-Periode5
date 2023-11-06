@@ -92,7 +92,10 @@ public class SpawnManager : MonoBehaviour
 
                         StartNextWave();
                         timerUI = 20;
-                        
+                        buttonNextWave.interactable = false;
+                        buttonSpawnRaft.interactable = false;
+                        buttonSpawnRocks.interactable = false;
+
 
 
                     }
@@ -113,9 +116,7 @@ public class SpawnManager : MonoBehaviour
                     timerUI = 20;
                     animator.SetBool("PlayTimer", true);
 
-                    buttonNextWave.interactable = false;
-                    buttonSpawnRaft.interactable = false;
-                    buttonSpawnRocks.interactable = false;
+                   
 
                     StartNextWave();
                     
