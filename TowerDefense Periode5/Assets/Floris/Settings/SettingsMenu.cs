@@ -12,13 +12,14 @@ public class SettingsMenu : MonoBehaviour
     public GameObject title;
     public GameObject settingsMenu;
     public GameObject credits;
-
+    public float beginSound = 0.1f;
     
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
     private void Start()
     {
+        SetVolume(beginSound);
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
