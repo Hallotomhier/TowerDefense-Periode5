@@ -188,7 +188,7 @@ public class BuildingSystem : MonoBehaviour
                         
                         delay = 2f;
 
-                        //Cancel
+                       
                         
                     }
                 }
@@ -230,7 +230,6 @@ public class BuildingSystem : MonoBehaviour
 
                         delay = 2f;
 
-                        //Cancel
                        
                     }
                 }

@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject uiDonkeyTower;
     public GameObject uiExplanationDonkeyTower;
     public GameObject uiExplanationBirdTower;
+    public GameObject uiBird;
 
     public bool activatedTable;
     public bool hasBoughtBird;
@@ -45,10 +46,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-       
+
     }
     public void Update()
     {
+       
         UiHandler();
         MovementHandler();
     }
@@ -63,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
         {
-            
+
             if (hit.collider.CompareTag("BuildTable"))
             {
                 uiBuildTable.SetActive(true);
@@ -72,150 +74,157 @@ public class PlayerMovement : MonoBehaviour
                     uiBuildTable.SetActive(false);
                 }
             }
-            else if(hit.collider.tag != ("BuildTable"))
+            else if (hit.collider.tag != ("BuildTable"))
             {
                 uiBuildTable.SetActive(false);
             }
 
             if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
             {
-                uiExplanationDonkeyTower.SetActive(true);
                 uiDonkeyTower.SetActive(true);
+                uiExplanationDonkeyTower.SetActive(true);
+
             }
             else
             {
 
                 uiExplanationDonkeyTower.SetActive(false);
                 uiDonkeyTower.SetActive(false);
-            }
 
+
+            }
             if (hit.collider.CompareTag("BirdTower") && !hasBoughtBird)
             {
                 uiExplanationBirdTower.SetActive(true);
-                uiDonkeyTower.SetActive(true);
+                uiBird.SetActive(true);
             }
             else
             {
                 uiExplanationBirdTower.SetActive(false);
-                uiDonkeyTower.SetActive(false);
+                uiBird.SetActive(false);
+
             }
-        }  
-    }        
+        }
+    }
+
+        public void InteractPerformed(InputAction.CallbackContext context)
+        {
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
+            {
+                Debug.Log(hit.collider.name);
+                if (hit.collider.CompareTag("BuildTable"))
+                {
+                    tutorial.tutorialStep1 = true;
+                    activatedTable = true;
+                    input.Disable();
+
+
+                    if (buildingCamera != null)
+                    {
+                        buildingCamera.enabled = true;
+                    }
+
+                    if (playerCamera != null)
+                    {
+                        playerCamera.enabled = false;
+                    }
+
+                    canvas.SetActive(true);
+
+
+                    if (buildingCamera != null)
+                    {
+                        Cursor.lockState = CursorLockMode.None;
+                    }
+                }
+
+
+                if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
+                {
+
+                    if (recources.wood >= 20 && recources.stone >= 12)
+                    {
+                        boughtDonkey = true;
+                        recources.wood -= 20;
+                        recources.stone -= 12;
+
+
+                        if (donkeyFollowPath != null)
+                        {
+                            donkeyFollowPath.enabled = true;
+                        }
+
+                        if (donkey != null)
+                        {
+                            donkey.SetActive(true);
+                        }
+                    }
+                }
+                else if (hit.collider.CompareTag("BirdTower") && !hasBoughtBird)
+                {
+                    if (recources.wood >= 30 && recources.stone >= 25)
+                    {
+                        hasBoughtBird = true;
+                        recources.wood -= 30;
+                        recources.stone -= 25;
+                        birdTowerScript.enabled = true;
+                    }
+                }
+
+            }
+        }
+
     
-    public void InteractPerformed(InputAction.CallbackContext context)
-    {
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
+
+        private void OnEnable()
         {
-            Debug.Log(hit.collider.name);
-            if (hit.collider.CompareTag("BuildTable"))
-            {
-                tutorial.tutorialStep1 = true;
-                activatedTable = true;
-                input.Disable();
-
-
-                if (buildingCamera != null)
-                {
-                    buildingCamera.enabled = true;
-                }
-
-                if (playerCamera != null)
-                {
-                    playerCamera.enabled = false;
-                }
-
-                canvas.SetActive(true);
-
-
-                if (buildingCamera != null)
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                }
-            }
-            
-
-            if (hit.collider.CompareTag("DonkeyHouse") && !boughtDonkey)
-            {
-                
-                if (recources.wood >= 20 && recources.stone >= 12)
-                {
-                    boughtDonkey = true;
-                    recources.wood -= 20;
-                    recources.stone -= 12;
-
-
-                    if (donkeyFollowPath != null)
-                    {
-                        donkeyFollowPath.enabled = true;
-                    }
-
-                    if (donkey != null)
-                    {
-                        donkey.SetActive(true);
-                    }
-                }
-            }
-            else if(hit.collider.CompareTag("BirdTower") && !hasBoughtBird)
-            {
-                if(recources.wood >= 30 && recources.stone >= 25)
-                {
-                    hasBoughtBird = true;
-                    recources.wood -= 30;
-                    recources.stone -= 25;
-                    birdTowerScript.enabled = true;
-                }
-            }
-           
+            input.Player.Mouse.Enable();
+            input.Player.Movement.Enable();
+            input.Player.Interact.Enable();
+            input.Player.PauseMenu.Enable();
         }
-    }
-
-
-    private void OnEnable()
-    {
-        input.Player.Mouse.Enable();
-        input.Player.Movement.Enable();
-        input.Player.Interact.Enable();
-        input.Player.PauseMenu.Enable();
-    }
-    private void OnDisable()
-    {
-        input.Player.PauseMenu.Disable();
-        input.Player.Mouse.Disable();
-        input.Player.Interact.Disable();
-        input.Player.Movement.Disable();
-    }
-    void OnPauze(InputAction.CallbackContext context)
-    {
-        if(Time.timeScale != 0)
+        private void OnDisable()
         {
-            pauzeMenu.SetActive(true);
-            Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
+            input.Player.PauseMenu.Disable();
+            input.Player.Mouse.Disable();
+            input.Player.Interact.Disable();
+            input.Player.Movement.Disable();
         }
-        else if(Time.timeScale == 0)
+        void OnPauze(InputAction.CallbackContext context)
         {
-            pauzeMenu.SetActive(false);
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (Time.timeScale != 0)
+            {
+                pauzeMenu.SetActive(true);
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else if (Time.timeScale == 0)
+            {
+                pauzeMenu.SetActive(false);
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+
+
         }
-       
-        
+        void OnMouse(Vector2 delta)
+        {
+            float mouseX = delta.x * camSpeed * Time.deltaTime;
+            float mouseY = delta.y * camSpeed * Time.deltaTime;
 
-    }
-    void OnMouse(Vector2 delta)
-    {
-        float mouseX = delta.x * camSpeed * Time.deltaTime;
-        float mouseY = delta.y * camSpeed * Time.deltaTime;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+            transform.Rotate(Vector3.up * mouseX);
+        }
+        void OnMovement(Vector2 value)
+        {
 
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        transform.Rotate(Vector3.up * mouseX);
-    }
-    void OnMovement(Vector2 value)
-    {
-        currentMovement = value;
-    }
+            currentMovement = value;
+        }
+    
 }
+
    
