@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CannonTower : MonoBehaviour
@@ -13,6 +14,10 @@ public class CannonTower : MonoBehaviour
     public float[] delay;
     public GameObject[] towerLevel;
 
+    public GameObject bulletPrefab;
+    public GameObject[] shootpoint;
+    public float bulletSpeed;
+    public GameObject bulletActive;
     public GameObject level1;
     public GameObject level2;
     public GameObject level3;
@@ -23,7 +28,7 @@ public class CannonTower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletPrefab = GameObject.Find("CannonBall");
     }
 
     // Update is called once per frame
@@ -75,21 +80,68 @@ public class CannonTower : MonoBehaviour
     
     public void Shoot()
     {
-        if (target.GetComponent<FollowPath>())
+        if(target != null && bulletActive == null)
         {
-            target.GetComponent<FollowPath>().hp -= damage[level];
+            
+
+            bulletActive = Instantiate(bulletPrefab, shootpoint[level].transform.position, quaternion.identity);
+
+           
+            StartCoroutine(MoveToTarget());
 
         }
-        if (target.GetComponent<Unit>())
-        {
-            target.GetComponent<EnemyHealth>().health -= damage[level];
-            Debug.Log("Shot");
-
-        }
+        
 
 
     }
+    public IEnumerator MoveToTarget()
+    {
+        while (bulletActive !=null && target != null)
+        {
+            if(target == null || target.gameObject.activeSelf == false)
+            {
+                Destroy(bulletActive);
+                bulletActive = null;
+                yield break;
+            }
+            float distanceToTarget = Vector3.Distance(bulletActive.transform.position, target.position);
+            while (distanceToTarget <= 0.1f)
+            {
+                Destroy(bulletActive);
+                bulletActive = null;
+                if (target.GetComponent<FollowPath>())
+                {
+                    target.GetComponent<FollowPath>().hp -= damage[level];
+
+                }
+                if (target.GetComponent<Unit>())
+                {
+                    target.GetComponent<EnemyHealth>().health -= damage[level];
+                    Debug.Log("Shot");
+                }
+                yield break;
+            }
+
+            bulletActive.transform.position = Vector3.MoveTowards(bulletActive.transform.position, target.position, bulletSpeed * Time.deltaTime);
+           yield return null;
+           
+           
+        }
+       
+    }
    
+    public void SpawnBullet()
+    {
+        if(bulletPrefab != null && target != null)
+        {
+            
+           
+            
+            float speedBullet = bulletSpeed * Time.deltaTime;
+           
+        }
+       
+    }
     public void UpgradeSystem()
     {
         if (towerLevel[level] == towerLevel[0])

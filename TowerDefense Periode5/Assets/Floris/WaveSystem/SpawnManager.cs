@@ -92,9 +92,6 @@ public class SpawnManager : MonoBehaviour
 
                         StartNextWave();
                         timerUI = 20;
-                        buttonNextWave.interactable = false;
-                        buttonSpawnRaft.interactable = false;
-                        buttonSpawnRocks.interactable = false;
 
 
 
@@ -143,7 +140,12 @@ public class SpawnManager : MonoBehaviour
 
     public void StartNextWave()
     {
-            currentWave++;
+
+        buttonNextWave.interactable = false;
+        buttonSpawnRaft.interactable = false;
+        buttonSpawnRocks.interactable = false;
+
+        currentWave++;
             isBuildPhase = false;
             isWaveActive = true;
             buildPhaseUi.SetActive(false);

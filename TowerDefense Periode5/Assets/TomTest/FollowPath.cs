@@ -10,11 +10,12 @@ public class FollowPath : MonoBehaviour
     public float hp;
     public TownHallHealth thh;
     private int numberOfWaypoints = 22;
-
+    public Recources recources;
   
 
     void Start()
     {
+        recources = GameObject.Find("BuildManager").GetComponent<Recources>();
         thh = GameObject.FindWithTag("TownHall").GetComponent<TownHallHealth>();
 
        
@@ -39,9 +40,6 @@ public class FollowPath : MonoBehaviour
     
     void Update()
     {
-        
-
-
         if (transform.position != pathPos[nowPos].position)
         {
             gameObject.transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position,speed * Time.deltaTime);
@@ -61,6 +59,8 @@ public class FollowPath : MonoBehaviour
 
         if (hp <= 0) 
         {
+            recources.wood += 3;
+            recources.stone += 3;
             Destroy(gameObject);
         }
         /*

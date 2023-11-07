@@ -105,10 +105,12 @@ public class Unit : MonoBehaviour
         {
             StopCoroutine(followPathCoroutine);
         }
+        recources.wood += getWood;
+        recources.stone += getStone;
+
         spawnManager.EnemyDefeated();
 
-        getWood += recources.wood;
-        getStone += recources.stone;
+      
         
         Destroy(gameObject);
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class UiButtonManager : MonoBehaviour
 {
@@ -18,8 +18,20 @@ public class UiButtonManager : MonoBehaviour
     int currentScene;
    
     public SpawnManager spawnManager;
-
+    public Slider zoomSlider;
+    public float maxZoom;
+    public int minZoom;
     
+    public void Zoom()
+    {
+        float sliderValue = zoomSlider.value;
+        float newZoom = Mathf.Lerp(maxZoom, minZoom, sliderValue);
+
+        Vector3 camPos = buildingCam.transform.position;
+        camPos.y = newZoom;
+        buildingCam.transform.position = camPos;
+        
+    }
 
     public void PauzeMenuGameBack()
     {
