@@ -13,7 +13,7 @@ public class CannonTower : MonoBehaviour
     public int[] damage;
     public float[] delay;
     public GameObject[] towerLevel;
-
+    public SoundManager soundManager;
     public GameObject bulletPrefab;
     public GameObject[] shootpoint;
     public float bulletSpeed;
@@ -28,6 +28,7 @@ public class CannonTower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
         bulletPrefab = GameObject.Find("CannonBall");
     }
 
@@ -66,6 +67,7 @@ public class CannonTower : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > delay[level])
             {
+                
                 Shoot();
                 timer = 0;
             }
@@ -85,8 +87,8 @@ public class CannonTower : MonoBehaviour
             
 
             bulletActive = Instantiate(bulletPrefab, shootpoint[level].transform.position, quaternion.identity);
+            soundManager.PlaySfx("Cannon");
 
-           
             StartCoroutine(MoveToTarget());
 
         }
@@ -134,11 +136,7 @@ public class CannonTower : MonoBehaviour
     {
         if(bulletPrefab != null && target != null)
         {
-            
-           
-            
             float speedBullet = bulletSpeed * Time.deltaTime;
-           
         }
        
     }

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     public PlayerInput input;
     Vector2 currentMovement;
-    public float speed;
+    public float speed, maxForce;
     public Camera playerCamera;
     public Camera buildingCamera;
     bool boughtDonkey;
@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void MovementHandler()
     {
+        
         Vector3 localMocvement = new Vector3(currentMovement.x * speed, rb.velocity.y, currentMovement.y * speed);
         Vector3 worldMovement = transform.TransformDirection(localMocvement);
 

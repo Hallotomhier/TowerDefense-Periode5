@@ -52,6 +52,7 @@ public class UiButtonManager : MonoBehaviour
         pauzeMenuGame.SetActive(true);
     }
    
+    
     public void Back()
     {
         canvas.SetActive(true);

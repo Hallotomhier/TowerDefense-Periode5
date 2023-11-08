@@ -17,7 +17,7 @@ public class BuildingSystem : MonoBehaviour
     public CannonTower cannonTowerScript;
     public WindMill windMillScript;
     public Tutorial tutorial;
-
+    public SoundManager soundManager;
     public Vector3 buildingPos;
     [Header("Prefab")]
     public GameObject rocks;
@@ -77,10 +77,6 @@ public class BuildingSystem : MonoBehaviour
         {
             HandleWindmillPlacement();
         }
-        else if (birdTowers && isTowerPlacingMode == true)
-        {
-           // HandleKamikazePlacement();
-        }
         else if(upgradeTowers && isTowerPlacingMode == true)
         {
             UpgradeSystem();
@@ -99,6 +95,10 @@ public class BuildingSystem : MonoBehaviour
         spawnRocks = false;
         spawnRaft = false;
         birdTowers = false;
+        if (recources.wood <= 5 && recources.stone <= 2)
+        {
+            soundManager.PlaySfx("No Money");
+        }
 
     }
 
@@ -112,6 +112,10 @@ public class BuildingSystem : MonoBehaviour
         spawnRaft = false;
         spawnRocks = false;
         birdTowers = false;
+        if (recources.wood <= 2 && recources.stone <= 5)
+        {
+            soundManager.PlaySfx("No Money");
+        }
     }
 
     public void SpawnRaft()
@@ -122,6 +126,10 @@ public class BuildingSystem : MonoBehaviour
         spawnRaft = true;
         spawnRocks = false;
         birdTowers = false;
+        if (recources.wood <= 5 && recources.stone <= 1)
+        {
+            soundManager.PlaySfx("No Money");
+        }
     }
 
     public void SpawnRocks()
@@ -133,6 +141,10 @@ public class BuildingSystem : MonoBehaviour
         spawnRaft = false;
         spawnRocks = true;
         birdTowers = false;
+        if (recources.stone <= 1)
+        {
+            soundManager.PlaySfx("No Money");
+        }
     }
     public void SpawnBirdTower()
     {
@@ -157,6 +169,10 @@ public class BuildingSystem : MonoBehaviour
         spawnRocks = false;
         birdTowers = false;
         upgradeTowers = true;
+        if(recources.wood <= 10 && recources.stone <= 10)
+        {
+            soundManager.PlaySfx("No Money");
+        }
     }
 
     public void HandleCannonPlacement()
@@ -194,6 +210,8 @@ public class BuildingSystem : MonoBehaviour
                 }
             }
         }
+      
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             isTowerPlacingMode = false;
@@ -235,6 +253,8 @@ public class BuildingSystem : MonoBehaviour
                 }
             }
         }
+      
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             isTowerPlacingMode = false;
@@ -325,7 +345,7 @@ public class BuildingSystem : MonoBehaviour
             
 
         }
-
+       
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             isTowerPlacingMode = false;
@@ -379,6 +399,8 @@ public class BuildingSystem : MonoBehaviour
             }
 
         }
+      
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             isTowerPlacingMode = false;
@@ -404,6 +426,7 @@ public class BuildingSystem : MonoBehaviour
                         cannonTowerScript.level++;
                         cannonTowerScript.UpgradeSystem();
                     }
+                   
 
                 }
                 else if (hit.collider.CompareTag("WindMill"))/*&& windMillScript.level != 2)*/
@@ -418,6 +441,7 @@ public class BuildingSystem : MonoBehaviour
                         windMillScript.UpgradeSystem();
                     }
                    
+
                 }
                 else if (hit.collider.CompareTag("BirdTower")) /* && birdTowerScript.level != 2)*/
                 {
@@ -431,6 +455,7 @@ public class BuildingSystem : MonoBehaviour
                         birdTowerScript.UpgradeSystemBird();
                     }
                     
+
                 }
                
 
@@ -440,6 +465,7 @@ public class BuildingSystem : MonoBehaviour
 
             }
         }
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             isTowerPlacingMode = false;

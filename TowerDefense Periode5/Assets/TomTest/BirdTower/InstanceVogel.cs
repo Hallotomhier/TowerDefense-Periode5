@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InstanceVogel : MonoBehaviour
 {
-    private float timer;
-
+    public float timer;
+    public SoundManager SoundManager;
     [Header("Delay")]
     public float[] delay;
 
@@ -26,7 +26,11 @@ public class InstanceVogel : MonoBehaviour
 
     void Update()
     {
-        target = detectEnemy.nearestEnemy.transform;
+        if(target == null)
+        {
+            target = detectEnemy.nearestEnemy.transform;
+        }
+       
         Delay();
 
     }
@@ -38,7 +42,7 @@ public class InstanceVogel : MonoBehaviour
         if (target != null) 
         {
             timer += Time.deltaTime;
-            if (timer > delay[level]) 
+            if (timer >= delay[level]) 
             {
                 VogelSpawn();
                 timer -= delay[level];
@@ -49,6 +53,7 @@ public class InstanceVogel : MonoBehaviour
     {
         Vector3 aboveTower = above.position;
         GameObject newBird = Instantiate(littleBoy, aboveTower, Quaternion.identity);
+        SoundManager.PlaySfx("Seagull");
         VogelBoem birdScript = newBird.GetComponent<VogelBoem>();
         birdScript.target = detectEnemy.nearestEnemy;
 

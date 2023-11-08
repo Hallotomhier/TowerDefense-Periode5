@@ -6,6 +6,8 @@ public class UIManagerMainMenu : MonoBehaviour
 {
     private int nextSceneToLoad;
     private int artScene;
+    public GameObject pickMap;
+    public GameObject panelMainMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,16 +16,24 @@ public class UIManagerMainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextSceneToLoad);
+        pickMap.SetActive(true);
+        panelMainMenu.SetActive(false) ;
+    }
+    public void BackOutMapSelect()
+    {
+        pickMap.SetActive(false);
+        panelMainMenu.SetActive(true);
     }
     public void ExitGame()
     {
         Application.Quit();
     }
-    public void LoadArtScene()
+    public void GoToMapOne()
     {
-        artScene = SceneManager.GetActiveScene().buildIndex + 2;
-        SceneManager.LoadScene(artScene);
+        SceneManager.LoadScene("Map 1");
+    }
+    public void GoToMapTwo()
+    {
+        SceneManager.LoadScene("Map 2");
     }
 }
