@@ -860,7 +860,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 1546323352}
   credits: {fileID: 821726294}
   beginSound: 0.1
-  audioMixer: {fileID: 24100000, guid: 5f3094f9822f29345aae946f1c36749c, type: 2}
+  audioMixer: {fileID: 24100000, guid: cce9b7aca5554804bb203c76a213ddb8, type: 2}
   resolutionDropdown: {fileID: 1933756365}
 --- !u!1 &167584985
 GameObject:
@@ -2242,7 +2242,7 @@ AudioSource:
   m_GameObject: {fileID: 451676953}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 5f3094f9822f29345aae946f1c36749c,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: cce9b7aca5554804bb203c76a213ddb8,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2e77d76b90e04024686288a19b971c32, type: 3}
   m_PlayOnAwake: 1
@@ -8457,7 +8457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1850506174
 RectTransform:
   m_ObjectHideFlags: 0

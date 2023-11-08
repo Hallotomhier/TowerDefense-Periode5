@@ -7139,8 +7139,8 @@ MonoBehaviour:
   - {fileID: 534067577}
   startTime: 10
   timeBetweenWaves: 20
-  buildPhaseDuration: 20
-  timerUI: 20
+  buildPhaseDuration: 40
+  timerUI: 40
   timer: 0
   victoryScreen: {fileID: 2022985139}
   waves:
@@ -14968,8 +14968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e679edd5be172774ea7ad3a2e96fc17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: 200
-  wood: 200
+  stone: 20
+  wood: 20
   stoneText: {fileID: 2030745624}
   woodText: {fileID: 451540859}
 --- !u!1001 &765662394

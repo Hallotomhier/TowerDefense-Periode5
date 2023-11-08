@@ -28,6 +28,10 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound("Theme");
     }
+    private void OnDisable()
+    {
+        PlaySound(null);
+    }
     public void PlaySound(string name)
     {
         Sound sounds = Array.Find(musicSound, x => x.name == name);

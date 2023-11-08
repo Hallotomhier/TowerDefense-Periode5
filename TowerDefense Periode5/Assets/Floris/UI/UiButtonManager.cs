@@ -73,8 +73,8 @@ public class UiButtonManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        currentScene = SceneManager.GetActiveScene().buildIndex - 1;
-        SceneManager.LoadScene(currentScene);
+       
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void StartNextWave()
