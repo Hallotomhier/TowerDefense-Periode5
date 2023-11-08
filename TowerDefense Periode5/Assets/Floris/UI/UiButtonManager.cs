@@ -15,7 +15,7 @@ public class UiButtonManager : MonoBehaviour
     public GameObject towerBuildUI;
     public GameObject pauzeMenuGame;
     public GameObject settingsMenu;
-    int currentScene;
+    
    
     public SpawnManager spawnManager;
     public Slider zoomSlider;
@@ -79,7 +79,7 @@ public class UiButtonManager : MonoBehaviour
 
     public void StartNextWave()
     {
-        spawnManager.timer = 20;
+        spawnManager.timer = 40;
         spawnManager.gameState = SpawnManager.GameState.BuildPhase;
     }
 

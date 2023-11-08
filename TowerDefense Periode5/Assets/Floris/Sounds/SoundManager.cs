@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -23,15 +24,13 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        PlaySound("Theme");
     }
     private void Start()
     {
-        PlaySound("Theme");
+        
     }
-    private void OnDisable()
-    {
-        PlaySound(null);
-    }
+    
     public void PlaySound(string name)
     {
         Sound sounds = Array.Find(musicSound, x => x.name == name);
@@ -63,5 +62,6 @@ public class SoundManager : MonoBehaviour
             sfxSource.Play();
         }
     }
+    
 }
 

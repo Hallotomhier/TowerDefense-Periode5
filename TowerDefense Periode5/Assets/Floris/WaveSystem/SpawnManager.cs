@@ -91,7 +91,7 @@ public class SpawnManager : MonoBehaviour
                         timer = 0;
 
                         StartNextWave();
-                        timerUI = 20;
+                        timerUI = 40;
 
 
 
@@ -110,7 +110,7 @@ public class SpawnManager : MonoBehaviour
                 {
 
                     timer = 0;
-                    timerUI = 20;
+                    timerUI = 40;
                     animator.SetBool("PlayTimer", true);
 
                    

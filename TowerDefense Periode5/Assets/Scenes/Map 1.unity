@@ -7139,8 +7139,8 @@ MonoBehaviour:
   - {fileID: 534067577}
   startTime: 10
   timeBetweenWaves: 20
-  buildPhaseDuration: 10
-  timerUI: 10
+  buildPhaseDuration: 40
+  timerUI: 40
   timer: 0
   victoryScreen: {fileID: 2022985139}
   waves:
@@ -35488,9 +35488,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742404049745452956, guid: 3a30385add91ec04b880d870cd385d58,
         type: 3}
+      propertyPath: musicSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 742404049745452956, guid: 3a30385add91ec04b880d870cd385d58,
+        type: 3}
       propertyPath: musicSound.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: 5e4884809e9e0dd4282080b58e8306a9, type: 3}
+    - target: {fileID: 742404049745452956, guid: 3a30385add91ec04b880d870cd385d58,
+        type: 3}
+      propertyPath: musicSound.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 275a8a8fda3671641b16f3c14556817f, type: 3}
+    - target: {fileID: 742404049745452956, guid: 3a30385add91ec04b880d870cd385d58,
+        type: 3}
+      propertyPath: musicSound.Array.data[1].name
+      value: Theme2
+      objectReference: {fileID: 0}
     - target: {fileID: 2311727276391000862, guid: 3a30385add91ec04b880d870cd385d58,
         type: 3}
       propertyPath: m_LocalPosition.x
