@@ -151,7 +151,6 @@ public class CannonTower : MonoBehaviour
         {
             towerLevel[level].SetActive(true);
             level1.SetActive(false);
-            
         }
         
         if (towerLevel[level] == towerLevel[2])

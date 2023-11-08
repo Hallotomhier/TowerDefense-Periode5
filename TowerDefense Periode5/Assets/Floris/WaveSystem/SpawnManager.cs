@@ -130,6 +130,7 @@ public class SpawnManager : MonoBehaviour
             if (currentWave == waves.Count)
             {
                 Victory();
+                Time.timeScale = 0;
             }
         }
        
@@ -203,7 +204,7 @@ public class SpawnManager : MonoBehaviour
     {
        
         timerText.text = timerUI.ToString("N0");
-        // kijk hier nog na vanavond
+       
         if(gameState != GameState.WaveInProgress)
         {
             animator.SetBool("PlayBuildPhase",false);

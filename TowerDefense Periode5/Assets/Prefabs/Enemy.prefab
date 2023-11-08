@@ -129,6 +129,7 @@ MonoBehaviour:
   speed: 3
   hp: 30
   thh: {fileID: 0}
+  recources: {fileID: 0}
 --- !u!54 &3203517638895311269
 Rigidbody:
   m_ObjectHideFlags: 0
