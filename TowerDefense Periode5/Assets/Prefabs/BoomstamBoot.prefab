@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 5
+  speed: 30
   heightOffset: 1
   spawnManager: {fileID: 0}
   recources: {fileID: 0}
@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cargoList:
-  - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
-  - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
-  - {fileID: 6085647485430701020, guid: 587e965d3fe722f45ac0993a32f44987, type: 3}
+  - {fileID: 6172442316931009226, guid: 888500f5e2ff6634d9306836cb3c08cc, type: 3}
+  - {fileID: 6172442316931009226, guid: 888500f5e2ff6634d9306836cb3c08cc, type: 3}
   destroyShipScript: {fileID: 0}
