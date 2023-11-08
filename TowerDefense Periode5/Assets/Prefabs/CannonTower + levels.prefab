@@ -63,7 +63,11 @@ MonoBehaviour:
   - {fileID: 1464811745506361122}
   - {fileID: 8633168658936564547}
   - {fileID: 1293243782008845715}
-  level1: {fileID: 1464811745506361122}
+  bulletPrefab: {fileID: 0}
+  shootpoint: []
+  bulletSpeed: 0
+  bulletActive: {fileID: 0}
+  level1: {fileID: 4257504664736323281}
   level2: {fileID: 8633168658936564547}
   level3: {fileID: 1293243782008845715}
   level: 0
