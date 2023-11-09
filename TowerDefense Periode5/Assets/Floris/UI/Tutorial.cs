@@ -27,7 +27,7 @@ public class Tutorial : MonoBehaviour
         else if (tutorialStep2 == true)
         {
             tutorialStep1 = false;
-            tutorialText.text = "Click on Raft / Rocks to place obstacles on the water Raft = a platform were you can build towers on rocks is for making a path the enemys follow".ToString();
+            tutorialText.text = "Click on Raft / Rocks to place obstacles on the water. Rafts are a platform were you can build towers on. rocks are for making a path the enemys follow".ToString();
         }
         else if (tutorialStep3 == true)
         {

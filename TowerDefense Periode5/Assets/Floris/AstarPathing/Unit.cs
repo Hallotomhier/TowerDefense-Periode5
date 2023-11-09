@@ -14,9 +14,11 @@ public class Unit : MonoBehaviour
     public Recources recources;
     public int getWood;
     public int getStone;
+    public SoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
         recources = GameObject.FindWithTag("BuildManager").GetComponent<Recources>();
 
 
@@ -107,7 +109,7 @@ public class Unit : MonoBehaviour
         }
         recources.wood += getWood;
         recources.stone += getStone;
-
+        soundManager.PlaySfx("Boat Zink");
         spawnManager.EnemyDefeated();
 
       
