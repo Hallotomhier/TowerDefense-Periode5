@@ -126,12 +126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 5
+  speed: 50
   heightOffset: 1
   spawnManager: {fileID: 0}
   recources: {fileID: 0}
   getWood: 3
   getStone: 3
+  soundManager: {fileID: 0}
 --- !u!65 &8657687264143543588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -205,7 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 40
+  oldHealth: 0
   unit: {fileID: 0}
+  soundManager: {fileID: 0}
 --- !u!114 &9048706621098693955
 MonoBehaviour:
   m_ObjectHideFlags: 0

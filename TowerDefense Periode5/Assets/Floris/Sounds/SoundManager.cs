@@ -24,11 +24,11 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        PlaySound("Theme");
+      
     }
     private void Start()
     {
-        
+        PlaySound("Theme");
     }
     
     public void PlaySound(string name)

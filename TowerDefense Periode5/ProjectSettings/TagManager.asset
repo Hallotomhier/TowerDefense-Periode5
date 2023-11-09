@@ -21,6 +21,8 @@ TagManager:
   - CannonTower
   - BirdTower
   - Maze
+  - Haven
+  - Land
   layers:
   - Default
   - TransparentFX

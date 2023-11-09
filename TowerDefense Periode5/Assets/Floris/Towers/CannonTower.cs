@@ -21,13 +21,14 @@ public class CannonTower : MonoBehaviour
     public GameObject level1;
     public GameObject level2;
     public GameObject level3;
-    
+    public FollowPath followPath;
     public int level;
     public float timer;
     public bool canRotate = false;
     // Start is called before the first frame update
     void Start()
     {
+        
         soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
         bulletPrefab = GameObject.Find("CannonBall");
     }
@@ -64,6 +65,7 @@ public class CannonTower : MonoBehaviour
        
         if (target != null)
         {
+            followPath = target.GetComponent<FollowPath>();
             timer += Time.deltaTime;
             if (timer > delay[level])
             {
@@ -113,7 +115,13 @@ public class CannonTower : MonoBehaviour
                 bulletActive = null;
                 if (target.GetComponent<FollowPath>())
                 {
+                    
                     target.GetComponent<FollowPath>().hp -= damage[level];
+                    if(followPath.hp <= followPath.oldHP)
+                    {
+                        soundManager.PlaySfx("DieEnemy");
+                        followPath.oldHP = followPath.hp;
+                    }
 
                 }
                 if (target.GetComponent<Unit>())

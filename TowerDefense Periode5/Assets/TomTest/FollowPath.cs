@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip woodWalk;
+    public AudioClip dirtWalk;
     public Transform[] pathPos;
     private int nowPos = 0;
     public float speed = 5;
     public float hp;
+    public float oldHP;
     public TownHallHealth thh;
     private int numberOfWaypoints = 22;
     public Recources recources;
-  
+    public RaycastHit hit;
+    public GameObject empty;
+
 
     void Start()
     {
+        oldHP = hp;
         recources = GameObject.Find("BuildManager").GetComponent<Recources>();
         thh = GameObject.FindWithTag("TownHall").GetComponent<TownHallHealth>();
 
@@ -40,6 +47,19 @@ public class FollowPath : MonoBehaviour
     
     void Update()
     {
+        if (Physics.Raycast(empty.transform.position, Vector3.down, out hit, 10f))
+        {
+            if(hit.collider.tag == "Haven")
+            {
+                Debug.Log("Hit wood");
+                audioSource.clip = woodWalk;
+            }
+            else if ( hit.collider.tag == "Land")
+            {
+                Debug.Log("Hit land");
+                audioSource.clip = dirtWalk;
+            }
+        }
         if (transform.position != pathPos[nowPos].position)
         {
             gameObject.transform.position = Vector3.MoveTowards(transform.position, pathPos[nowPos].position,speed * Time.deltaTime);

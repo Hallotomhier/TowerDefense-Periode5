@@ -17,10 +17,10 @@ public class EnemyHealth : MonoBehaviour
     public void Update()
     {
       
-       if(health > oldHealth)
+       if(health < oldHealth)
        {
-            soundManager.PlaySfx("Impact Boat");
-            health = oldHealth;
+            soundManager.PlaySfx("ImpactBoat");
+            oldHealth = health;
        }
        if(health <= 1)
        {
