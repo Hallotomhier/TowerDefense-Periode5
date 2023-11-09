@@ -15,7 +15,8 @@ public class UiButtonManager : MonoBehaviour
     public GameObject towerBuildUI;
     public GameObject pauzeMenuGame;
     public GameObject settingsMenu;
-    
+    public Recources recources;
+
    
     public SpawnManager spawnManager;
     public Slider zoomSlider;
@@ -81,6 +82,21 @@ public class UiButtonManager : MonoBehaviour
     {
         spawnManager.timer = 40;
         spawnManager.gameState = SpawnManager.GameState.BuildPhase;
+    }
+    public void CheatRecources()
+    {
+        recources.wood += 9000;
+        recources.stone += 9000;
+
+
+    }
+    public void SpeedItUP()
+    {
+        Time.timeScale = 1;
+    }
+    public void SpeedUp2x()
+    {
+        Time.timeScale = 2;
     }
 
 }

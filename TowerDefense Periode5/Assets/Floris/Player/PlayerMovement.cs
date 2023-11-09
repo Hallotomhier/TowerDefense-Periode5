@@ -25,10 +25,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject uiExplanationDonkeyTower;
     public GameObject uiExplanationBirdTower;
     public GameObject uiBird;
-
+    public GameObject uiPlayer;
+    public GameObject uiDevTool;
+    public GameObject uiBuildPhase;
     public bool activatedTable;
     public bool hasBoughtBird;
     public Tutorial tutorial;
+    public bool devToolOpen;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         input.Player.Mouse.performed += ctx => OnMouse(ctx.ReadValue<Vector2>());
         input.Player.Interact.performed += ctx => InteractPerformed(ctx);
+        input.Player.DevTool.performed += ctx => OpenDevTool();
         input.Enable();
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
@@ -54,6 +58,19 @@ public class PlayerMovement : MonoBehaviour
         UiHandler();
         MovementHandler();
     }
+    public void OpenDevTool()
+    {
+        uiDevTool.SetActive(true);
+        uiPlayer.SetActive(false);
+        while(devToolOpen)
+        {
+            uiBuildPhase.SetActive(false);
+            break;
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+    }
     public void MovementHandler()
     {
         
@@ -61,6 +78,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 worldMovement = transform.TransformDirection(localMocvement);
 
         rb.velocity = new Vector3(worldMovement.x * speed * Time.deltaTime, rb.velocity.y, worldMovement.z * speed * Time.deltaTime);
+    }
+    public void BackDevTool()
+    {
+        uiDevTool.SetActive(false);
+        uiPlayer.SetActive(true);
+        devToolOpen = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
     public void UiHandler()
     {

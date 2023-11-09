@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 50
+  speed: 5
   heightOffset: 1
   spawnManager: {fileID: 0}
   recources: {fileID: 0}
