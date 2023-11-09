@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 30
+  speed: 5
   heightOffset: 1
   spawnManager: {fileID: 0}
   recources: {fileID: 0}
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddf29a7005371849973642e064fdfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 40
   unit: {fileID: 0}
 --- !u!114 &9048706621098693955
 MonoBehaviour:

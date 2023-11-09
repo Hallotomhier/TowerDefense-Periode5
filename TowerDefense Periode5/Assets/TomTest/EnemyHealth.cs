@@ -5,19 +5,27 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
+    public int oldHealth;
     public Unit unit;
-    SpawnManager spawnManager;
+    public SoundManager soundManager;
     private void Awake()
     {
+        oldHealth = health;
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
         unit = GetComponent<Unit>();
     }
     public void Update()
     {
-       
-        if(health <= 1)
-        {
+      
+       if(oldHealth < health)
+       {
+            soundManager.PlaySfx("Impact Boat");
+            oldHealth = health;
+       }
+       if(health <= 1)
+       {
             unit.MarkAsDestroyed();
-        }
+       }
     }
 
 }
