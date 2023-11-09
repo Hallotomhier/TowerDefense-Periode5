@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class UiButtonManager : MonoBehaviour
 {
@@ -16,13 +17,18 @@ public class UiButtonManager : MonoBehaviour
     public GameObject pauzeMenuGame;
     public GameObject settingsMenu;
     public Recources recources;
+    public GameObject victoryUI;
+    public GameObject loseUI;
+    public GameObject devTool;
 
-   
     public SpawnManager spawnManager;
     public Slider zoomSlider;
+    public Slider brightSlider;
+    public float maxBrightness;
+    public float minBrightness; 
     public float maxZoom;
     public int minZoom;
-    
+
     public void Zoom()
     {
         float sliderValue = zoomSlider.value;
@@ -31,8 +37,9 @@ public class UiButtonManager : MonoBehaviour
         Vector3 camPos = buildingCam.transform.position;
         camPos.y = newZoom;
         buildingCam.transform.position = camPos;
-        
+
     }
+   
 
     public void PauzeMenuGameBack()
     {
@@ -43,17 +50,17 @@ public class UiButtonManager : MonoBehaviour
 
     public void SettingInGame()
     {
-         pauzeMenuGame.SetActive(false);
-         settingsMenu.SetActive(true);
-       
+        pauzeMenuGame.SetActive(false);
+        settingsMenu.SetActive(true);
+
     }
     public void BackSettingsMenuinGame()
     {
         settingsMenu.SetActive(false);
         pauzeMenuGame.SetActive(true);
     }
-   
-    
+
+
     public void Back()
     {
         canvas.SetActive(true);
@@ -74,7 +81,7 @@ public class UiButtonManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-       
+
         SceneManager.LoadScene("Main Menu");
     }
 
@@ -98,5 +105,18 @@ public class UiButtonManager : MonoBehaviour
     {
         Time.timeScale = 2;
     }
+    public void WinGame()
+    {
+        victoryUI.SetActive(true);
+        devTool.SetActive(false);
+        Time.timeScale = 0;
+    }
+    public void LoseGame()
+    {
+        loseUI.SetActive(true);
+        devTool.SetActive(false);
+        Time.timeScale = 0;
+    }
 
+    
 }
