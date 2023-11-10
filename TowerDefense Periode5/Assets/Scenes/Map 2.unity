@@ -17949,9 +17949,9 @@ MonoBehaviour:
   pauzeMenuGame: {fileID: 350968962}
   settingsMenu: {fileID: 1541993806}
   recources: {fileID: 1610556936}
-  victoryUI: {fileID: 0}
-  loseUI: {fileID: 0}
-  devTool: {fileID: 0}
+  victoryUI: {fileID: 2053578903}
+  loseUI: {fileID: 202280707}
+  devTool: {fileID: 2133950710}
   spawnManager: {fileID: 2021792500}
   zoomSlider: {fileID: 1559680314}
   brightSlider: {fileID: 0}

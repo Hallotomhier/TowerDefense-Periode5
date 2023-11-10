@@ -16158,7 +16158,7 @@ MonoBehaviour:
   tutorial: {fileID: 4314434066344773287}
   soundManager: {fileID: 976803176}
   buildingPos: {x: 0, y: 0, z: 0}
-  rocks: {fileID: 772226016294180656, guid: 0aa8cb4f8729c544b910a29dbb0f0241, type: 3}
+  rocks: {fileID: 6038675508255970137, guid: 31b345f05e2053848acdf8184d7670ce, type: 3}
   windmill: {fileID: 8473446925678383613, guid: d6ce926ee0112a042ae5838f5513815e,
     type: 3}
   raft: {fileID: 968373572993744001, guid: 3f4d0395d8b8afd4d9411df24dccfb9d, type: 3}
@@ -31582,7 +31582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recources: {fileID: 761415177}
-  speed: 30
+  speed: 25
   maxForce: 0
   playerCamera: {fileID: 1485407018}
   buildingCamera: {fileID: 1321253689}
