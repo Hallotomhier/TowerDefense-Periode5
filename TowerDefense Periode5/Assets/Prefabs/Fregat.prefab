@@ -173,6 +173,7 @@ MonoBehaviour:
   recources: {fileID: 0}
   getWood: 5
   getStone: 10
+  soundManager: {fileID: 0}
 --- !u!114 &3841112554254001057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,4 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 500
+  oldHealth: 0
   unit: {fileID: 0}
+  soundManager: {fileID: 0}

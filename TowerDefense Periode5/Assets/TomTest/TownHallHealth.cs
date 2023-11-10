@@ -19,7 +19,8 @@ public class TownHallHealth : MonoBehaviour
     
     void Update()
     {
-       UpdateHealth();
+        Debug.Log(townHealth);
+        UpdateHealth(); 
         if (townHealth <= 0) 
         {
         

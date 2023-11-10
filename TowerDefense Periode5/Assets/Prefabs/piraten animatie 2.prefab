@@ -164,10 +164,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf2a8a4ab27bde4084daa36109b2ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1024180681839882589}
-  woodWalk: {fileID: 8300000, guid: 5eb55bbb5535a024497dd862ecf96a29, type: 3}
-  dirtWalk: {fileID: 8300000, guid: 956508e021d88c34bb3ca9099427d554, type: 3}
   pathPos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

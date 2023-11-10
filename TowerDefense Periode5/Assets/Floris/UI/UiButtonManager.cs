@@ -11,7 +11,7 @@ public class UiButtonManager : MonoBehaviour
     public GameObject canvas;
     public Camera playerCam;
     public Camera buildingCam;
-
+    public GameObject player;
     public PlayerMovement movement;
     public GameObject towerBuildUI;
     public GameObject pauzeMenuGame;
@@ -28,6 +28,7 @@ public class UiButtonManager : MonoBehaviour
     public float minBrightness; 
     public float maxZoom;
     public int minZoom;
+    public Transform positionStart;
 
     public void Zoom()
     {
@@ -40,6 +41,10 @@ public class UiButtonManager : MonoBehaviour
 
     }
    
+    public void ResetPosition()
+    {
+        player.transform.position = positionStart.position;
+    }
 
     public void PauzeMenuGameBack()
     {
